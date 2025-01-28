@@ -1,11 +1,37 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Features from '../components/Features.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Cofoundy - Hacemos realidad tu proyecto tech">
+	<div class="min-h-screen bg-white">
+		<Navbar />
+		<main>
+			<Hero />
+			<Features />
+			<Services />
+			
+			<Contact />
+		</main>
+		<Footer />
+	</div>
 </Layout>
+
+<style>
+	:root {
+		--primary: #46A0D0;
+		--primary-dark: #1B577E;
+		--secondary: #23435F;
+		--gray: #848386;
+		--gray-dark: #4B4E54;
+		--dark: #020B1B;
+	}
+</style>

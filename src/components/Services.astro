@@ -1,0 +1,58 @@
+---
+const services = [
+    {
+        title: "SOFTWARE PERSONALIZADO",
+        description: "Diseñamos sistemas a medida, brindamos las herramientas para satisfacer las necesidades de tu compañía.",
+        icon: "💻"
+    },
+    {
+        title: "INTELIGENCIA DE NEGOCIOS",
+        description: "Facilitamos el acceso a la información mejorando notablemente la toma de decisiones en tu compañía.",
+        icon: "📊"
+    },
+    {
+        title: "CONSULTORÍA TI",
+        description: "Somos parte de la transformación digital de tu compañía, contamos con el mejor talento y soluciones únicas.",
+        icon: "🔧"
+    },
+    {
+        title: "DESARROLLO WEB Y MÓVIL",
+        description: "Diseñamos y construimos los canales web y móvil, utilizamos tecnología moderna, segura mejorando la experiencia de tus clientes.",
+        icon: "🌐"
+    },
+    {
+        title: "OUTSOURCING TI",
+        description: "Contamos con expertos profesionales en TI, garantizando la calidad y la satisfacción de nuestros clientes.",
+        icon: "👥"
+    },
+    {
+        title: "DIGITALIZACIÓN DE DOCUMENTOS",
+        description: "Migramos archivos físicos a una plataforma digital, incrementamos la eficiencia, seguridad y accesibilidad entre áreas.",
+        icon: "📄"
+    }
+];
+---
+
+<section class="bg-dark -mt-1 pt-32 pb-24">
+    <div class="container mx-auto px-4">
+        <h2 class="mb-20 text-center text-4xl font-bold text-white tracking-wide">
+            NUESTROS SERVICIOS
+        </h2>
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {services.map(service => (
+                <div class="group flex flex-col items-start rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                    <div class="mb-6 text-4xl group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
+                    <h3 class="mb-4 text-xl font-bold text-white group-hover:text-primary transition-colors duration-300">
+                        {service.title}
+                    </h3>
+                    <p class="mb-6 flex-grow text-white/70">
+                        {service.description}
+                    </p>
+                    <a href="#contact" class="text-primary font-medium hover:text-white transition-colors duration-300">
+                        CONTÁCTANOS
+                    </a>
+                </div>
+            ))}
+        </div>
+    </div>
+</section> 

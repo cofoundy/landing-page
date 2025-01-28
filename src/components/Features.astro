@@ -1,0 +1,43 @@
+---
+const features = [
+    {
+        icon: "💻",
+        title: "Desarrollo Web",
+        description: "Frontend, Backend y Base de datos",
+    },
+    {
+        icon: "🧠",
+        title: "Inteligencia Artificial",
+        description: "GenAI, Computer Vision y Machine Learning",
+    },
+    {
+        icon: "🚀",
+        title: "MVPs",
+        description: "Desarrollo ágil de productos mínimos viables",
+    },
+    {
+        icon: "👥",
+        title: "Co-fundador Técnico",
+        description: "Socios tecnológicos para tu proyecto",
+    },
+    {
+        icon: "⚡",
+        title: "Tiempo Real",
+        description: "Soluciones de datos en tiempo real",
+    },
+];
+---
+
+<section class="bg-dark py-20">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-2 gap-12 md:grid-cols-3 lg:grid-cols-5">
+            {features.map((feature) => (
+                <div class="flex flex-col items-center text-center">
+                    <div class="mb-4 text-4xl text-primary">{feature.icon}</div>
+                    <h3 class="mb-2 font-semibold text-white">{feature.title}</h3>
+                    <p class="text-sm text-white/60">{feature.description}</p>
+                </div>
+            ))}
+        </div>
+    </div>
+</section> 
