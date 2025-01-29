@@ -1,43 +1,88 @@
 ---
 const features = [
-    {
-        icon: "💻",
-        title: "Desarrollo Web",
-        description: "Frontend, Backend y Base de datos",
-    },
-    {
-        icon: "🧠",
-        title: "Inteligencia Artificial",
-        description: "GenAI, Computer Vision y Machine Learning",
-    },
-    {
-        icon: "🚀",
-        title: "MVPs",
-        description: "Desarrollo ágil de productos mínimos viables",
-    },
-    {
-        icon: "👥",
-        title: "Co-fundador Técnico",
-        description: "Socios tecnológicos para tu proyecto",
-    },
-    {
-        icon: "⚡",
-        title: "Tiempo Real",
-        description: "Soluciones de datos en tiempo real",
-    },
+  {
+    icon: "💻",
+    title: "Desarrollo Web",
+    description: "Frontend, Backend y Base de datos",
+  },
+  {
+    icon: "🧠",
+    title: "Inteligencia Artificial",
+    description: "GenAI, Computer Vision y Machine Learning",
+  },
+  {
+    icon: "🚀",
+    title: "MVPs",
+    description: "Desarrollo ágil de productos mínimos viables",
+  },
+  {
+    icon: "👥",
+    title: "Co-fundador Técnico",
+    description: "Socios tecnológicos para tu proyecto",
+  },
+  {
+    icon: "⚡",
+    title: "Tiempo Real",
+    description: "Soluciones de datos en tiempo real",
+  },
 ];
 ---
 
-<section class="bg-dark py-20">
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-2 gap-12 md:grid-cols-3 lg:grid-cols-5">
-            {features.map((feature) => (
-                <div class="flex flex-col items-center text-center">
-                    <div class="mb-4 text-4xl text-primary">{feature.icon}</div>
-                    <h3 class="mb-2 font-semibold text-white">{feature.title}</h3>
-                    <p class="text-sm text-white/60">{feature.description}</p>
-                </div>
-            ))}
-        </div>
+<section class="relative bg-dark py-32">
+  <!-- Decorative elements -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div
+      class="absolute -top-40 -right-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
+    >
     </div>
-</section> 
+    <div
+      class="absolute -bottom-40 -left-32 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"
+    >
+    </div>
+  </div>
+
+  <div class="container relative mx-auto px-4">
+    <div class="grid gap-16 lg:grid-cols-5">
+      {
+        features.map((feature, index) => (
+          <div
+            class="group relative flex flex-col items-center text-center"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <div class="mb-6 relative">
+              <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+              <div class="relative text-6xl transform group-hover:scale-110 transition-transform duration-300">
+                {feature.icon}
+              </div>
+            </div>
+            <h3 class="mb-3 text-xl font-bold text-white group-hover:text-primary transition-colors duration-300">
+              {feature.title}
+            </h3>
+            <p class="text-white/70 group-hover:text-white/90 transition-colors duration-300">
+              {feature.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .grid > div {
+    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 0;
+  }
+</style>
+
