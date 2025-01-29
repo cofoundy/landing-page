@@ -60,39 +60,43 @@ const decorations = [
 
   <div class="container relative mx-auto px-4">
     <!-- Features grid with staggered animation -->
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
-      {features.map((feature, index) => (
-        <div 
-          class="group relative"
-          style={`animation-delay: ${index * 150}ms`}
-        >
-          <div class={`relative bg-white/5 backdrop-blur-lg rounded-2xl p-8 h-full transform transition-all duration-500 hover:scale-105 hover:-translate-y-1 before:rounded-2xl before:transition-opacity before:duration-500 before:opacity-0 group-hover:before:opacity-100 ${decorations[index].class}`}>
-            <!-- Hover glow effect -->
-            <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
-            
-            <!-- Card content -->
-            <div class="relative z-10 flex flex-col items-center text-center">
-              <div class="mb-6 text-6xl transform group-hover:scale-110 transition-transform duration-300 group-hover:rotate-12">
-                {feature.icon}
-              </div>
-              <h3 class="text-xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent mb-3">
-                {feature.title}
-              </h3>
-              <p class="text-white/70 group-hover:text-white/90 transition-colors duration-300">
-                {feature.description}
-              </p>
-            </div>
+    <div class="relative">
+      <div class="overflow-x-auto overflow-y-hidden md:overflow-visible pb-4 md:pb-0 hide-scrollbar">
+        <div class="flex md:grid md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 w-max md:w-auto">
+          {features.map((feature, index) => (
+            <div 
+              class="group relative w-[280px] sm:w-[320px] md:w-auto flex-shrink-0"
+              style={`animation-delay: ${index * 150}ms`}
+            >
+              <div class={`relative bg-white/5 backdrop-blur-lg rounded-2xl p-6 md:p-8 h-full transform transition-all duration-500 hover:scale-105 hover:-translate-y-1 before:rounded-2xl before:transition-opacity before:duration-500 before:opacity-0 group-hover:before:opacity-100 ${decorations[index].class}`}>
+                <!-- Hover glow effect -->
+                <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
+                
+                <!-- Card content -->
+                <div class="relative z-10 flex flex-col items-center text-center">
+                  <div class="mb-4 md:mb-6 text-5xl md:text-6xl transform group-hover:scale-110 transition-transform duration-300 group-hover:rotate-12">
+                    {feature.icon}
+                  </div>
+                  <h3 class="text-lg md:text-xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent mb-2 md:mb-3">
+                    {feature.title}
+                  </h3>
+                  <p class="text-sm md:text-base text-white/70 group-hover:text-white/90 transition-colors duration-300">
+                    {feature.description}
+                  </p>
+                </div>
 
-            <!-- Animated corner accent -->
-            <div class={`absolute w-16 h-16 transition-all duration-500 opacity-0 group-hover:opacity-100
-              ${index % 2 === 0 ? 'top-0 right-0' : 'bottom-0 left-0'}
-              ${index % 3 === 0 ? 'bg-[radial-gradient(circle_at_30%_30%,rgba(70,160,208,0.2)_0,transparent_60%)]' : 
-                index % 3 === 1 ? 'bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0%,rgba(70,160,208,0.2)_25%,transparent_50%)]' :
-                'bg-[linear-gradient(45deg,transparent,rgba(70,160,208,0.2))]'}`}>
+                <!-- Animated corner accent -->
+                <div class={`absolute w-16 h-16 transition-all duration-500 opacity-0 group-hover:opacity-100
+                  ${index % 2 === 0 ? 'top-0 right-0' : 'bottom-0 left-0'}
+                  ${index % 3 === 0 ? 'bg-[radial-gradient(circle_at_30%_30%,rgba(70,160,208,0.2)_0,transparent_60%)]' : 
+                    index % 3 === 1 ? 'bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0%,rgba(70,160,208,0.2)_25%,transparent_50%)]' :
+                    'bg-[linear-gradient(45deg,transparent,rgba(70,160,208,0.2))]'}`}>
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   </div>
 </section>
@@ -144,6 +148,18 @@ const decorations = [
   .group:hover .bg-gradient-to-br {
     --tw-gradient-from: rgba(70, 160, 208, 0.3);
     --tw-gradient-to: rgba(35, 67, 95, 0.3);
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .hide-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
   }
 </style>
 
