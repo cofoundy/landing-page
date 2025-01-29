@@ -1,34 +1,43 @@
 ---
 const menuItems = [
-    { text: "Servicios", href: "#services" },
-    { text: "Proyectos", href: "#projects" },
-    { text: "Proceso", href: "#process" },
-    { text: "Contacto", href: "#contact" },
+  { text: "Servicios", href: "#services" },
+  { text: "Proyectos", href: "#projects" },
+  { text: "Proceso", href: "#process" },
+  { text: "Contacto", href: "#contact" },
 ];
 ---
 
 <header class="absolute w-full z-10">
-    <div class="container mx-auto flex h-20 items-center justify-between px-4">
-        <a href="/" class="text-2xl font-bold text-dark">
-            Cofoundy
-        </a>
+  <div class="container mx-auto flex h-20 items-center justify-between px-4">
+    <a href="/" class="text-2xl font-bold text-dark flex items-center gap-2">
+      <img src="/icon.svg" alt="Cofoundy Logo" class="w-8 h-8" />
+      Cofoundy
+    </a>
 
-        <nav class="hidden space-x-8 md:flex">
-            {menuItems.map(item => (
-                <a href={item.href} class="text-dark/80 hover:text-dark transition-all duration-300">
-                    {item.text}
-                </a>
-            ))}
-        </nav>
+    <nav class="hidden space-x-8 md:flex">
+      {
+        menuItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-dark/80 hover:text-dark transition-all duration-300"
+          >
+            {item.text}
+          </a>
+        ))
+      }
+    </nav>
 
-        <a href="#contact" class="bg-secondary text-white hover:bg-secondary/90 px-6 py-3 rounded-md font-medium transition-all duration-300">
-            Iniciar Proyecto
-        </a>
-    </div>
+    <a
+      href="#contact"
+      class="bg-secondary text-white hover:bg-secondary/90 px-6 py-3 rounded-md font-medium transition-all duration-300"
+    >
+      Iniciar Proyecto
+    </a>
+  </div>
 </header>
 
 <style>
-    a {
-        scroll-behavior: smooth;
-    }
-</style> 
+  a {
+    scroll-behavior: smooth;
+  }
+</style>
