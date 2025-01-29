@@ -3,24 +3,24 @@ import { routes } from "../utils/routes";
 ---
 
 <section
-  class="relative min-h-screen flex items-center pt-20 pb-32 overflow-hidden bg-white"
+  class="relative min-h-screen flex items-center pt-16 md:pt-20 pb-24 md:pb-32 overflow-hidden bg-white"
 >
   <!-- Animated background -->
   <div class="absolute inset-0">
     <!-- Mesh grid with gradient mask -->
     <div
-      class="absolute inset-0 bg-[linear-gradient(rgba(70,160,208,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(70,160,208,0.1)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_100%_100%_at_50%_-20%,#fff_70%,transparent_100%)]"
+      class="absolute inset-0 bg-[linear-gradient(rgba(70,160,208,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(70,160,208,0.1)_1px,transparent_1px)] bg-[size:24px_24px] md:bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_100%_100%_at_50%_-20%,#fff_70%,transparent_100%)]"
     >
     </div>
 
     <!-- Floating orbs -->
     <div class="absolute inset-0">
       <div
-        class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float"
+        class="absolute top-1/4 left-1/4 w-64 md:w-96 h-64 md:h-96 bg-primary/20 rounded-full blur-3xl animate-float"
       >
       </div>
       <div
-        class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float-delayed"
+        class="absolute bottom-1/4 right-1/4 w-64 md:w-96 h-64 md:h-96 bg-secondary/20 rounded-full blur-3xl animate-float-delayed"
       >
       </div>
     </div>
@@ -39,26 +39,30 @@ import { routes } from "../utils/routes";
   </div>
 
   <div class="container relative mx-auto px-4">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
       <!-- Content -->
-      <div class="relative z-10">
+      <div class="relative z-10 text-center lg:text-left">
         <h1
-          class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-secondary via-primary to-primary-dark bg-clip-text text-transparent"
+          class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-secondary via-primary to-primary-dark bg-clip-text text-transparent"
         >
           Hacemos realidad tu proyecto tech
         </h1>
-        <p class="text-xl text-secondary/90 mb-8 max-w-2xl leading-relaxed">
+        <p
+          class="text-lg md:text-xl text-secondary/90 mb-6 md:mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+        >
           Consultora de software especializada en desarrollo web e inteligencia
           artificial, transformando ideas en soluciones tecnológicas.
         </p>
-        <div class="flex flex-wrap gap-4">
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+        >
           <a
             href={routes.contact}
-            class="inline-flex items-center px-8 py-4 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg group"
+            class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg group text-base sm:text-lg"
           >
             Iniciar Proyecto
             <svg
-              class="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+              class="ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -72,7 +76,7 @@ import { routes } from "../utils/routes";
           </a>
           <a
             href={routes.services}
-            class="inline-flex items-center px-8 py-4 bg-secondary/5 hover:bg-secondary/10 text-secondary font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg backdrop-blur-sm border border-secondary/20"
+            class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-secondary/5 hover:bg-secondary/10 text-secondary font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg backdrop-blur-sm border border-secondary/20 text-base sm:text-lg"
           >
             Ver Servicios
           </a>
@@ -80,15 +84,15 @@ import { routes } from "../utils/routes";
       </div>
 
       <!-- Hero Image -->
-      <div class="relative z-10">
+      <div class="relative z-10 mt-8 lg:mt-0">
         <!-- Code animation background -->
-        <div class="absolute inset-0 -right-8 flex items-center">
+        <div class="absolute inset-0 -right-4 md:-right-8 flex items-center">
           <div
             class="w-full h-3/4 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-3xl overflow-hidden backdrop-blur-sm border border-secondary/10"
           >
             <div class="animate-code-scroll">
               <pre
-                class="text-[10px] leading-tight text-primary/60 p-4">
+                class="text-[8px] md:text-[10px] leading-tight text-primary/60 p-4">
                 <code>{`function initAI() {
   const model = new NeuralNetwork();
   model.train(data);
@@ -116,7 +120,7 @@ class WebApp {
 
         <!-- Unicorn image with floating animation -->
         <div
-          class="relative transform hover:scale-102 transition-transform duration-700 animate-float-slow"
+          class="relative transform hover:scale-102 transition-transform duration-700 animate-float-slow px-4 md:px-0"
         >
           <picture>
             <!-- Mobile optimized image -->
@@ -155,7 +159,7 @@ class WebApp {
   </div>
 
   <!-- Bottom wave decoration -->
-  <div class="absolute bottom-0 left-0 right-0 h-64 overflow-hidden">
+  <div class="absolute bottom-0 left-0 right-0 h-48 md:h-64 overflow-hidden">
     <!-- Smooth gradient overlay -->
     <div
       class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-dark"
@@ -296,6 +300,19 @@ class WebApp {
 
     .animate-code-scroll {
       animation-duration: 30s;
+    }
+
+    /* Optimize background effects */
+    .bg-gradient-to-r {
+      background-image: linear-gradient(
+        to right,
+        rgba(70, 160, 208, 0.2),
+        rgba(27, 87, 126, 0.2)
+      );
+    }
+
+    .blur-3xl {
+      --tw-blur: blur(24px);
     }
   }
 
