@@ -26,6 +26,25 @@ const features = [
     description: "Soluciones de datos en tiempo real",
   },
 ];
+
+// Different decorative patterns for each card
+const decorations = [
+  { // Web Development - Circuit-like pattern
+    class: "before:absolute before:inset-0 before:bg-[linear-gradient(45deg,transparent_85%,rgba(70,160,208,0.1)_90%,transparent_95%),linear-gradient(-45deg,transparent_85%,rgba(70,160,208,0.1)_90%,transparent_95%)]",
+  },
+  { // AI - Neural network dots
+    class: "before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_30%_20%,rgba(70,160,208,0.1)_0,transparent_8px),radial-gradient(circle_at_70%_60%,rgba(70,160,208,0.1)_0,transparent_8px)]",
+  },
+  { // MVPs - Diagonal stripes
+    class: "before:absolute before:inset-0 before:bg-[linear-gradient(135deg,transparent_45%,rgba(70,160,208,0.1)_47%,rgba(70,160,208,0.1)_53%,transparent_55%)]",
+  },
+  { // Co-founder - Connected dots
+    class: "before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_20%_80%,rgba(70,160,208,0.1)_0,transparent_8px),radial-gradient(circle_at_80%_20%,rgba(70,160,208,0.1)_0,transparent_8px)]",
+  },
+  { // Real-time - Wave pattern
+    class: "before:absolute before:inset-0 before:bg-[linear-gradient(0deg,transparent_40%,rgba(70,160,208,0.1)_45%,rgba(70,160,208,0.1)_55%,transparent_60%)]",
+  },
+];
 ---
 
 <section class="relative bg-dark py-32 overflow-hidden">
@@ -47,7 +66,7 @@ const features = [
           class="group relative"
           style={`animation-delay: ${index * 150}ms`}
         >
-          <div class="relative bg-white/5 backdrop-blur-lg rounded-2xl p-8 h-full transform transition-all duration-500 hover:scale-105 hover:-translate-y-1">
+          <div class={`relative bg-white/5 backdrop-blur-lg rounded-2xl p-8 h-full transform transition-all duration-500 hover:scale-105 hover:-translate-y-1 before:rounded-2xl before:transition-opacity before:duration-500 before:opacity-0 group-hover:before:opacity-100 ${decorations[index].class}`}>
             <!-- Hover glow effect -->
             <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
             
@@ -62,6 +81,14 @@ const features = [
               <p class="text-white/70 group-hover:text-white/90 transition-colors duration-300">
                 {feature.description}
               </p>
+            </div>
+
+            <!-- Animated corner accent -->
+            <div class={`absolute w-16 h-16 transition-all duration-500 opacity-0 group-hover:opacity-100
+              ${index % 2 === 0 ? 'top-0 right-0' : 'bottom-0 left-0'}
+              ${index % 3 === 0 ? 'bg-[radial-gradient(circle_at_30%_30%,rgba(70,160,208,0.2)_0,transparent_60%)]' : 
+                index % 3 === 1 ? 'bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0%,rgba(70,160,208,0.2)_25%,transparent_50%)]' :
+                'bg-[linear-gradient(45deg,transparent,rgba(70,160,208,0.2))]'}`}>
             </div>
           </div>
         </div>
