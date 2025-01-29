@@ -47,12 +47,12 @@ const features = [
           class="group relative"
           style={`animation-delay: ${index * 150}ms`}
         >
-          <div class="relative bg-white/5 backdrop-blur-lg rounded-2xl p-6 h-full transform transition-all duration-500 hover:scale-105 hover:rotate-2">
+          <div class="relative bg-white/5 backdrop-blur-lg rounded-2xl p-8 h-full transform transition-all duration-500 hover:scale-105 hover:-translate-y-1">
             <!-- Hover glow effect -->
             <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
             
             <!-- Card content -->
-            <div class="relative z-10">
+            <div class="relative z-10 flex flex-col items-center text-center">
               <div class="mb-6 text-6xl transform group-hover:scale-110 transition-transform duration-300 group-hover:rotate-12">
                 {feature.icon}
               </div>
@@ -62,11 +62,6 @@ const features = [
               <p class="text-white/70 group-hover:text-white/90 transition-colors duration-300">
                 {feature.description}
               </p>
-            </div>
-
-            <!-- Decorative corner -->
-            <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
-              <div class="absolute top-0 right-0 w-[120%] h-[120%] bg-gradient-to-bl from-primary/20 to-transparent transform rotate-45 translate-x-2 -translate-y-2"></div>
             </div>
           </div>
         </div>
