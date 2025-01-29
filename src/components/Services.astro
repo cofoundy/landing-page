@@ -56,7 +56,7 @@ const services = [
   <!-- Services Horizontal Scroll on Mobile -->
   <div class="flex-1 relative">
     <div class="absolute inset-0 md:static">
-      <div class="h-full md:h-auto overflow-x-auto overflow-y-hidden md:overflow-visible px-4 pb-4 md:pb-0 hide-scrollbar">
+      <div id="servicesScroll" class="h-full md:h-auto overflow-x-auto overflow-y-hidden md:overflow-visible px-4 pb-4 md:pb-0 hide-scrollbar scroll-smooth">
         <div class="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 h-full md:h-auto w-max md:w-auto md:max-w-none mx-auto">
           {services.map((service, index) => (
             <a 
@@ -115,6 +115,76 @@ const services = [
     </div>
   </div>
 </section>
+
+<script>
+  // Auto-scroll functionality for mobile
+  const servicesScroll = document.getElementById('servicesScroll');
+  let scrollInterval: number | undefined;
+  let isScrolling = false;
+  let touchStartX = 0;
+
+  function startAutoScroll() {
+    if (window.innerWidth >= 768) return; // Only auto-scroll on mobile
+    
+    if (!isScrolling) {
+      scrollInterval = setInterval(() => {
+        if (servicesScroll) {
+          const maxScroll = servicesScroll.scrollWidth - servicesScroll.clientWidth;
+          const newScrollLeft = servicesScroll.scrollLeft + 1;
+          
+          if (newScrollLeft >= maxScroll) {
+            // Reset to start when reaching the end
+            servicesScroll.scrollLeft = 0;
+          } else {
+            servicesScroll.scrollLeft = newScrollLeft;
+          }
+        }
+      }, 30); // Adjust speed by changing interval
+      isScrolling = true;
+    }
+  }
+
+  function stopAutoScroll() {
+    if (scrollInterval) {
+      clearInterval(scrollInterval);
+      isScrolling = false;
+    }
+  }
+
+  // Handle touch events to pause scrolling when user interacts
+  if (servicesScroll) {
+    servicesScroll.addEventListener('touchstart', (e) => {
+      stopAutoScroll();
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    servicesScroll.addEventListener('touchend', () => {
+      // Resume scrolling after a delay
+      setTimeout(startAutoScroll, 5000);
+    }, { passive: true });
+
+    // Start auto-scroll when page loads
+    startAutoScroll();
+
+    // Handle visibility changes
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopAutoScroll();
+      } else {
+        startAutoScroll();
+      }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) {
+        stopAutoScroll();
+      } else {
+        startAutoScroll();
+      }
+    });
+  }
+</script>
 
 <style>
   /* Hide scrollbar but keep functionality */
@@ -184,5 +254,10 @@ const services = [
     .hide-scrollbar {
       min-height: 280px;
     }
+  }
+
+  /* Smooth scrolling */
+  .scroll-smooth {
+    scroll-behavior: smooth;
   }
 </style>
