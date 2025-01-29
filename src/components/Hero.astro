@@ -1,5 +1,5 @@
 ---
-// Remove the image import since we're using a public asset
+import { routes } from "../utils/routes";
 ---
 
 <section
@@ -53,7 +53,7 @@
         </p>
         <div class="flex flex-wrap gap-4">
           <a
-            href="#contact"
+            href={routes.contact}
             class="inline-flex items-center px-8 py-4 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg group"
           >
             Iniciar Proyecto
@@ -71,7 +71,7 @@
             </svg>
           </a>
           <a
-            href="#services"
+            href={routes.services}
             class="inline-flex items-center px-8 py-4 bg-secondary/5 hover:bg-secondary/10 text-secondary font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg backdrop-blur-sm border border-secondary/20"
           >
             Ver Servicios
