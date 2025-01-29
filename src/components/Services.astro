@@ -39,42 +39,42 @@ const services = [
 ];
 ---
 
-<section id="services" class="relative bg-dark pt-32 pb-24 overflow-hidden">
+<section id="services" class="relative bg-dark pt-20 md:pt-32 pb-16 md:pb-24 overflow-hidden">
   <!-- Animated mesh background -->
-  <div class="absolute inset-0 bg-[linear-gradient(rgba(70,160,208,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(70,160,208,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+  <div class="absolute inset-0 bg-[linear-gradient(rgba(70,160,208,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(70,160,208,0.03)_1px,transparent_1px)] bg-[size:32px_32px] md:bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
 
   <!-- Title with animated underline -->
-  <div class="container relative mx-auto px-4 mb-20">
+  <div class="container relative mx-auto px-4 mb-12 md:mb-20">
     <div class="relative inline-block left-1/2 -translate-x-1/2">
-      <h2 class="text-4xl md:text-5xl font-bold text-white text-center tracking-wide">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center tracking-wide">
         NUESTROS SERVICIOS
       </h2>
-      <div class="absolute -bottom-4 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+      <div class="absolute -bottom-3 md:-bottom-4 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
     </div>
   </div>
 
   <div class="container relative mx-auto px-4">
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
       {services.map((service, index) => (
         <a 
           href="#contact"
-          class="group relative"
-          style={`animation-delay: ${index * 150}ms`}
+          class="group relative active:scale-95 transition-transform duration-150"
+          style={`animation-delay: ${index * 100}ms`}
         >
-          <div class="relative bg-white/[0.03] backdrop-blur-sm rounded-2xl p-8 h-full border border-white/10 transform transition-all duration-500 hover:-translate-y-1 overflow-hidden">
+          <div class="relative bg-white/[0.03] backdrop-blur-sm rounded-xl md:rounded-2xl p-6 md:p-8 h-full border border-white/10 transform transition-all duration-300 hover:-translate-y-1 overflow-hidden">
             <!-- Hover gradient -->
-            <div class={`absolute inset-0 bg-gradient-to-br ${service.accent} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
+            <div class={`absolute inset-0 bg-gradient-to-br ${service.accent} opacity-0 group-hover:opacity-10 group-active:opacity-20 transition-opacity duration-300`}></div>
             
             <!-- Icon container with glow -->
-            <div class="relative mb-6 inline-block">
-              <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div class="relative z-10 w-14 h-14 flex items-center justify-center rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors duration-300">
-                <span class="text-2xl group-hover:scale-110 transition-transform duration-300">{service.icon}</span>
+            <div class="relative mb-4 md:mb-6 inline-block">
+              <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="relative z-10 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors duration-300">
+                <span class="text-xl md:text-2xl group-hover:scale-110 transition-transform duration-300">{service.icon}</span>
               </div>
             </div>
 
             <!-- Content -->
-            <h3 class="text-lg font-bold text-white mb-3 group-hover:text-primary transition-colors duration-300">
+            <h3 class="text-base md:text-lg font-bold text-white mb-2 md:mb-3 group-hover:text-primary transition-colors duration-300">
               {service.title}
             </h3>
             <p class="text-white/70 text-sm group-hover:text-white/90 transition-colors duration-300 min-h-[3.6em] line-clamp-2">
@@ -82,8 +82,8 @@ const services = [
             </p>
 
             <!-- Subtle arrow indicator -->
-            <div class="absolute bottom-8 right-8 opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="absolute bottom-6 md:bottom-8 right-6 md:right-8 opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+              <svg class="w-4 h-4 md:w-5 md:h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
               </svg>
             </div>
@@ -94,14 +94,14 @@ const services = [
   </div>
 
   <!-- Call to action -->
-  <div class="container relative mx-auto px-4 mt-16">
+  <div class="container relative mx-auto px-4 mt-12 md:mt-16">
     <div class="flex justify-center">
       <a 
         href="#contact"
-        class="inline-flex items-center px-8 py-4 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+        class="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 hover:shadow-lg text-base sm:text-lg"
       >
         Iniciar Proyecto
-        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="ml-2 w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
         </svg>
       </a>
@@ -126,6 +126,13 @@ const services = [
     opacity: 0;
   }
 
+  /* Reduce animation duration on mobile */
+  @media (max-width: 640px) {
+    .grid > a {
+      animation-duration: 0.4s;
+    }
+  }
+
   /* Gradient animation for title underline */
   @keyframes shimmer {
     0% {
@@ -139,5 +146,17 @@ const services = [
   h2 + div {
     background-size: 200% auto;
     animation: shimmer 4s linear infinite;
+  }
+
+  /* Optimize animations for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .grid > a {
+      animation: none;
+      opacity: 1;
+    }
+
+    h2 + div {
+      animation: none;
+    }
   }
 </style>
