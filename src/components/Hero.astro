@@ -136,21 +136,86 @@ class WebApp {
   </div>
 
   <!-- Bottom wave decoration -->
-  <div
-    class="absolute bottom-0 left-0 right-0 overflow-hidden"
-    style="transform: translateY(1px)"
-  >
-    <div class="relative w-full h-[400px]">
+  <div class="absolute bottom-0 left-0 right-0 h-64 overflow-hidden">
+    <!-- Smooth gradient overlay -->
+    <div
+      class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-dark"
+    >
+    </div>
+
+    <!-- Animated wave layers -->
+    <div class="absolute inset-0 opacity-20">
       <svg
-        class="absolute bottom-0 w-full h-[400px]"
-        viewBox="0 0 1440 500"
-        preserveAspectRatio="none"
+        class="w-full h-full"
+        viewBox="0 0 1440 100"
         fill="none"
+        preserveAspectRatio="none"
       >
         <path
-          class="fill-dark"
-          d="M0 350C240 330 360 310 480 300C600 290 720 285 840 290C960 295 1080 310 1200 340C1320 370 1380 365 1440 350V500H0V350Z"
-        ></path>
+          class="animate-wave-slow"
+          d="M0 50L48 45.7C96 41.3 192 32.7 288 27.8C384 23 480 22 576 28.8C672 35.7 768 50.3 864 55.2C960 60 1056 55 1152 46.8C1248 38.7 1344 27.3 1392 21.7L1440 16V100H0V50Z"
+          fill="url(#wave-gradient-1)"></path>
+      </svg>
+    </div>
+    <div class="absolute inset-0 opacity-30">
+      <svg
+        class="w-full h-full"
+        viewBox="0 0 1440 100"
+        fill="none"
+        preserveAspectRatio="none"
+      >
+        <path
+          class="animate-wave-medium"
+          d="M0 70L48 64.3C96 58.7 192 47.3 288 44.7C384 42 480 48 576 54.8C672 61.7 768 69.3 864 69.2C960 69 1056 61 1152 55.2C1248 49.3 1344 45.7 1392 43.8L1440 42V100H0V70Z"
+          fill="url(#wave-gradient-2)"></path>
+      </svg>
+    </div>
+    <div class="absolute inset-0 opacity-40">
+      <svg
+        class="w-full h-full"
+        viewBox="0 0 1440 100"
+        fill="none"
+        preserveAspectRatio="none"
+      >
+        <path
+          class="animate-wave-fast"
+          d="M0 80L48 77.3C96 74.7 192 69.3 288 71.2C384 73 480 82 576 84.8C672 87.7 768 84.3 864 79.2C960 74 1056 67 1152 65.2C1248 63.3 1344 66.7 1392 68.3L1440 70V100H0V80Z"
+          fill="url(#wave-gradient-3)"></path>
+        <defs>
+          <linearGradient
+            id="wave-gradient-1"
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="100"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stop-color="#46A0D0"></stop>
+            <stop offset="100%" stop-color="#020B1B"></stop>
+          </linearGradient>
+          <linearGradient
+            id="wave-gradient-2"
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="100"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stop-color="#46A0D0"></stop>
+            <stop offset="100%" stop-color="#020B1B"></stop>
+          </linearGradient>
+          <linearGradient
+            id="wave-gradient-3"
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="100"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stop-color="#46A0D0"></stop>
+            <stop offset="100%" stop-color="#020B1B"></stop>
+          </linearGradient>
+        </defs>
       </svg>
     </div>
   </div>
@@ -266,19 +331,56 @@ class WebApp {
     animation: pulse 4s ease-in-out infinite;
   }
 
-  /* Wave animation */
-  @keyframes wave {
+  /* Wave animations */
+  @keyframes wave-slow {
     0%,
     100% {
-      transform: translateY(0);
+      d: path(
+        "M0 50L48 45.7C96 41.3 192 32.7 288 27.8C384 23 480 22 576 28.8C672 35.7 768 50.3 864 55.2C960 60 1056 55 1152 46.8C1248 38.7 1344 27.3 1392 21.7L1440 16V100H0V50Z"
+      );
     }
     50% {
-      transform: translateY(15px);
+      d: path(
+        "M0 60L48 55.7C96 51.3 192 42.7 288 37.8C384 33 480 32 576 38.8C672 45.7 768 60.3 864 65.2C960 70 1056 65 1152 56.8C1248 48.7 1344 37.3 1392 31.7L1440 26V100H0V60Z"
+      );
     }
   }
 
-  .fill-dark {
-    fill: #020b1b;
-    animation: wave 10s ease-in-out infinite;
+  @keyframes wave-medium {
+    0%,
+    100% {
+      d: path(
+        "M0 70L48 64.3C96 58.7 192 47.3 288 44.7C384 42 480 48 576 54.8C672 61.7 768 69.3 864 69.2C960 69 1056 61 1152 55.2C1248 49.3 1344 45.7 1392 43.8L1440 42V100H0V70Z"
+      );
+    }
+    50% {
+      d: path(
+        "M0 80L48 74.3C96 68.7 192 57.3 288 54.7C384 52 480 58 576 64.8C672 71.7 768 79.3 864 79.2C960 79 1056 71 1152 65.2C1248 59.3 1344 55.7 1392 53.8L1440 52V100H0V80Z"
+      );
+    }
+  }
+
+  @keyframes wave-fast {
+    0%,
+    100% {
+      d: path(
+        "M0 80L48 77.3C96 74.7 192 69.3 288 71.2C384 73 480 82 576 84.8C672 87.7 768 84.3 864 79.2C960 74 1056 67 1152 65.2C1248 63.3 1344 66.7 1392 68.3L1440 70V100H0V80Z"
+      );
+    }
+    50% {
+      d: path(
+        "M0 90L48 87.3C96 84.7 192 79.3 288 81.2C384 83 480 92 576 94.8C672 97.7 768 94.3 864 89.2C960 84 1056 77 1152 75.2C1248 73.3 1344 76.7 1392 78.3L1440 80V100H0V90Z"
+      );
+    }
+  }
+
+  .animate-wave-slow {
+    animation: wave-slow 8s ease-in-out infinite;
+  }
+  .animate-wave-medium {
+    animation: wave-medium 6s ease-in-out infinite;
+  }
+  .animate-wave-fast {
+    animation: wave-fast 4s ease-in-out infinite;
   }
 </style>
