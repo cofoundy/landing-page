@@ -123,11 +123,15 @@ class WebApp {
             <source
               media="(max-width: 640px)"
               srcset="/unicornio-programando-mobile.webp"
+              width="640"
+              height="480"
             />
             <!-- Tablet optimized image -->
             <source
               media="(max-width: 1024px)"
               srcset="/unicornio-programando-tablet.webp"
+              width="1024"
+              height="768"
             />
             <!-- Desktop image -->
             <img
@@ -276,6 +280,39 @@ class WebApp {
   }
   .animate-float-slow {
     animation: float-slow 6s ease-in-out infinite;
+  }
+
+  /* Reduce animations on mobile */
+  @media (max-width: 640px) {
+    .animate-float,
+    .animate-float-delayed,
+    .animate-float-slow {
+      animation-duration: 0s;
+    }
+
+    .particle-container {
+      display: none;
+    }
+
+    .animate-code-scroll {
+      animation-duration: 30s;
+    }
+  }
+
+  /* Reduce some animations on tablet */
+  @media (max-width: 1024px) {
+    .animate-float,
+    .animate-float-delayed {
+      animation-duration: 0s;
+    }
+
+    .particle-container {
+      opacity: 0.5;
+    }
+
+    .animate-code-scroll {
+      animation-duration: 25s;
+    }
   }
 
   /* Code scrolling animation */
