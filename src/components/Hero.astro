@@ -1,12 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 import unicornImage from '/public/unicornio-programando.webp';
+import { routes } from '../utils/routes';
 ---
 
 <section class="relative">
     <div class="container mx-auto px-4 pb-32 pt-32">
         <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
-            <div class="flex flex-col justify-center space-y-6">
+            <div class="flex flex-col justify-center space-y-6 relative z-20">
                 <h1 class="text-4xl font-bold tracking-tight text-dark sm:text-5xl xl:text-6xl">
                     Hacemos realidad tu proyecto tech
                 </h1>
@@ -15,17 +16,17 @@ import unicornImage from '/public/unicornio-programando.webp';
                     en soluciones tecnológicas.
                 </p>
                 <div class="flex gap-4">
-                    <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 rounded-md bg-secondary hover:bg-secondary/90 text-white font-medium transition-all duration-300">
+                    <a href={routes.contact} class="inline-flex items-center justify-center px-6 py-3 rounded-md bg-secondary hover:bg-secondary/90 text-white font-medium transition-all duration-300">
                         Iniciar Proyecto
                     </a>
-                    <a href="#services" class="inline-flex items-center justify-center px-6 py-3 rounded-md border-2 border-secondary text-secondary hover:bg-secondary hover:text-white font-medium transition-all duration-300">
+                    <a href={routes.services} class="inline-flex items-center justify-center px-6 py-3 rounded-md border-2 border-secondary text-secondary hover:bg-secondary hover:text-white font-medium transition-all duration-300">
                         Ver Servicios
                     </a>
                 </div>
             </div>
 
-            <div class="relative flex items-center justify-center lg:absolute lg:right-0 lg:top-16 lg:w-[50%]">
-                <div class="relative z-10 max-w-[500px]">
+            <div class="relative lg:absolute lg:right-0 lg:top-16 lg:w-[50%] z-10">
+                <div class="relative max-w-[500px] mx-auto">
                     <img 
                         src="/unicornio-programando.webp" 
                         alt="Unicornio programando" 

@@ -1,15 +1,17 @@
 ---
+import { routes } from '../utils/routes';
+
 const menuItems = [
-  { text: "Servicios", href: "#services" },
-  { text: "Proyectos", href: "#projects" },
-  { text: "Proceso", href: "#process" },
-  { text: "Contacto", href: "#contact" },
+  { text: "Servicios", href: routes.services },
+  { text: "Proyectos", href: routes.projects },
+  { text: "Proceso", href: routes.process },
+  { text: "Contacto", href: routes.contact },
 ];
 ---
 
 <header class="absolute w-full z-10">
   <div class="container mx-auto flex h-20 items-center justify-between px-4">
-    <a href="/" class="text-2xl font-bold text-dark flex items-center gap-2">
+    <a href={routes.home} class="text-2xl font-bold text-dark flex items-center gap-2">
       <img src="/icon.svg" alt="Cofoundy Logo" class="w-8 h-8" />
       Cofoundy
     </a>
@@ -28,7 +30,7 @@ const menuItems = [
     </nav>
 
     <a
-      href="#contact"
+      href={routes.contact}
       class="bg-secondary text-white hover:bg-secondary/90 px-6 py-3 rounded-md font-medium transition-all duration-300"
     >
       Iniciar Proyecto
