@@ -15,6 +15,9 @@ export default {
         },
         dark: '#020B1B',      // Medianoche Silenciosa
       },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', 'sans-serif'],
+      },
     },
   },
   plugins: [],
