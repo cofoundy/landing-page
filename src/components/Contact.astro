@@ -1,63 +1,151 @@
-<section id="contact" class="relative bg-white py-24 overflow-hidden">
-  <!-- Animated background patterns -->
-  <div class="absolute inset-0">
-    <!-- Gradient circles -->
-    <div
-      class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-3xl animate-float"
-    >
+<section
+  id="contact"
+  class="relative bg-gradient-to-b from-dark to-[#1B577E] pt-32 pb-24"
+>
+  <!-- Wave transition -->
+  <div class="absolute inset-x-0 top-0 h-40 -translate-y-1/2">
+    <!-- Animated wave layers -->
+    <div class="absolute inset-0 opacity-20">
+      <svg
+        class="w-full h-full"
+        viewBox="0 0 1440 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+      >
+        <path
+          class="animate-wave-slow"
+          d="M0 50L48 45.7C96 41.3 192 32.7 288 27.8C384 23 480 22 576 28.8C672 35.7 768 50.3 864 55.2C960 60 1056 55 1152 46.8C1248 38.7 1344 27.3 1392 21.7L1440 16V100H1392C1344 100 1248 100 1152 100C1056 100 960 100 864 100C768 100 672 100 576 100C480 100 384 100 288 100C192 100 96 100 48 100H0V50Z"
+          fill="url(#wave-gradient-1)"></path>
+      </svg>
     </div>
-    <div
-      class="absolute bottom-1/4 right-1/4 w-[700px] h-[700px] bg-gradient-to-br from-secondary/10 to-primary/10 rounded-full blur-3xl animate-float-delayed"
-    >
+    <div class="absolute inset-0 opacity-30">
+      <svg
+        class="w-full h-full"
+        viewBox="0 0 1440 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+      >
+        <path
+          class="animate-wave-medium"
+          d="M0 70L48 64.3C96 58.7 192 47.3 288 44.7C384 42 480 48 576 54.8C672 61.7 768 69.3 864 69.2C960 69 1056 61 1152 55.2C1248 49.3 1344 45.7 1392 43.8L1440 42V100H1392C1344 100 1248 100 1152 100C1056 100 960 100 864 100C768 100 672 100 576 100C480 100 384 100 288 100C192 100 96 100 48 100H0V70Z"
+          fill="url(#wave-gradient-2)"></path>
+      </svg>
     </div>
+    <div class="absolute inset-0 opacity-40">
+      <svg
+        class="w-full h-full"
+        viewBox="0 0 1440 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+      >
+        <path
+          class="animate-wave-fast"
+          d="M0 80L48 77.3C96 74.7 192 69.3 288 71.2C384 73 480 82 576 84.8C672 87.7 768 84.3 864 79.2C960 74 1056 67 1152 65.2C1248 63.3 1344 66.7 1392 68.3L1440 70V100H1392C1344 100 1248 100 1152 100C1056 100 960 100 864 100C768 100 672 100 576 100C480 100 384 100 288 100C192 100 96 100 48 100H0V80Z"
+          fill="url(#wave-gradient-3)"></path>
+        <defs>
+          <linearGradient
+            id="wave-gradient-1"
+            x1="0"
+            y1="0"
+            x2="1440"
+            y2="100"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stop-color="#46A0D0"></stop>
+            <stop offset="100%" stop-color="#1B577E"></stop>
+          </linearGradient>
+          <linearGradient
+            id="wave-gradient-2"
+            x1="1440"
+            y1="0"
+            x2="0"
+            y2="100"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stop-color="#23435F"></stop>
+            <stop offset="100%" stop-color="#46A0D0"></stop>
+          </linearGradient>
+          <linearGradient
+            id="wave-gradient-3"
+            x1="0"
+            y1="0"
+            x2="1440"
+            y2="100"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stop-color="#1B577E"></stop>
+            <stop offset="100%" stop-color="#23435F"></stop>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
 
-    <!-- Dot pattern -->
+  <!-- Floating particles -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="particle-container">
+      {
+        Array.from({ length: 20 }).map((_, i) => (
+          <div
+            class="particle"
+            style={`--delay: ${i * 0.5}s; --size: ${Math.random() * 4 + 2}px; --start-x: ${Math.random() * 100}%; --end-x: ${Math.random() * 100}%;`}
+          />
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Mesh grid background -->
+  <div class="absolute inset-0">
     <div
-      class="absolute inset-0"
-      style="background-image: radial-gradient(circle at 1px 1px, rgba(75, 78, 84, 0.1) 1px, transparent 0); background-size: 50px 50px;"
+      class="absolute inset-0 bg-[linear-gradient(rgba(70,160,208,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(70,160,208,0.03)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_100%_100%_at_50%_0%,#000_70%,transparent_100%)]"
     >
     </div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+  <div class="container relative mx-auto px-4">
     <div
-      class="relative bg-white/80 backdrop-blur-xl shadow-2xl rounded-3xl border border-white/20"
+      class="bg-white/[0.02] backdrop-blur-lg rounded-3xl border border-white/10 overflow-hidden"
     >
-      <div class="grid grid-cols-1 lg:grid-cols-2">
-        <!-- Contact information -->
-        <div
-          class="relative overflow-hidden rounded-t-3xl lg:rounded-l-3xl lg:rounded-tr-none p-12 bg-gradient-to-br from-primary to-primary-dark"
-        >
-          <!-- Animated shapes -->
+      <div class="grid md:grid-cols-2">
+        <!-- Contact Info -->
+        <div class="relative bg-primary/20 p-12 overflow-hidden">
+          <!-- Animated gradient orbs -->
           <div
-            class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-2xl transform -translate-y-1/2 translate-x-1/2"
+            class="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-primary/30 to-transparent rounded-full blur-3xl animate-float"
           >
           </div>
           <div
-            class="absolute bottom-0 left-0 w-60 h-60 bg-white/10 rounded-full blur-2xl transform translate-y-1/2 -translate-x-1/2"
+            class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-secondary/30 to-transparent rounded-full blur-3xl animate-float-delayed"
           >
           </div>
 
           <div class="relative">
-            <h3 class="text-3xl font-bold text-white mb-8">
+            <h2 class="text-3xl font-bold text-white mb-6">
               Información de contacto
-            </h3>
-            <p class="text-xl text-white/90 max-w-3xl leading-relaxed">
+            </h2>
+            <p class="text-white/80 text-lg mb-12">
               ¿Listo para comenzar tu proyecto? Contáctanos y te ayudaremos a
               hacerlo realidad.
             </p>
 
             <!-- Contact details with hover effects -->
-            <dl class="mt-12 space-y-8">
-              <div class="flex items-center space-x-4 group">
+            <div class="space-y-8">
+              <a
+                href="mailto:contacto@cofoundy.com"
+                class="group flex items-center space-x-4 text-white/80 hover:text-white transition-colors duration-300"
+              >
                 <div
-                  class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-white/10 group-hover:bg-white/20 transition-colors duration-300"
+                  class="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition-colors duration-300"
                 >
                   <svg
-                    class="w-6 h-6 text-white/70 group-hover:text-white transition-colors duration-300"
+                    class="w-6 h-6"
                     fill="none"
-                    stroke="currentColor"
                     viewBox="0 0 24 24"
+                    stroke="currentColor"
                   >
                     <path
                       stroke-linecap="round"
@@ -67,26 +155,22 @@
                     ></path>
                   </svg>
                 </div>
-                <a
-                  href="mailto:contacto@cofoundy.com"
-                  class="text-lg text-white/90 hover:text-white transition-colors duration-300"
-                  >contacto@cofoundy.com</a
-                >
-              </div>
-            </dl>
+                <span class="text-lg">contacto@cofoundy.com</span>
+              </a>
+            </div>
 
-            <!-- Social links with hover animations -->
+            <!-- Social links -->
             <div class="mt-12">
-              <h4 class="text-white/90 font-medium mb-4">Síguenos en</h4>
-              <div class="flex space-x-6">
+              <p class="text-white/80 mb-4">Síguenos en</p>
+              <div class="flex space-x-4">
                 <a href="#" class="group">
                   <div
-                    class="w-12 h-12 flex items-center justify-center rounded-xl bg-white/10 hover:bg-white/20 transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-3"
+                    class="w-12 h-12 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all duration-300 hover:scale-110"
                   >
                     <svg
-                      class="h-6 w-6 text-white/70 group-hover:text-white transition-colors duration-300"
-                      fill="currentColor"
+                      class="w-6 h-6 text-white/80 group-hover:text-white transition-colors duration-300"
                       viewBox="0 0 24 24"
+                      fill="currentColor"
                     >
                       <path
                         d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
@@ -96,17 +180,16 @@
                 </a>
                 <a href="#" class="group">
                   <div
-                    class="w-12 h-12 flex items-center justify-center rounded-xl bg-white/10 hover:bg-white/20 transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-3"
+                    class="w-12 h-12 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all duration-300 hover:scale-110"
                   >
                     <svg
-                      class="h-6 w-6 text-white/70 group-hover:text-white transition-colors duration-300"
-                      fill="currentColor"
+                      class="w-6 h-6 text-white/80 group-hover:text-white transition-colors duration-300"
                       viewBox="0 0 24 24"
+                      fill="currentColor"
                     >
                       <path
-                        fill-rule="evenodd"
-                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                        clip-rule="evenodd"></path>
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                      ></path>
                     </svg>
                   </div>
                 </a>
@@ -115,87 +198,46 @@
           </div>
         </div>
 
-        <!-- Contact form with enhanced styling -->
+        <!-- Contact Form -->
         <div class="p-12">
-          <h3 class="text-3xl font-bold text-dark mb-8">Envíanos un mensaje</h3>
-          <form
-            action="https://formspree.io/f/mvgzablv"
-            method="POST"
-            class="space-y-8"
-          >
-            <div class="group">
-              <label
-                for="name"
-                class="block text-sm font-medium text-gray-700 mb-2"
-                >Nombre</label
-              >
-              <div class="relative">
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  required
-                  class="block w-full rounded-xl border-gray-300 py-4 px-5 text-gray-900 shadow-sm focus:border-primary focus:ring-primary transition-all duration-300 group-hover:border-primary/50"
-                />
-                <div
-                  class="absolute inset-0 rounded-xl border border-primary/0 group-hover:border-primary/50 pointer-events-none transition-colors duration-300"
-                >
-                </div>
-              </div>
-            </div>
-            <div class="group">
-              <label
-                for="email"
-                class="block text-sm font-medium text-gray-700 mb-2"
-                >Email</label
-              >
-              <div class="relative">
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  required
-                  class="block w-full rounded-xl border-gray-300 py-4 px-5 text-gray-900 shadow-sm focus:border-primary focus:ring-primary transition-all duration-300 group-hover:border-primary/50"
-                />
-                <div
-                  class="absolute inset-0 rounded-xl border border-primary/0 group-hover:border-primary/50 pointer-events-none transition-colors duration-300"
-                >
-                </div>
-              </div>
-            </div>
-            <div class="group">
-              <label
-                for="message"
-                class="block text-sm font-medium text-gray-700 mb-2"
-                >Mensaje</label
-              >
-              <div class="relative">
-                <textarea
-                  name="message"
-                  id="message"
-                  rows="4"
-                  required
-                  class="block w-full rounded-xl border-gray-300 py-4 px-5 text-gray-900 shadow-sm focus:border-primary focus:ring-primary transition-all duration-300 group-hover:border-primary/50"
-                ></textarea>
-                <div
-                  class="absolute inset-0 rounded-xl border border-primary/0 group-hover:border-primary/50 pointer-events-none transition-colors duration-300"
-                >
-                </div>
-              </div>
+          <h2 class="text-3xl font-bold text-white mb-8">
+            Envíanos un mensaje
+          </h2>
+          <form class="space-y-6">
+            <div>
+              <label class="block text-white/80 mb-2" for="name">Nombre</label>
+              <input
+                type="text"
+                id="name"
+                class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-300"
+                placeholder="Tu nombre"
+              />
             </div>
             <div>
-              <button
-                type="submit"
-                class="w-full flex items-center justify-center py-4 px-8 rounded-xl text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
-              >
-                <span class="relative">
-                  Enviar mensaje
-                  <span
-                    class="absolute bottom-0 left-0 w-full h-px bg-white/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
-                  ></span>
-                </span>
-              </button>
+              <label class="block text-white/80 mb-2" for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-300"
+                placeholder="tu@email.com"
+              />
             </div>
+            <div>
+              <label class="block text-white/80 mb-2" for="message"
+                >Mensaje</label
+              >
+              <textarea
+                id="message"
+                rows="4"
+                class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-300 resize-none"
+                placeholder="¿Cómo podemos ayudarte?"></textarea>
+            </div>
+            <button
+              type="submit"
+              class="w-full px-8 py-4 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+            >
+              Enviar mensaje
+            </button>
           </form>
         </div>
       </div>
@@ -204,41 +246,122 @@
 </section>
 
 <style>
+  /* Wave animations */
+  @keyframes wave-slow {
+    0%,
+    100% {
+      d: path(
+        "M0 50L48 45.7C96 41.3 192 32.7 288 27.8C384 23 480 22 576 28.8C672 35.7 768 50.3 864 55.2C960 60 1056 55 1152 46.8C1248 38.7 1344 27.3 1392 21.7L1440 16V100H0V50Z"
+      );
+    }
+    50% {
+      d: path(
+        "M0 60L48 55.7C96 51.3 192 42.7 288 37.8C384 33 480 32 576 38.8C672 45.7 768 60.3 864 65.2C960 70 1056 65 1152 56.8C1248 48.7 1344 37.3 1392 31.7L1440 26V100H0V60Z"
+      );
+    }
+  }
+
+  @keyframes wave-medium {
+    0%,
+    100% {
+      d: path(
+        "M0 70L48 64.3C96 58.7 192 47.3 288 44.7C384 42 480 48 576 54.8C672 61.7 768 69.3 864 69.2C960 69 1056 61 1152 55.2C1248 49.3 1344 45.7 1392 43.8L1440 42V100H0V70Z"
+      );
+    }
+    50% {
+      d: path(
+        "M0 80L48 74.3C96 68.7 192 57.3 288 54.7C384 52 480 58 576 64.8C672 71.7 768 79.3 864 79.2C960 79 1056 71 1152 65.2C1248 59.3 1344 55.7 1392 53.8L1440 52V100H0V80Z"
+      );
+    }
+  }
+
+  @keyframes wave-fast {
+    0%,
+    100% {
+      d: path(
+        "M0 80L48 77.3C96 74.7 192 69.3 288 71.2C384 73 480 82 576 84.8C672 87.7 768 84.3 864 79.2C960 74 1056 67 1152 65.2C1248 63.3 1344 66.7 1392 68.3L1440 70V100H0V80Z"
+      );
+    }
+    50% {
+      d: path(
+        "M0 90L48 87.3C96 84.7 192 79.3 288 81.2C384 83 480 92 576 94.8C672 97.7 768 94.3 864 89.2C960 84 1056 77 1152 75.2C1248 73.3 1344 76.7 1392 78.3L1440 80V100H0V90Z"
+      );
+    }
+  }
+
+  .animate-wave-slow {
+    animation: wave-slow 8s ease-in-out infinite;
+  }
+  .animate-wave-medium {
+    animation: wave-medium 6s ease-in-out infinite;
+  }
+  .animate-wave-fast {
+    animation: wave-fast 4s ease-in-out infinite;
+  }
+
+  /* Floating animations */
   @keyframes float {
     0%,
     100% {
-      transform: translate(0, 0);
+      transform: translateY(0) rotate(0);
     }
     50% {
-      transform: translate(10px, -10px);
+      transform: translateY(-20px) rotate(5deg);
     }
   }
 
   @keyframes float-delayed {
     0%,
     100% {
-      transform: translate(0, 0);
+      transform: translateY(0) rotate(0);
     }
     50% {
-      transform: translate(-15px, 15px);
+      transform: translateY(-30px) rotate(-5deg);
     }
   }
 
   .animate-float {
-    animation: float 20s ease-in-out infinite;
+    animation: float 15s ease-in-out infinite;
   }
 
   .animate-float-delayed {
-    animation: float-delayed 25s ease-in-out infinite;
+    animation: float-delayed 18s ease-in-out infinite;
   }
 
-  input:focus,
-  textarea:focus {
-    box-shadow: 0 0 0 4px rgba(70, 160, 208, 0.1);
+  /* Particle animations */
+  .particle-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
   }
 
-  .group:hover input,
-  .group:hover textarea {
-    border-color: rgba(70, 160, 208, 0.5);
+  .particle {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    background: radial-gradient(
+      circle at center,
+      rgba(70, 160, 208, 0.5) 0%,
+      transparent 100%
+    );
+    border-radius: 50%;
+    top: 0;
+    left: var(--start-x);
+    animation: particle 10s ease-in infinite;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes particle {
+    0% {
+      transform: translateY(-20px) scale(0);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(120vh) scale(1);
+      opacity: 0;
+    }
   }
 </style>
