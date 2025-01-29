@@ -61,10 +61,10 @@ const services = [
           {services.map((service, index) => (
             <a 
               href="#contact"
-              class="group relative active:scale-95 transition-transform duration-150 w-[280px] sm:w-[320px] md:w-auto flex-shrink-0"
+              class="group relative active:scale-95 transition-transform duration-150 w-[300px] sm:w-[340px] md:w-auto flex-shrink-0 h-[min-content] md:h-auto"
               style={`animation-delay: ${index * 100}ms`}
             >
-              <div class="relative bg-white/[0.03] backdrop-blur-sm rounded-xl md:rounded-2xl p-6 md:p-8 h-full border border-white/10 transform transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+              <div class="relative bg-white/[0.03] backdrop-blur-sm rounded-xl md:rounded-2xl p-6 md:p-8 h-full border border-white/10 transform transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col">
                 <!-- Hover gradient -->
                 <div class={`absolute inset-0 bg-gradient-to-br ${service.accent} opacity-0 group-hover:opacity-10 group-active:opacity-20 transition-opacity duration-300`}></div>
                 
@@ -77,12 +77,14 @@ const services = [
                 </div>
 
                 <!-- Content -->
-                <h3 class="text-base md:text-lg font-bold text-white mb-2 md:mb-3 group-hover:text-primary transition-colors duration-300">
-                  {service.title}
-                </h3>
-                <p class="text-white/70 text-sm group-hover:text-white/90 transition-colors duration-300 min-h-[3.6em] line-clamp-2">
-                  {service.description}
-                </p>
+                <div class="flex-1 flex flex-col min-h-0">
+                  <h3 class="text-base md:text-lg font-bold text-white mb-2 md:mb-3 group-hover:text-primary transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p class="text-white/70 text-sm group-hover:text-white/90 transition-colors duration-300 flex-1">
+                    {service.description}
+                  </p>
+                </div>
 
                 <!-- Subtle arrow indicator -->
                 <div class="absolute bottom-6 md:bottom-8 right-6 md:right-8 opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
@@ -179,15 +181,8 @@ const services = [
 
   /* Add subtle scroll indicators on mobile */
   @media (max-width: 768px) {
-    .hide-scrollbar::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      width: 32px;
-      background: linear-gradient(to right, transparent, rgba(2, 11, 27, 0.5));
-      pointer-events: none;
+    .hide-scrollbar {
+      min-height: 280px;
     }
   }
 </style>
