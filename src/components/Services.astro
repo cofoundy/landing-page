@@ -2,44 +2,44 @@
 const services = [
   {
     title: "SOFTWARE PERSONALIZADO",
-    description:
-      "Diseñamos sistemas a medida, brindamos las herramientas para satisfacer las necesidades de tu compañía.",
+    description: "Sistemas a medida y herramientas adaptadas a las necesidades específicas de tu empresa.",
     icon: "💻",
+    accent: "from-[#46A0D0] to-[#1B577E]"
   },
   {
     title: "INTELIGENCIA DE NEGOCIOS",
-    description:
-      "Facilitamos el acceso a la información mejorando notablemente la toma de decisiones en tu compañía.",
+    description: "Análisis de datos y dashboards para optimizar la toma de decisiones empresariales.",
     icon: "📊",
+    accent: "from-[#1B577E] to-[#23435F]"
   },
   {
     title: "CONSULTORÍA TI",
-    description:
-      "Somos parte de la transformación digital de tu compañía, contamos con el mejor talento y soluciones únicas.",
+    description: "Asesoramiento experto para la transformación digital de tu empresa.",
     icon: "🔧",
+    accent: "from-[#23435F] to-[#46A0D0]"
   },
   {
     title: "DESARROLLO WEB Y MÓVIL",
-    description:
-      "Diseñamos y construimos los canales web y móvil, utilizamos tecnología moderna, segura mejorando la experiencia de tus clientes.",
+    description: "Aplicaciones web y móviles modernas con enfoque en experiencia de usuario.",
     icon: "🌐",
+    accent: "from-[#46A0D0] to-[#23435F]"
   },
   {
     title: "OUTSOURCING TI",
-    description:
-      "Contamos con expertos profesionales en TI, garantizando la calidad y la satisfacción de nuestros clientes.",
+    description: "Equipo profesional dedicado para tus proyectos tecnológicos.",
     icon: "👥",
+    accent: "from-[#1B577E] to-[#46A0D0]"
   },
   {
     title: "DIGITALIZACIÓN DE DOCUMENTOS",
-    description:
-      "Migramos archivos físicos a una plataforma digital, incrementamos la eficiencia, seguridad y accesibilidad entre áreas.",
+    description: "Transformación de documentos físicos a formato digital con gestión eficiente.",
     icon: "📄",
+    accent: "from-[#23435F] to-[#1B577E]"
   },
 ];
 ---
 
-<section class="relative bg-dark pt-32 pb-24 overflow-hidden">
+<section id="services" class="relative bg-dark pt-32 pb-24 overflow-hidden">
   <!-- Animated mesh background -->
   <div class="absolute inset-0 bg-[linear-gradient(rgba(70,160,208,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(70,160,208,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
 
@@ -54,93 +54,75 @@ const services = [
   </div>
 
   <div class="container relative mx-auto px-4">
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {services.map((service, index) => (
-        <div 
+        <a 
+          href="#contact"
           class="group relative"
           style={`animation-delay: ${index * 150}ms`}
         >
-          <div class="relative bg-gradient-to-br from-white/[0.03] to-white/[0.08] rounded-2xl p-8 h-full backdrop-blur-sm border border-white/10 transform transition-all duration-500 hover:-translate-y-2">
-            <!-- Glowing orb -->
-            <div class="absolute -top-4 -right-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-colors duration-500"></div>
+          <div class="relative bg-white/[0.03] backdrop-blur-sm rounded-2xl p-8 h-full border border-white/10 transform transition-all duration-500 hover:-translate-y-1 overflow-hidden">
+            <!-- Hover gradient -->
+            <div class={`absolute inset-0 bg-gradient-to-br ${service.accent} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
             
-            <!-- Animated border -->
-            <div class="absolute inset-0 rounded-2xl [mask-image:linear-gradient(white,transparent)] before:absolute before:inset-0 before:rounded-2xl before:p-[1px] before:bg-gradient-to-b before:from-white/20 before:to-transparent before:opacity-0 before:transition-opacity before:duration-500 group-hover:before:opacity-100"></div>
-
-            <!-- Icon with floating animation -->
-            <div class="relative mb-6">
-              <div class="inline-flex p-3 rounded-xl bg-gradient-to-br from-white/[0.08] to-white/[0.03] transform group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500">
-                <span class="text-4xl animate-float-icon">{service.icon}</span>
+            <!-- Icon container with glow -->
+            <div class="relative mb-6 inline-block">
+              <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div class="relative z-10 w-14 h-14 flex items-center justify-center rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors duration-300">
+                <span class="text-2xl group-hover:scale-110 transition-transform duration-300">{service.icon}</span>
               </div>
             </div>
 
             <!-- Content -->
-            <div class="relative z-10">
-              <h3 class="text-xl font-bold text-white mb-4 group-hover:text-primary transition-colors duration-300">
-                {service.title}
-              </h3>
-              <p class="text-white/70 mb-6 group-hover:text-white/90 transition-colors duration-300">
-                {service.description}
-              </p>
-              
-              <!-- Animated contact button -->
-              <a 
-                href="#contact" 
-                class="inline-flex items-center text-primary font-medium hover:text-white transition-colors duration-300 group/link"
-              >
-                <span class="relative">
-                  CONTÁCTANOS
-                  <span class="absolute -bottom-1 left-0 w-0 h-px bg-current transition-all duration-300 group-hover/link:w-full"></span>
-                </span>
-                <svg 
-                  class="ml-2 w-5 h-5 transform transition-transform duration-300 group-hover/link:translate-x-1" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path 
-                    stroke-linecap="round" 
-                    stroke-linejoin="round" 
-                    stroke-width="2" 
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                  />
-                </svg>
-              </a>
+            <h3 class="text-lg font-bold text-white mb-3 group-hover:text-primary transition-colors duration-300">
+              {service.title}
+            </h3>
+            <p class="text-white/70 text-sm group-hover:text-white/90 transition-colors duration-300 min-h-[3.6em] line-clamp-2">
+              {service.description}
+            </p>
+
+            <!-- Subtle arrow indicator -->
+            <div class="absolute bottom-8 right-8 opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
             </div>
           </div>
-        </div>
+        </a>
       ))}
+    </div>
+  </div>
+
+  <!-- Call to action -->
+  <div class="container relative mx-auto px-4 mt-16">
+    <div class="flex justify-center">
+      <a 
+        href="#contact"
+        class="inline-flex items-center px-8 py-4 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+      >
+        Iniciar Proyecto
+        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </a>
     </div>
   </div>
 </section>
 
 <style>
-  @keyframes float-icon {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-5px);
-    }
-  }
-
-  .animate-float-icon {
-    animation: float-icon 3s ease-in-out infinite;
-  }
-
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(30px) scale(0.95);
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
     }
   }
 
-  .grid > div {
-    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  .grid > a {
+    animation: fadeInUp 0.6s ease-out forwards;
     opacity: 0;
   }
 
