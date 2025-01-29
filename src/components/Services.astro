@@ -39,31 +39,123 @@ const services = [
 ];
 ---
 
-<section class="bg-dark -mt-1 pt-32 pb-24">
-  <div class="container mx-auto px-4">
-    <h2 class="mb-20 text-center text-4xl font-bold text-white tracking-wide">
-      NUESTROS SERVICIOS
-    </h2>
+<section class="relative bg-dark pt-32 pb-24 overflow-hidden">
+  <!-- Animated mesh background -->
+  <div class="absolute inset-0 bg-[linear-gradient(rgba(70,160,208,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(70,160,208,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+
+  <!-- Title with animated underline -->
+  <div class="container relative mx-auto px-4 mb-20">
+    <div class="relative inline-block left-1/2 -translate-x-1/2">
+      <h2 class="text-4xl md:text-5xl font-bold text-white text-center tracking-wide">
+        NUESTROS SERVICIOS
+      </h2>
+      <div class="absolute -bottom-4 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+    </div>
+  </div>
+
+  <div class="container relative mx-auto px-4">
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {
-        services.map((service) => (
-          <div class="group flex flex-col items-start rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-            <div class="mb-6 text-4xl group-hover:scale-110 transition-transform duration-300">
-              {service.icon}
+      {services.map((service, index) => (
+        <div 
+          class="group relative"
+          style={`animation-delay: ${index * 150}ms`}
+        >
+          <div class="relative bg-gradient-to-br from-white/[0.03] to-white/[0.08] rounded-2xl p-8 h-full backdrop-blur-sm border border-white/10 transform transition-all duration-500 hover:-translate-y-2">
+            <!-- Glowing orb -->
+            <div class="absolute -top-4 -right-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-colors duration-500"></div>
+            
+            <!-- Animated border -->
+            <div class="absolute inset-0 rounded-2xl [mask-image:linear-gradient(white,transparent)] before:absolute before:inset-0 before:rounded-2xl before:p-[1px] before:bg-gradient-to-b before:from-white/20 before:to-transparent before:opacity-0 before:transition-opacity before:duration-500 group-hover:before:opacity-100"></div>
+
+            <!-- Icon with floating animation -->
+            <div class="relative mb-6">
+              <div class="inline-flex p-3 rounded-xl bg-gradient-to-br from-white/[0.08] to-white/[0.03] transform group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500">
+                <span class="text-4xl animate-float-icon">{service.icon}</span>
+              </div>
             </div>
-            <h3 class="mb-4 text-xl font-bold text-white group-hover:text-primary transition-colors duration-300">
-              {service.title}
-            </h3>
-            <p class="mb-6 flex-grow text-white/70">{service.description}</p>
-            <a
-              href="#contact"
-              class="text-primary font-medium hover:text-white transition-colors duration-300"
-            >
-              CONTÁCTANOS
-            </a>
+
+            <!-- Content -->
+            <div class="relative z-10">
+              <h3 class="text-xl font-bold text-white mb-4 group-hover:text-primary transition-colors duration-300">
+                {service.title}
+              </h3>
+              <p class="text-white/70 mb-6 group-hover:text-white/90 transition-colors duration-300">
+                {service.description}
+              </p>
+              
+              <!-- Animated contact button -->
+              <a 
+                href="#contact" 
+                class="inline-flex items-center text-primary font-medium hover:text-white transition-colors duration-300 group/link"
+              >
+                <span class="relative">
+                  CONTÁCTANOS
+                  <span class="absolute -bottom-1 left-0 w-0 h-px bg-current transition-all duration-300 group-hover/link:w-full"></span>
+                </span>
+                <svg 
+                  class="ml-2 w-5 h-5 transform transition-transform duration-300 group-hover/link:translate-x-1" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round" 
+                    stroke-width="2" 
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
-        ))
-      }
+        </div>
+      ))}
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes float-icon {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .animate-float-icon {
+    animation: float-icon 3s ease-in-out infinite;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .grid > div {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  /* Gradient animation for title underline */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  h2 + div {
+    background-size: 200% auto;
+    animation: shimmer 4s linear infinite;
+  }
+</style>
