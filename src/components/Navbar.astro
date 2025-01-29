@@ -1,5 +1,5 @@
 ---
-import { routes } from '../utils/routes';
+import { routes } from "../utils/routes";
 
 const menuItems = [
   { text: "Servicios", href: routes.services },
@@ -9,13 +9,17 @@ const menuItems = [
 ];
 ---
 
-<header class="absolute w-full z-10">
+<header class="absolute w-full z-50">
   <div class="container mx-auto flex h-20 items-center justify-between px-4">
-    <a href={routes.home} class="text-2xl font-bold text-dark flex items-center gap-2">
+    <a
+      href={routes.home}
+      class="text-2xl font-bold text-dark flex items-center gap-2 relative z-50"
+    >
       <img src="/icon.svg" alt="Cofoundy Logo" class="w-8 h-8" />
       Cofoundy
     </a>
 
+    <!-- Desktop Navigation -->
     <nav class="hidden space-x-8 md:flex">
       {
         menuItems.map((item) => (
@@ -29,14 +33,96 @@ const menuItems = [
       }
     </nav>
 
+    <!-- Mobile Menu Button -->
+    <button
+      id="menuButton"
+      class="relative z-50 md:hidden p-2 text-dark"
+      aria-label="Toggle Menu"
+    >
+      <div class="w-6 h-5 relative flex flex-col justify-between">
+        <span
+          class="w-full h-0.5 bg-current transform transition-all duration-300 origin-left hamburger-line"
+        ></span>
+        <span
+          class="w-full h-0.5 bg-current transform transition-all duration-300 hamburger-line"
+        ></span>
+        <span
+          class="w-full h-0.5 bg-current transform transition-all duration-300 origin-left hamburger-line"
+        ></span>
+      </div>
+    </button>
+
+    <!-- Mobile Menu Overlay -->
+    <div
+      id="mobileMenu"
+      class="fixed inset-0 bg-white/95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 md:hidden"
+    >
+      <nav class="flex flex-col items-center justify-center h-full space-y-8">
+        {
+          menuItems.map((item) => (
+            <a
+              href={item.href}
+              class="text-xl font-medium text-dark/80 hover:text-dark transition-all duration-300"
+            >
+              {item.text}
+            </a>
+          ))
+        }
+        <a
+          href={routes.contact}
+          class="bg-secondary text-white hover:bg-secondary/90 px-6 py-3 rounded-md font-medium transition-all duration-300"
+        >
+          Iniciar Proyecto
+        </a>
+      </nav>
+    </div>
+
+    <!-- Desktop CTA -->
     <a
       href={routes.contact}
-      class="bg-secondary text-white hover:bg-secondary/90 px-6 py-3 rounded-md font-medium transition-all duration-300"
+      class="hidden md:block bg-secondary text-white hover:bg-secondary/90 px-6 py-3 rounded-md font-medium transition-all duration-300"
     >
       Iniciar Proyecto
     </a>
   </div>
 </header>
+
+<script>
+  const menuButton = document.getElementById("menuButton");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const hamburgerLines = document.querySelectorAll(".hamburger-line");
+  let isMenuOpen = false;
+
+  menuButton?.addEventListener("click", () => {
+    isMenuOpen = !isMenuOpen;
+
+    // Toggle menu visibility
+    mobileMenu?.classList.toggle("translate-x-full");
+
+    // Animate hamburger to X
+    if (isMenuOpen) {
+      hamburgerLines[0].classList.add("rotate-45");
+      hamburgerLines[1].classList.add("opacity-0");
+      hamburgerLines[2].classList.add("-rotate-45");
+    } else {
+      hamburgerLines[0].classList.remove("rotate-45");
+      hamburgerLines[1].classList.remove("opacity-0");
+      hamburgerLines[2].classList.remove("-rotate-45");
+    }
+  });
+
+  // Close menu when clicking a link
+  const mobileLinks = mobileMenu?.querySelectorAll("a");
+  mobileLinks?.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.add("translate-x-full");
+      hamburgerLines[0].classList.remove("rotate-45");
+      hamburgerLines[1].classList.remove("opacity-0");
+      hamburgerLines[2].classList.remove("-rotate-45");
+      isMenuOpen = false;
+    });
+  });
+</script>
 
 <style>
   a {
