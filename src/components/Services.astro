@@ -61,7 +61,7 @@ const services = [
           {services.map((service, index) => (
             <a 
               href="#contact"
-              class="group relative active:scale-95 transition-transform duration-150 w-[300px] sm:w-[340px] md:w-auto flex-shrink-0 h-[min-content] md:h-auto"
+              class="group relative active:scale-95 transition-transform duration-150 w-[300px] sm:w-[340px] md:w-auto flex-shrink-0 h-[280px] md:h-[320px]"
               style={`animation-delay: ${index * 100}ms`}
             >
               <div class="relative bg-white/[0.03] backdrop-blur-sm rounded-xl md:rounded-2xl p-6 md:p-8 h-full border border-white/10 transform transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col">
@@ -77,20 +77,22 @@ const services = [
                 </div>
 
                 <!-- Content -->
-                <div class="flex-1 flex flex-col min-h-0">
-                  <h3 class="text-base md:text-lg font-bold text-white mb-2 md:mb-3 group-hover:text-primary transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p class="text-white/70 text-sm group-hover:text-white/90 transition-colors duration-300 flex-1">
-                    {service.description}
-                  </p>
-                </div>
+                <div class="flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 class="text-base md:text-lg font-bold text-white mb-2 md:mb-3 group-hover:text-primary transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p class="text-white/70 text-sm group-hover:text-white/90 transition-colors duration-300">
+                      {service.description}
+                    </p>
+                  </div>
 
-                <!-- Subtle arrow indicator -->
-                <div class="absolute bottom-6 md:bottom-8 right-6 md:right-8 opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                  <svg class="w-4 h-4 md:w-5 md:h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                  </svg>
+                  <!-- Subtle arrow indicator -->
+                  <div class="mt-4 opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-right">
+                    <svg class="w-4 h-4 md:w-5 md:h-5 text-primary ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                  </div>
                 </div>
               </div>
             </a>
