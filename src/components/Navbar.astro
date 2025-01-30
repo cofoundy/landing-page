@@ -9,60 +9,26 @@ const menuItems = [
 ];
 ---
 
-<header class="absolute w-full z-50">
-  <div class="container mx-auto flex h-20 items-center justify-between px-4">
-    <a
-      href={routes.home}
-      class="text-2xl font-bold text-dark flex items-center gap-2 relative z-50"
-    >
-      <img src="/icon.svg" alt="Cofoundy Logo" class="w-8 h-8" />
-      Cofoundy
-    </a>
-
-    <!-- Desktop Navigation -->
-    <nav class="hidden space-x-8 md:flex">
-      {
-        menuItems.map((item) => (
-          <a
-            href={item.href}
-            class="text-dark/80 hover:text-dark transition-all duration-300"
-          >
-            {item.text}
-          </a>
-        ))
-      }
-    </nav>
-
-    <!-- Mobile Menu Button -->
-    <button
-      id="menuButton"
-      class="relative z-50 md:hidden p-2 text-dark"
-      aria-label="Toggle Menu"
-    >
-      <div class="w-6 h-5 relative flex flex-col justify-between">
-        <span
-          class="w-full h-0.5 bg-current transform transition-all duration-300 origin-left hamburger-line"
-        ></span>
-        <span
-          class="w-full h-0.5 bg-current transform transition-all duration-300 hamburger-line"
-        ></span>
-        <span
-          class="w-full h-0.5 bg-current transform transition-all duration-300 origin-left hamburger-line"
-        ></span>
-      </div>
-    </button>
-
-    <!-- Mobile Menu Overlay -->
+<header class="fixed w-full z-50 top-0 left-0">
+  <div class="container mx-auto px-4">
     <div
-      id="mobileMenu"
-      class="fixed inset-0 bg-white/95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 md:hidden"
+      class="flex h-20 items-center justify-between bg-white/80 backdrop-blur-lg rounded-2xl mt-4 px-6 border border-secondary/10"
     >
-      <nav class="flex flex-col items-center justify-center h-full space-y-8">
+      <a
+        href={routes.home}
+        class="text-2xl font-bold text-secondary flex items-center gap-2 relative z-50 hover:text-primary transition-colors duration-300"
+      >
+        <img src="/icon.svg" alt="Cofoundy Logo" class="w-8 h-8" />
+        Cofoundy
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8">
         {
           menuItems.map((item) => (
             <a
               href={item.href}
-              class="text-xl font-medium text-dark/80 hover:text-dark transition-all duration-300"
+              class="text-secondary/80 hover:text-secondary transition-all duration-300"
             >
               {item.text}
             </a>
@@ -70,62 +36,128 @@ const menuItems = [
         }
         <a
           href={routes.contact}
-          class="bg-secondary text-white hover:bg-secondary/90 px-6 py-3 rounded-md font-medium transition-all duration-300"
+          class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105"
         >
           Iniciar Proyecto
         </a>
       </nav>
-    </div>
 
-    <!-- Desktop CTA -->
-    <a
-      href={routes.contact}
-      class="hidden md:block bg-secondary text-white hover:bg-secondary/90 px-6 py-3 rounded-md font-medium transition-all duration-300"
-    >
-      Iniciar Proyecto
-    </a>
+      <!-- Mobile Menu Button -->
+      <button
+        id="menuButton"
+        class="relative z-[60] w-12 h-12 flex items-center justify-center rounded-xl bg-secondary/5 hover:bg-secondary/10 transition-colors duration-300 md:hidden"
+        aria-label="Toggle Menu"
+      >
+        <div
+          class="flex flex-col items-center justify-center w-6 h-6 overflow-visible"
+        >
+          <span
+            class="w-6 h-0.5 bg-secondary rounded-full transition-all duration-300 transform"
+          ></span>
+          <span
+            class="w-6 h-0.5 bg-secondary rounded-full my-1.5 transition-all duration-300 transform"
+          ></span>
+          <span
+            class="w-6 h-0.5 bg-secondary rounded-full transition-all duration-300 transform"
+          ></span>
+        </div>
+      </button>
+
+      <!-- Mobile Menu Overlay -->
+      <div
+        id="mobileMenu"
+        class="fixed inset-0 z-50 opacity-0 pointer-events-none transition-all duration-300 md:hidden"
+      >
+        <!-- Menu Content -->
+        <div
+          class="absolute right-4 top-24 w-[calc(100%-2rem)] max-w-md bg-white/80 backdrop-blur-xl shadow-xl rounded-2xl border border-secondary/10 transform translate-y-[-1rem] transition-all duration-300"
+        >
+          <nav class="flex flex-col py-4">
+            {
+              menuItems.map((item) => (
+                <a
+                  href={item.href}
+                  class="px-6 py-3 text-lg font-medium text-secondary/80 hover:text-secondary hover:bg-secondary/5 transition-all duration-300"
+                >
+                  {item.text}
+                </a>
+              ))
+            }
+            <div class="px-6 pt-3">
+              <a
+                href={routes.contact}
+                class="inline-flex w-full items-center justify-center px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+              >
+                Iniciar Proyecto
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
 <script>
   const menuButton = document.getElementById("menuButton");
   const mobileMenu = document.getElementById("mobileMenu");
-  const hamburgerLines = document.querySelectorAll(".hamburger-line");
-  let isMenuOpen = false;
+  const menuContent = mobileMenu?.querySelector("div") as HTMLElement;
+  const spans = menuButton?.querySelectorAll("span");
+  let isOpen = false;
 
   menuButton?.addEventListener("click", () => {
-    isMenuOpen = !isMenuOpen;
+    isOpen = !isOpen;
 
-    // Toggle menu visibility
-    mobileMenu?.classList.toggle("translate-x-full");
+    if (mobileMenu instanceof HTMLElement) {
+      // Toggle menu visibility
+      mobileMenu.style.opacity = isOpen ? "1" : "0";
+      mobileMenu.style.pointerEvents = isOpen ? "auto" : "none";
+
+      if (menuContent) {
+        menuContent.style.transform = isOpen
+          ? "translate(0, 0)"
+          : "translate(0, -1rem)";
+      }
+    }
 
     // Animate hamburger to X
-    if (isMenuOpen) {
-      hamburgerLines[0].classList.add("rotate-45");
-      hamburgerLines[1].classList.add("opacity-0");
-      hamburgerLines[2].classList.add("-rotate-45");
-    } else {
-      hamburgerLines[0].classList.remove("rotate-45");
-      hamburgerLines[1].classList.remove("opacity-0");
-      hamburgerLines[2].classList.remove("-rotate-45");
+    if (spans && spans.length === 3) {
+      if (isOpen) {
+        spans[0].style.transform = "rotate(45deg) translate(6px, 6px)";
+        spans[1].style.opacity = "0";
+        spans[2].style.transform = "rotate(-45deg) translate(6px, -6px)";
+      } else {
+        spans[0].style.transform = "none";
+        spans[1].style.opacity = "1";
+        spans[2].style.transform = "none";
+      }
     }
   });
 
   // Close menu when clicking a link
-  const mobileLinks = mobileMenu?.querySelectorAll("a");
-  mobileLinks?.forEach((link) => {
+  const menuLinks = mobileMenu?.querySelectorAll("a");
+  menuLinks?.forEach((link) => {
     link.addEventListener("click", () => {
-      mobileMenu?.classList.add("translate-x-full");
-      hamburgerLines[0].classList.remove("rotate-45");
-      hamburgerLines[1].classList.remove("opacity-0");
-      hamburgerLines[2].classList.remove("-rotate-45");
-      isMenuOpen = false;
+      isOpen = false;
+      if (mobileMenu instanceof HTMLElement) {
+        mobileMenu.style.opacity = "0";
+        mobileMenu.style.pointerEvents = "none";
+      }
+      if (menuContent) {
+        menuContent.style.transform = "translate(0, -1rem)";
+      }
+      if (spans && spans.length === 3) {
+        spans[0].style.transform = "none";
+        spans[1].style.opacity = "1";
+        spans[2].style.transform = "none";
+      }
     });
   });
 </script>
 
 <style>
-  a {
-    scroll-behavior: smooth;
+  /* Prevent body scroll when menu is open */
+  body.menu-open {
+    overflow: hidden;
   }
 </style>
