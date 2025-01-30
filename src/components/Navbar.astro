@@ -9,14 +9,18 @@ const menuItems = [
 ];
 ---
 
-<header class="fixed w-full z-50 top-0 left-0">
+<header
+  class="fixed w-full z-50 top-0 left-0 transition-all duration-300"
+  id="mainNav"
+>
   <div class="container mx-auto px-4">
     <div
-      class="flex h-20 items-center justify-between bg-white/80 backdrop-blur-lg rounded-2xl mt-4 px-6 border border-secondary/10"
+      class="flex h-20 items-center justify-between mt-4 px-6 rounded-2xl border border-white/10 navbar-glass transition-all duration-300"
+      id="navbarContainer"
     >
       <a
         href={routes.home}
-        class="text-2xl font-bold text-secondary flex items-center gap-2 relative z-50 hover:text-primary transition-colors duration-300"
+        class="text-2xl font-bold flex items-center gap-2 relative z-50 nav-text transition-all duration-300 hover:opacity-80"
       >
         <img src="/icon.svg" alt="Cofoundy Logo" class="w-8 h-8" />
         Cofoundy
@@ -28,7 +32,7 @@ const menuItems = [
           menuItems.map((item) => (
             <a
               href={item.href}
-              class="text-secondary/80 hover:text-secondary transition-all duration-300"
+              class="text-[1rem] font-medium nav-text opacity-80 hover:opacity-100 transition-all duration-300"
             >
               {item.text}
             </a>
@@ -36,7 +40,7 @@ const menuItems = [
         }
         <a
           href={routes.contact}
-          class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105"
+          class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-primary/20 text-[1rem]"
         >
           Iniciar Proyecto
         </a>
@@ -45,20 +49,20 @@ const menuItems = [
       <!-- Mobile Menu Button -->
       <button
         id="menuButton"
-        class="relative z-[60] w-12 h-12 flex items-center justify-center rounded-xl bg-secondary/5 hover:bg-secondary/10 transition-colors duration-300 md:hidden"
+        class="relative z-[60] w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 transition-colors duration-300 md:hidden backdrop-blur-sm"
         aria-label="Toggle Menu"
       >
         <div
-          class="flex flex-col items-center justify-center w-6 h-6 overflow-visible"
+          class="flex flex-col items-center justify-center w-6 h-6 overflow-visible hamburger-icon"
         >
           <span
-            class="w-6 h-0.5 bg-secondary rounded-full transition-all duration-300 transform"
+            class="w-6 h-[2px] bg-current rounded-full transition-all duration-300 transform"
           ></span>
           <span
-            class="w-6 h-0.5 bg-secondary rounded-full my-1.5 transition-all duration-300 transform"
+            class="w-6 h-[2px] bg-current rounded-full my-[6px] transition-all duration-300 transform"
           ></span>
           <span
-            class="w-6 h-0.5 bg-secondary rounded-full transition-all duration-300 transform"
+            class="w-6 h-[2px] bg-current rounded-full transition-all duration-300 transform"
           ></span>
         </div>
       </button>
@@ -70,14 +74,14 @@ const menuItems = [
       >
         <!-- Menu Content -->
         <div
-          class="absolute right-4 top-24 w-[calc(100%-2rem)] max-w-md bg-white/80 backdrop-blur-xl shadow-xl rounded-2xl border border-secondary/10 transform translate-y-[-1rem] transition-all duration-300"
+          class="absolute right-4 top-24 w-[calc(100%-2rem)] max-w-md navbar-glass-menu rounded-2xl border border-white/10 transform translate-y-[-1rem] transition-all duration-300"
         >
           <nav class="flex flex-col py-4">
             {
               menuItems.map((item) => (
                 <a
                   href={item.href}
-                  class="px-6 py-3 text-lg font-medium text-secondary/80 hover:text-secondary hover:bg-secondary/5 transition-all duration-300"
+                  class="px-6 py-3 text-lg font-medium text-white/90 hover:text-white hover:bg-white/5 transition-all duration-300"
                 >
                   {item.text}
                 </a>
@@ -99,6 +103,68 @@ const menuItems = [
 </header>
 
 <script>
+  // Smart scroll handling
+  let lastScroll = 0;
+  const navbar = document.getElementById("mainNav");
+  const navbarContainer = document.getElementById("navbarContainer");
+
+  // Intersection Observer for light/dark sections
+  const observerOptions = {
+    threshold: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (
+        entry.target.classList.contains("bg-white") ||
+        entry.target.classList.contains("bg-light")
+      ) {
+        if (entry.intersectionRatio > 0.5) {
+          navbarContainer?.classList.add("on-light");
+          navbarContainer?.classList.remove("on-dark");
+        }
+      } else {
+        if (entry.intersectionRatio > 0.5) {
+          navbarContainer?.classList.add("on-dark");
+          navbarContainer?.classList.remove("on-light");
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all sections
+  document.querySelectorAll("section").forEach((section) => {
+    observer.observe(section);
+  });
+
+  // Smart scroll
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll <= 0) {
+      navbar?.classList.remove("nav-hidden");
+      navbarContainer?.classList.remove("nav-scrolled");
+      return;
+    }
+
+    if (currentScroll > lastScroll && currentScroll > 100) {
+      // Scrolling down & past navbar
+      navbar?.classList.add("nav-hidden");
+    } else {
+      // Scrolling up
+      navbar?.classList.remove("nav-hidden");
+    }
+
+    if (currentScroll > 100) {
+      navbarContainer?.classList.add("nav-scrolled");
+    } else {
+      navbarContainer?.classList.remove("nav-scrolled");
+    }
+
+    lastScroll = currentScroll;
+  });
+
+  // Mobile menu handling
   const menuButton = document.getElementById("menuButton");
   const mobileMenu = document.getElementById("mobileMenu");
   const menuContent = mobileMenu?.querySelector("div") as HTMLElement;
@@ -107,9 +173,9 @@ const menuItems = [
 
   menuButton?.addEventListener("click", () => {
     isOpen = !isOpen;
+    document.body.style.overflow = isOpen ? "hidden" : "";
 
     if (mobileMenu instanceof HTMLElement) {
-      // Toggle menu visibility
       mobileMenu.style.opacity = isOpen ? "1" : "0";
       mobileMenu.style.pointerEvents = isOpen ? "auto" : "none";
 
@@ -123,9 +189,9 @@ const menuItems = [
     // Animate hamburger to X
     if (spans && spans.length === 3) {
       if (isOpen) {
-        spans[0].style.transform = "rotate(45deg) translate(6px, 6px)";
+        spans[0].style.transform = "rotate(45deg) translate(5px, 5px)";
         spans[1].style.opacity = "0";
-        spans[2].style.transform = "rotate(-45deg) translate(6px, -6px)";
+        spans[2].style.transform = "rotate(-45deg) translate(5px, -5px)";
       } else {
         spans[0].style.transform = "none";
         spans[1].style.opacity = "1";
@@ -139,6 +205,7 @@ const menuItems = [
   menuLinks?.forEach((link) => {
     link.addEventListener("click", () => {
       isOpen = false;
+      document.body.style.overflow = "";
       if (mobileMenu instanceof HTMLElement) {
         mobileMenu.style.opacity = "0";
         mobileMenu.style.pointerEvents = "none";
@@ -156,6 +223,81 @@ const menuItems = [
 </script>
 
 <style>
+  .navbar-glass {
+    background: linear-gradient(
+      180deg,
+      rgba(35, 67, 95, 0.2) 0%,
+      rgba(35, 67, 95, 0.15) 50%,
+      rgba(35, 67, 95, 0.1) 100%
+    );
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transform: translateY(0);
+  }
+
+  .navbar-glass-menu {
+    background: linear-gradient(
+      180deg,
+      rgba(2, 11, 27, 0.95) 0%,
+      rgba(2, 11, 27, 0.9) 100%
+    );
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Smart scroll classes */
+  .nav-hidden {
+    transform: translateY(-100%);
+  }
+
+  .nav-scrolled .navbar-glass {
+    background: linear-gradient(
+      180deg,
+      rgba(2, 11, 27, 0.95) 0%,
+      rgba(2, 11, 27, 0.9) 100%
+    );
+    @apply shadow-lg;
+  }
+
+  /* Dynamic text colors */
+  .nav-text {
+    @apply text-white;
+  }
+
+  .on-light .nav-text {
+    @apply text-secondary;
+  }
+
+  .on-light .navbar-glass {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.8) 100%
+    );
+    border-color: rgba(35, 67, 95, 0.1);
+  }
+
+  /* Hamburger menu styles */
+  .hamburger-icon span {
+    transform-origin: center;
+  }
+
+  /* Ensure hamburger is always visible */
+  @media (max-width: 768px) {
+    .nav-text {
+      @apply text-white;
+    }
+
+    .hamburger-icon span {
+      @apply bg-white;
+    }
+
+    .on-light .hamburger-icon span {
+      @apply bg-secondary;
+    }
+  }
+
   /* Prevent body scroll when menu is open */
   body.menu-open {
     overflow: hidden;
