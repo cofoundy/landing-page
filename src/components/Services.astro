@@ -177,6 +177,58 @@ const servicesRow2 = [
   </div>
 </section>
 
+<script>
+  const servicesRow1 = document.getElementById('servicesRow1');
+  const servicesRow2 = document.getElementById('servicesRow2');
+  
+  let touchStartX = 0;
+  let scrollLeft = 0;
+
+  function handleTouchStart(e: TouchEvent) {
+    const row = e.currentTarget as HTMLElement;
+    touchStartX = e.touches[0].pageX;
+    scrollLeft = row.scrollLeft;
+    
+    // Pause animation while touching
+    const scrollingContent = row.querySelector('div') as HTMLElement;
+    if (scrollingContent) {
+      scrollingContent.style.animationPlayState = 'paused';
+    }
+  }
+
+  function handleTouchMove(e: TouchEvent) {
+    if (!touchStartX) return;
+    
+    const row = e.currentTarget as HTMLElement;
+    const touchCurrentX = e.touches[0].pageX;
+    const diff = touchStartX - touchCurrentX;
+    row.scrollLeft = scrollLeft + diff;
+    
+    // Prevent page scrolling while touching the rows
+    e.preventDefault();
+  }
+
+  function handleTouchEnd(e: TouchEvent) {
+    const row = e.currentTarget as HTMLElement;
+    touchStartX = 0;
+    
+    // Resume animation after touch
+    const scrollingContent = row.querySelector('div') as HTMLElement;
+    if (scrollingContent) {
+      scrollingContent.style.animationPlayState = 'running';
+    }
+  }
+
+  // Add touch events to both rows
+  [servicesRow1, servicesRow2].forEach(row => {
+    if (row) {
+      row.addEventListener('touchstart', handleTouchStart, { passive: false });
+      row.addEventListener('touchmove', handleTouchMove, { passive: false });
+      row.addEventListener('touchend', handleTouchEnd, { passive: false });
+    }
+  });
+</script>
+
 <style>
   @keyframes scroll-right {
     from {
@@ -216,5 +268,12 @@ const servicesRow2 = [
     .animate-scroll-left {
       animation: none;
     }
+  }
+
+  /* Enable smooth scrolling for touch */
+  #servicesRow1,
+  #servicesRow2 {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
   }
 </style>
