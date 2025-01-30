@@ -27,12 +27,12 @@ const menuItems = [
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center space-x-8">
+      <nav class="hidden md:flex items-center space-x-4 lg:space-x-8">
         {
           menuItems.map((item) => (
             <a
               href={item.href}
-              class="text-[1rem] font-medium nav-text opacity-80 hover:opacity-100 transition-all duration-300"
+              class="text-[0.9rem] lg:text-[1rem] font-medium nav-text opacity-80 hover:opacity-100 transition-all duration-300 whitespace-nowrap"
             >
               {item.text}
             </a>
@@ -40,7 +40,7 @@ const menuItems = [
         }
         <a
           href={routes.contact}
-          class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-primary/20 text-[1rem]"
+          class="inline-flex items-center px-4 lg:px-6 py-2.5 lg:py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-primary/20 text-[0.9rem] lg:text-[1rem] whitespace-nowrap"
         >
           Iniciar Proyecto
         </a>
