@@ -1,40 +1,61 @@
 ---
-const services = [
+const servicesRow1 = [
   {
-    title: "SOFTWARE PERSONALIZADO",
-    description: "Sistemas a medida y herramientas adaptadas a las necesidades específicas de tu empresa.",
+    title: "SOFTWARE A MEDIDA",
+    description: "Sistemas personalizados para tu empresa",
     icon: "💻",
     accent: "from-[#46A0D0] to-[#1B577E]"
   },
-  {
-    title: "INTELIGENCIA DE NEGOCIOS",
-    description: "Análisis de datos y dashboards para optimizar la toma de decisiones empresariales.",
-    icon: "📊",
-    accent: "from-[#1B577E] to-[#23435F]"
-  },
+  // {
+  //   title: "BUSINESS INTELLIGENCE",
+  //   description: "Dashboards y análisis de datos",
+  //   icon: "📊",
+  //   accent: "from-[#1B577E] to-[#23435F]"
+  // },
   {
     title: "CONSULTORÍA TI",
-    description: "Asesoramiento experto para la transformación digital de tu empresa.",
+    description: "Transformación digital empresarial",
     icon: "🔧",
     accent: "from-[#23435F] to-[#46A0D0]"
   },
   {
-    title: "DESARROLLO WEB Y MÓVIL",
-    description: "Aplicaciones web y móviles modernas con enfoque en experiencia de usuario.",
-    icon: "🌐",
+    title: "DESARROLLO DE MVP",
+    description: "Prototipos rápidos para startups",
+    icon: "🚀",
     accent: "from-[#46A0D0] to-[#23435F]"
   },
   {
-    title: "OUTSOURCING TI",
-    description: "Equipo profesional dedicado para tus proyectos tecnológicos.",
-    icon: "👥",
+    title: "DESARROLLO WEB",
+    description: "Aplicaciones web modernas",
+    icon: "🌐",
+    accent: "from-[#46A0D0] to-[#23435F]"
+  }
+];
+
+const servicesRow2 = [
+  {
+    title: "APPS MÓVILES",
+    description: "Desarrollo iOS y Android",
+    icon: "📱",
     accent: "from-[#1B577E] to-[#46A0D0]"
   },
   {
-    title: "DIGITALIZACIÓN DE DOCUMENTOS",
-    description: "Transformación de documentos físicos a formato digital con gestión eficiente.",
-    icon: "📄",
+    title: "MACHINE LEARNING",
+    description: "IA y modelos predictivos",
+    icon: "🤖",
     accent: "from-[#23435F] to-[#1B577E]"
+  },
+  {
+    title: "SOLUCIONES DE DATOS EN TIEMPO REAL",
+    description: "Procesamiento y análisis de datos en tiempo real",
+    icon: "⏱️",
+    accent: "from-[#1B577E] to-[#46A0D0]"
+  },
+  {
+    title: "CLOUD & DEVOPS",
+    description: "Infraestructura y automatización",
+    icon: "☁️",
+    accent: "from-[#46A0D0] to-[#1B577E]"
   },
 ];
 ---
@@ -53,46 +74,84 @@ const services = [
     </div>
   </div>
 
-  <!-- Services Horizontal Scroll on Mobile -->
-  <div class="flex-1 relative">
-    <div class="absolute inset-0 md:static">
-      <div id="servicesScroll" class="h-full md:h-auto overflow-x-auto overflow-y-hidden md:overflow-visible px-4 pb-4 md:pb-0 hide-scrollbar scroll-smooth">
-        <div class="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 h-full md:h-auto w-max md:w-auto md:max-w-none mx-auto">
-          {services.map((service, index) => (
+  <!-- Services Auto-scroll Rows -->
+  <div class="flex-1 relative space-y-8">
+    <!-- First Row - Left to Right -->
+    <div class="relative max-w-[1500px] mx-auto">
+      <!-- Fade Edges -->
+      <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-dark to-transparent z-10"></div>
+      <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-dark to-transparent z-10"></div>
+
+      <div id="servicesRow1" class="flex gap-4 py-4 overflow-hidden">
+        <div class="flex animate-scroll-right gap-4">
+          {[...servicesRow1, ...servicesRow1, ...servicesRow1].map((service) => (
             <a 
               href="#contact"
-              class="group relative active:scale-95 transition-transform duration-150 w-[300px] sm:w-[340px] md:w-auto flex-shrink-0 h-[280px] md:h-[320px]"
-              style={`animation-delay: ${index * 100}ms`}
+              class="group relative w-[260px] sm:w-[280px] flex-shrink-0 h-[200px] bg-white/[0.03] backdrop-blur-sm rounded-xl border border-white/10 p-6 hover:-translate-y-1 transition-all duration-300"
             >
-              <div class="relative bg-white/[0.03] backdrop-blur-sm rounded-xl md:rounded-2xl p-6 md:p-8 h-full border border-white/10 transform transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col">
-                <!-- Hover gradient -->
-                <div class={`absolute inset-0 bg-gradient-to-br ${service.accent} opacity-0 group-hover:opacity-10 group-active:opacity-20 transition-opacity duration-300`}></div>
+              <div class={`absolute inset-0 bg-gradient-to-br ${service.accent} opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300`}></div>
+              
+              <div class="relative flex flex-col h-full">
+                <!-- Icon -->
+                <div class="text-3xl group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
                 
-                <!-- Icon container with glow -->
-                <div class="relative mb-4 md:mb-6 inline-block">
-                  <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div class="relative z-10 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors duration-300">
-                    <span class="text-xl md:text-2xl group-hover:scale-110 transition-transform duration-300">{service.icon}</span>
-                  </div>
+                <!-- Content -->
+                <div class="mt-4">
+                  <h3 class="text-sm font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p class="text-sm text-white/70 group-hover:text-white/90 transition-colors duration-300">
+                    {service.description}
+                  </p>
                 </div>
 
-                <!-- Content -->
-                <div class="flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 class="text-base md:text-lg font-bold text-white mb-2 md:mb-3 group-hover:text-primary transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    <p class="text-white/70 text-sm group-hover:text-white/90 transition-colors duration-300">
-                      {service.description}
-                    </p>
-                  </div>
+                <!-- Arrow indicator -->
+                <div class="mt-auto ml-auto opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                  <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
 
-                  <!-- Subtle arrow indicator -->
-                  <div class="mt-4 opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-right">
-                    <svg class="w-4 h-4 md:w-5 md:h-5 text-primary ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                    </svg>
-                  </div>
+    <!-- Second Row - Right to Left -->
+    <div class="relative max-w-[1500px] mx-auto">
+      <!-- Fade Edges -->
+      <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-dark to-transparent z-10"></div>
+      <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-dark to-transparent z-10"></div>
+
+      <div id="servicesRow2" class="flex gap-4 py-4 overflow-hidden">
+        <div class="flex animate-scroll-left gap-4">
+          {[...servicesRow2, ...servicesRow2, ...servicesRow2].map((service) => (
+            <a 
+              href="#contact"
+              class="group relative w-[260px] sm:w-[280px] flex-shrink-0 h-[200px] bg-white/[0.03] backdrop-blur-sm rounded-xl border border-white/10 p-6 hover:-translate-y-1 transition-all duration-300"
+            >
+              <div class={`absolute inset-0 bg-gradient-to-br ${service.accent} opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300`}></div>
+              
+              <div class="relative flex flex-col h-full">
+                <!-- Icon -->
+                <div class="text-3xl group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
+                
+                <!-- Content -->
+                <div class="mt-4">
+                  <h3 class="text-sm font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p class="text-sm text-white/70 group-hover:text-white/90 transition-colors duration-300">
+                    {service.description}
+                  </p>
+                </div>
+
+                <!-- Arrow indicator -->
+                <div class="mt-auto ml-auto opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                  <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
                 </div>
               </div>
             </a>
@@ -118,148 +177,44 @@ const services = [
   </div>
 </section>
 
-<script>
-  // Auto-scroll functionality for mobile
-  const servicesScroll = document.getElementById('servicesScroll');
-  let scrollInterval: number | undefined;
-  let isScrolling = false;
-  let touchStartX = 0;
-
-  function startAutoScroll() {
-    if (window.innerWidth >= 768) return; // Only auto-scroll on mobile
-    
-    if (!isScrolling) {
-      scrollInterval = setInterval(() => {
-        if (servicesScroll) {
-          const maxScroll = servicesScroll.scrollWidth - servicesScroll.clientWidth;
-          const newScrollLeft = servicesScroll.scrollLeft + 1;
-          
-          if (newScrollLeft >= maxScroll) {
-            // Reset to start when reaching the end
-            servicesScroll.scrollLeft = 0;
-          } else {
-            servicesScroll.scrollLeft = newScrollLeft;
-          }
-        }
-      }, 30); // Adjust speed by changing interval
-      isScrolling = true;
-    }
-  }
-
-  function stopAutoScroll() {
-    if (scrollInterval) {
-      clearInterval(scrollInterval);
-      isScrolling = false;
-    }
-  }
-
-  // Handle touch events to pause scrolling when user interacts
-  if (servicesScroll) {
-    servicesScroll.addEventListener('touchstart', (e) => {
-      stopAutoScroll();
-      touchStartX = e.touches[0].clientX;
-    }, { passive: true });
-
-    servicesScroll.addEventListener('touchend', () => {
-      // Resume scrolling after a delay
-      setTimeout(startAutoScroll, 5000);
-    }, { passive: true });
-
-    // Start auto-scroll when page loads
-    startAutoScroll();
-
-    // Handle visibility changes
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        stopAutoScroll();
-      } else {
-        startAutoScroll();
-      }
-    });
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-      if (window.innerWidth >= 768) {
-        stopAutoScroll();
-      } else {
-        startAutoScroll();
-      }
-    });
-  }
-</script>
-
 <style>
-  /* Hide scrollbar but keep functionality */
-  .hide-scrollbar {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-  }
-  
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-  }
-
-  @keyframes fadeInUp {
+  @keyframes scroll-right {
     from {
-      opacity: 0;
-      transform: translateY(20px);
+      transform: translateX(calc(-33.33% - 1rem));
     }
     to {
-      opacity: 1;
-      transform: translateY(0);
+      transform: translateX(calc(-66.66% - 1rem));
     }
   }
 
-  .grid > a {
-    animation: fadeInUp 0.6s ease-out forwards;
-    opacity: 0;
-  }
-
-  /* Reduce animation duration on mobile */
-  @media (max-width: 640px) {
-    .grid > a {
-      animation-duration: 0.4s;
+  @keyframes scroll-left {
+    from {
+      transform: translateX(calc(-66.66% - 1rem));
+    }
+    to {
+      transform: translateX(calc(-33.33% - 1rem));
     }
   }
 
-  /* Gradient animation for title underline */
-  @keyframes shimmer {
-    0% {
-      background-position: -200% center;
-    }
-    100% {
-      background-position: 200% center;
-    }
+  .animate-scroll-right {
+    animation: scroll-right 30s linear infinite;
   }
 
-  h2 + div {
-    background-size: 200% auto;
-    animation: shimmer 4s linear infinite;
+  .animate-scroll-left {
+    animation: scroll-left 30s linear infinite;
+  }
+
+  /* Pause animation on hover */
+  #servicesRow1:hover .animate-scroll-right,
+  #servicesRow2:hover .animate-scroll-left {
+    animation-play-state: paused;
   }
 
   /* Optimize animations for reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    .grid > a {
-      animation: none;
-      opacity: 1;
-    }
-
-    h2 + div {
+    .animate-scroll-right,
+    .animate-scroll-left {
       animation: none;
     }
-  }
-
-  /* Add subtle scroll indicators on mobile */
-  @media (max-width: 768px) {
-    .hide-scrollbar {
-      min-height: 280px;
-    }
-  }
-
-  /* Smooth scrolling */
-  .scroll-smooth {
-    scroll-behavior: smooth;
   }
 </style>
