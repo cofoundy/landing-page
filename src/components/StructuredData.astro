@@ -1,0 +1,88 @@
+---
+const siteUrl = "https://cofoundy.com";
+const logoUrl = `${siteUrl}/icon.svg`;
+
+const organizationData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Cofoundy",
+  url: siteUrl,
+  logo: logoUrl,
+  description:
+    "Consultora de software especializada en desarrollo web e inteligencia artificial, transformando ideas en soluciones tecnológicas.",
+  sameAs: [
+    "https://www.linkedin.com/company/co-foundy",
+    "https://github.com/cofoundy",
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "PE",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    email: "contacto@cofoundy.com",
+    availableLanguage: ["Spanish", "English"],
+  },
+  serviceArea: ["Perú", "Latinoamérica", "Global"],
+  knowsAbout: [
+    "Web Development",
+    "Artificial Intelligence",
+    "GenAI",
+    "Computer Vision",
+    "Machine Learning",
+    "Data Science",
+    "Startup MVPs",
+  ],
+};
+
+// Professional Service structured data
+const serviceData = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Cofoundy",
+  url: siteUrl,
+  logo: logoUrl,
+  description:
+    "Consultora de software especializada en desarrollo web e inteligencia artificial, transformando ideas en soluciones tecnológicas.",
+  priceRange: "$$",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Servicios de Desarrollo Tech",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Desarrollo Web",
+          description:
+            "Creación de sitios web, landing pages y aplicaciones web",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Inteligencia Artificial",
+          description:
+            "Soluciones de IA, chatbots, visión por computadora y machine learning",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Startup MVPs",
+          description: "Desarrollo de productos mínimos viables para startups",
+        },
+      },
+    ],
+  },
+};
+---
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(organizationData)}
+/>
+<script type="application/ld+json" set:html={JSON.stringify(serviceData)} />
