@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  link: string;
+}
+
+const { title, description, image, tags, link } = Astro.props;
+---
+
+<div class="group bg-white rounded-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl border border-blue">
+  <div class="relative h-48 overflow-hidden bg-gray-50">
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+      <img 
+        src={image} 
+        alt={title} 
+        class="max-h-full max-w-full w-auto h-auto object-contain transition-transform duration-500 group-hover:scale-110"
+      />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-secondary/10 to-transparent"></div>
+  </div>
+  <div class="p-6">
+    <h3 class="text-xl font-bold text-secondary mb-2">{title}</h3>
+    <p class="text-gray-600 mb-4 line-clamp-3">{description}</p>
+    <div class="flex flex-wrap gap-2 mb-4">
+      {tags.map((tag) => (
+        <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">{tag}</span>
+      ))}
+    </div>
+    <a href={link} class="inline-flex items-center text-primary hover:text-primary-dark transition-colors">
+      Ver más
+      <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</div> 

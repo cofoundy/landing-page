@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = [
+  {
+    title: "EnMancha",
+    description: "EnMancha es una plataforma web que conecta usuarios con restaurantes, permitiendo a los restaurantes ofrecer menús diarios, platos a la carta y ofertas especiales para grupos",
+    image: "/projects/EnManchaLogo.png",
+    tags: ["Next.js", "Tailwind CSS", "NestJS", "PostgreSQL", "Docker"],
+    link: "https://frontend-en-mancha-production.up.railway.app/home"
+  },
+  {
+    title: "Genera",
+    description: "GENERA es una innovadora plataforma de inteligencia artificial diseñada para que los docentes generen contenido educativo totalmente adaptado al currículo de su país.",
+    image: "/projects/GeneraLogo.svg",
+    tags: ["Next.js", "Tailwind CSS", "Langchain", "PostgreSQL", "Docker"],
+    link: "#"
+  },
+  {
+    title: "CepreSmart",
+    description: "Cepre Smart es una startup enfocada en la educación preuniversitaria",
+    image: "/projects/logoCepreSmart.png",
+    tags: ["Html", "Css", "JavaScript"],
+    link: "#"
+  },
+//   {
+//     title: "WarmiVentures",
+//     description: "Warmi Ventures es una incubadora de startups que ayuda a emprendedoras a desarrollar sus ideas.",
+//     image: "/projects/warmi-ventures.png",
+//     tags: ["Astro", "Tailwind CSS", "React"],
+//     link: "#"
+//   }
+];
+---
+
+<Layout title="Proyectos | Cofoundy">
+  <Navbar />
+  <main class="min-h-screen bg-white">
+    <!-- Hero Section -->
+    <section class="flex flex-col items-center justify-center mt-10 pt-20 mt-10 pb-6 overflow-hidden bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-8">
+          <h1 class="text-4xl md:text-6xl font-bold text-secondary mb-4 animate-fade-in">
+            Nuestros <span class="text-primary">Proyectos</span>
+          </h1>
+          <p class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto animate-fade-in-up">
+            Descubre cómo transformamos ideas en soluciones tecnológicas a través de nuestros proyectos innovadores
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="flex flex-col items-center justify-center py-8 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-12 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="bg-gradient-to-r from-primary to-primary-dark rounded-2xl p-8 md:p-12 text-center">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">¿Listo para iniciar tu proyecto?</h2>
+          <p class="text-white/90 text-lg mb-6 max-w-2xl mx-auto">
+            Transformemos tus ideas en realidad. Nuestro equipo de expertos está listo para ayudarte a construir tu próxima solución tecnológica.
+          </p>
+          <a 
+            href="/contact" 
+            class="inline-block bg-white text-primary-dark px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-300"
+          >
+            Comenzar
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 1s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
