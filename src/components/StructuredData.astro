@@ -1,15 +1,24 @@
 ---
-const siteUrl = "https://cofoundy.com";
-const logoUrl = `${siteUrl}/icon.svg`;
+const siteUrl = "https://cofoundy.dev";
+const logoUrl = `${siteUrl}/favicon.svg`;
 
 const organizationData = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Cofoundy",
+  alternateName: "Cofoundy - Hacemos realidad tu proyecto tech",
   url: siteUrl,
-  logo: logoUrl,
+  logo: {
+    "@type": "ImageObject",
+    url: logoUrl,
+    width: "64",
+    height: "64"
+  },
+  image: logoUrl,
   description:
     "Consultora de software especializada en desarrollo web e inteligencia artificial, transformando ideas en soluciones tecnológicas.",
+  slogan: "Hacemos realidad tu proyecto tech",
+  foundingDate: "2024",
   sameAs: [
     "https://www.linkedin.com/company/co-foundy",
     "https://github.com/cofoundy",
@@ -21,7 +30,7 @@ const organizationData = {
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",
-    email: "contacto@cofoundy.com",
+    email: "contacto@cofoundy.dev",
     availableLanguage: ["Spanish", "English"],
   },
   serviceArea: ["Perú", "Latinoamérica", "Global"],

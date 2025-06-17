@@ -1,0 +1,31 @@
+{
+  "name": "Cofoundy - Hacemos realidad tu proyecto tech",
+  "short_name": "Cofoundy",
+  "description": "Consultora de software especializada en desarrollo web e inteligencia artificial, transformando ideas en soluciones tecnológicas.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#46A0D0",
+  "theme_color": "#1B577E",
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+} 
