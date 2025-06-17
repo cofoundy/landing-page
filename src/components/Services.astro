@@ -83,10 +83,10 @@ const servicesRow2 = [
 
       <div id="servicesRow1" class="flex gap-4 py-4 overflow-hidden">
         <div class="flex animate-scroll-right gap-4">
-          {[...servicesRow1, ...servicesRow1, ...servicesRow1].map((service) => (
+          {[...servicesRow1, ...servicesRow1].map((service) => (
             <a 
               href="#contact"
-              class="group relative w-[260px] sm:w-[280px] flex-shrink-0 h-[200px] bg-white/[0.03] backdrop-blur-sm rounded-xl border border-white/10 p-6 hover:-translate-y-1 transition-all duration-300"
+              class="group relative w-[280px] sm:w-[320px] md:w-[300px] lg:w-[320px] flex-shrink-0 h-[200px] bg-white/[0.03] backdrop-blur-sm rounded-xl border border-white/10 p-6 hover:-translate-y-1 transition-all duration-300"
             >
               <div class={`absolute inset-0 bg-gradient-to-br ${service.accent} opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300`}></div>
               
@@ -125,10 +125,10 @@ const servicesRow2 = [
 
       <div id="servicesRow2" class="flex gap-4 py-4 overflow-hidden">
         <div class="flex animate-scroll-left gap-4">
-          {[...servicesRow2, ...servicesRow2, ...servicesRow2].map((service) => (
+          {[...servicesRow2, ...servicesRow2].map((service) => (
             <a 
               href="#contact"
-              class="group relative w-[260px] sm:w-[280px] flex-shrink-0 h-[200px] bg-white/[0.03] backdrop-blur-sm rounded-xl border border-white/10 p-6 hover:-translate-y-1 transition-all duration-300"
+              class="group relative w-[280px] sm:w-[320px] md:w-[300px] lg:w-[320px] flex-shrink-0 h-[200px] bg-white/[0.03] backdrop-blur-sm rounded-xl border border-white/10 p-6 hover:-translate-y-1 transition-all duration-300"
             >
               <div class={`absolute inset-0 bg-gradient-to-br ${service.accent} opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300`}></div>
               
@@ -181,12 +181,31 @@ const servicesRow2 = [
   const servicesRow2 = document.getElementById('servicesRow2');
   
   let touchStartX = 0;
-  let scrollLeft = 0;
+  let isDragging = false;
+  let animationId = 0;
+
+  function handleMouseEnter(e: MouseEvent) {
+    const row = e.currentTarget as HTMLElement;
+    const scrollingContent = row.querySelector('div') as HTMLElement;
+    if (scrollingContent) {
+      scrollingContent.style.animationPlayState = 'paused';
+    }
+  }
+
+  function handleMouseLeave(e: MouseEvent) {
+    if (isDragging) return; // Don't resume if user is dragging
+    
+    const row = e.currentTarget as HTMLElement;
+    const scrollingContent = row.querySelector('div') as HTMLElement;
+    if (scrollingContent) {
+      scrollingContent.style.animationPlayState = 'running';
+    }
+  }
 
   function handleTouchStart(e: TouchEvent) {
     const row = e.currentTarget as HTMLElement;
     touchStartX = e.touches[0].pageX;
-    scrollLeft = row.scrollLeft;
+    isDragging = true;
     
     // Pause animation while touching
     const scrollingContent = row.querySelector('div') as HTMLElement;
@@ -196,83 +215,130 @@ const servicesRow2 = [
   }
 
   function handleTouchMove(e: TouchEvent) {
-    if (!touchStartX) return;
+    if (!touchStartX || !isDragging) return;
     
-    const row = e.currentTarget as HTMLElement;
-    const touchCurrentX = e.touches[0].pageX;
-    const diff = touchStartX - touchCurrentX;
-    row.scrollLeft = scrollLeft + diff;
-    
-    // Prevent page scrolling while touching the rows
+    // Just prevent default to avoid page scroll
     e.preventDefault();
   }
 
   function handleTouchEnd(e: TouchEvent) {
     const row = e.currentTarget as HTMLElement;
-    touchStartX = 0;
+    isDragging = false;
     
-    // Resume animation after touch
-    const scrollingContent = row.querySelector('div') as HTMLElement;
-    if (scrollingContent) {
-      scrollingContent.style.animationPlayState = 'running';
-    }
+    // Resume animation after a short delay to feel natural
+    setTimeout(() => {
+      if (!isDragging) {
+        const scrollingContent = row.querySelector('div') as HTMLElement;
+        if (scrollingContent) {
+          scrollingContent.style.animationPlayState = 'running';
+        }
+      }
+    }, 500);
   }
 
-  // Add touch events to both rows
+  // Add event listeners to both rows
   [servicesRow1, servicesRow2].forEach(row => {
     if (row) {
+      // Mouse events
+      row.addEventListener('mouseenter', handleMouseEnter);
+      row.addEventListener('mouseleave', handleMouseLeave);
+      
+      // Touch events
       row.addEventListener('touchstart', handleTouchStart, { passive: false });
       row.addEventListener('touchmove', handleTouchMove, { passive: false });
       row.addEventListener('touchend', handleTouchEnd, { passive: false });
     }
   });
+
+  // Optimize animation performance
+  function optimizeAnimations() {
+    const rows = [servicesRow1, servicesRow2];
+    rows.forEach(row => {
+      if (row) {
+        const scrollingContent = row.querySelector('div') as HTMLElement;
+        if (scrollingContent) {
+          // Enable hardware acceleration
+          scrollingContent.style.willChange = 'transform';
+          scrollingContent.style.backfaceVisibility = 'hidden';
+          scrollingContent.style.perspective = '1000px';
+        }
+      }
+    });
+  }
+
+  // Run optimization when page loads
+  document.addEventListener('DOMContentLoaded', optimizeAnimations);
 </script>
 
 <style>
   @keyframes scroll-right {
-    from {
-      transform: translateX(calc(-33.33% - 1rem));
+    0% {
+      transform: translateX(0);
     }
-    to {
-      transform: translateX(calc(-66.66% - 1rem));
+    100% {
+      transform: translateX(-50%);
     }
   }
 
   @keyframes scroll-left {
-    from {
-      transform: translateX(calc(-66.66% - 1rem));
+    0% {
+      transform: translateX(-50%);
     }
-    to {
-      transform: translateX(calc(-33.33% - 1rem));
+    100% {
+      transform: translateX(0);
     }
   }
 
   .animate-scroll-right {
-    animation: scroll-right 30s linear infinite;
+    animation: scroll-right 12s ease-in-out infinite;
+    will-change: transform;
   }
 
   .animate-scroll-left {
-    animation: scroll-left 30s linear infinite;
+    animation: scroll-left 14s ease-in-out infinite;
+    will-change: transform;
   }
 
-  /* Pause animation on hover */
+  /* Smooth interaction states */
   #servicesRow1:hover .animate-scroll-right,
   #servicesRow2:hover .animate-scroll-left {
     animation-play-state: paused;
+  }
+
+  /* Enhanced mobile optimizations */
+  @media (max-width: 768px) {
+    .animate-scroll-right {
+      animation-duration: 10s;
+      animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .animate-scroll-left {
+      animation-duration: 11s;
+      animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
   }
 
   /* Optimize animations for reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .animate-scroll-right,
     .animate-scroll-left {
-      animation: none;
+      animation: none !important;
     }
   }
 
-  /* Enable smooth scrolling for touch */
+  /* Smooth scrolling optimization */
   #servicesRow1,
   #servicesRow2 {
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
+    transform: translateZ(0); /* Force hardware acceleration */
+  }
+
+  /* Performance optimizations */
+  .animate-scroll-right,
+  .animate-scroll-left {
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
   }
 </style>

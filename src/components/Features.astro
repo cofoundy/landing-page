@@ -66,11 +66,52 @@ const decorations = [
   <div class="container relative mx-auto px-4">
     <!-- Features grid with staggered animation -->
     <div class="relative">
-      <div id="featuresScroll" class="overflow-x-auto overflow-y-hidden md:overflow-visible pb-4 md:pb-0 hide-scrollbar scroll-smooth">
-        <div class="flex md:grid md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 w-max md:w-auto">
+      <!-- Mobile: Scrolling container with fade edges -->
+      <div class="md:hidden relative">
+        <div class="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-dark to-transparent z-10"></div>
+        <div class="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-dark to-transparent z-10"></div>
+        
+        <div id="featuresScroll" class="overflow-hidden">
+          <div class="flex animate-features-scroll gap-4">
+            {[...features, ...features].map((feature, index) => (
+              <div class="group relative w-[280px] sm:w-[320px] flex-shrink-0">
+                <div class={`relative bg-white/5 backdrop-blur-lg rounded-2xl p-6 h-full transform transition-all duration-500 hover:scale-105 hover:-translate-y-1 before:rounded-2xl before:transition-opacity before:duration-500 before:opacity-0 group-hover:before:opacity-100 ${decorations[index % features.length].class}`}>
+                  <!-- Hover glow effect -->
+                  <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
+                  
+                  <!-- Card content -->
+                  <div class="relative z-10 flex flex-col items-center text-center">
+                    <div class="mb-4 text-5xl transform group-hover:scale-110 transition-transform duration-300 group-hover:rotate-12">
+                      {feature.icon}
+                    </div>
+                    <h3 class="text-lg font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent mb-2">
+                      {feature.title}
+                    </h3>
+                    <p class="text-sm text-white/70 group-hover:text-white/90 transition-colors duration-300">
+                      {feature.description}
+                    </p>
+                  </div>
+
+                  <!-- Animated corner accent -->
+                  <div class={`absolute w-16 h-16 transition-all duration-500 opacity-0 group-hover:opacity-100
+                    ${(index % features.length) % 2 === 0 ? 'top-0 right-0' : 'bottom-0 left-0'}
+                    ${(index % features.length) % 3 === 0 ? 'bg-[radial-gradient(circle_at_30%_30%,rgba(70,160,208,0.2)_0,transparent_60%)]' : 
+                      (index % features.length) % 3 === 1 ? 'bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0%,rgba(70,160,208,0.2)_25%,transparent_50%)]' :
+                      'bg-[linear-gradient(45deg,transparent,rgba(70,160,208,0.2))]'}`}>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop: Static grid -->
+      <div class="hidden md:block">
+        <div class="grid md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8">
           {features.map((feature, index) => (
             <div 
-              class="group relative w-[280px] sm:w-[320px] md:w-auto flex-shrink-0"
+              class="group relative"
               style={`animation-delay: ${index * 150}ms`}
             >
               <div class={`relative bg-white/5 backdrop-blur-lg rounded-2xl p-6 md:p-8 h-full transform transition-all duration-500 hover:scale-105 hover:-translate-y-1 before:rounded-2xl before:transition-opacity before:duration-500 before:opacity-0 group-hover:before:opacity-100 ${decorations[index].class}`}>
@@ -107,72 +148,78 @@ const decorations = [
 </section>
 
 <script>
-  // Auto-scroll functionality for mobile
+  // Enhanced touch interaction for mobile scrolling
   const featuresScroll = document.getElementById('featuresScroll');
-  let scrollInterval: number | undefined;
-  let isScrolling = false;
-  let touchStartX = 0;
-
-  function startAutoScroll() {
-    if (window.innerWidth >= 768) return; // Only auto-scroll on mobile
-    
-    if (!isScrolling) {
-      scrollInterval = setInterval(() => {
-        if (featuresScroll) {
-          const maxScroll = featuresScroll.scrollWidth - featuresScroll.clientWidth;
-          const newScrollLeft = featuresScroll.scrollLeft + 1;
-          
-          if (newScrollLeft >= maxScroll) {
-            // Reset to start when reaching the end
-            featuresScroll.scrollLeft = 0;
-          } else {
-            featuresScroll.scrollLeft = newScrollLeft;
-          }
-        }
-      }, 30); // Adjust speed by changing interval
-      isScrolling = true;
-    }
-  }
-
-  function stopAutoScroll() {
-    if (scrollInterval) {
-      clearInterval(scrollInterval);
-      isScrolling = false;
-    }
-  }
-
-  // Handle touch events to pause scrolling when user interacts
+  
   if (featuresScroll) {
-    featuresScroll.addEventListener('touchstart', (e) => {
-      stopAutoScroll();
-      touchStartX = e.touches[0].clientX;
-    }, { passive: true });
-
-    featuresScroll.addEventListener('touchend', () => {
-      // Resume scrolling after a delay
-      setTimeout(startAutoScroll, 5000);
-    }, { passive: true });
-
-    // Start auto-scroll when page loads
-    startAutoScroll();
-
-    // Handle visibility changes
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        stopAutoScroll();
-      } else {
-        startAutoScroll();
+    let touchStartX = 0;
+    let isDragging = false;
+    
+    function handleMouseEnter() {
+      if (!featuresScroll) return;
+      const scrollingContent = featuresScroll.querySelector('div') as HTMLElement;
+      if (scrollingContent) {
+        scrollingContent.style.animationPlayState = 'paused';
       }
-    });
+    }
 
-    // Handle window resize
-    window.addEventListener('resize', () => {
-      if (window.innerWidth >= 768) {
-        stopAutoScroll();
-      } else {
-        startAutoScroll();
+    function handleMouseLeave() {
+      if (isDragging || !featuresScroll) return; // Don't resume if user is dragging
+      
+      const scrollingContent = featuresScroll.querySelector('div') as HTMLElement;
+      if (scrollingContent) {
+        scrollingContent.style.animationPlayState = 'running';
       }
-    });
+    }
+    
+    function handleTouchStart(e: TouchEvent) {
+      touchStartX = e.touches[0].pageX;
+      isDragging = true;
+      
+      // Pause animation while touching
+      const scrollingContent = featuresScroll.querySelector('div') as HTMLElement;
+      if (scrollingContent) {
+        scrollingContent.style.animationPlayState = 'paused';
+      }
+    }
+
+    function handleTouchMove(e: TouchEvent) {
+      if (!touchStartX || !isDragging) return;
+      
+      // Prevent page scroll while interacting
+      e.preventDefault();
+    }
+
+    function handleTouchEnd() {
+      isDragging = false;
+      
+             // Resume animation after a natural delay
+       setTimeout(() => {
+         if (!isDragging && featuresScroll) {
+           const scrollingContent = featuresScroll.querySelector('div') as HTMLElement;
+           if (scrollingContent) {
+             scrollingContent.style.animationPlayState = 'running';
+           }
+         }
+       }, 800);
+    }
+
+    // Add mouse events for desktop
+    featuresScroll.addEventListener('mouseenter', handleMouseEnter);
+    featuresScroll.addEventListener('mouseleave', handleMouseLeave);
+    
+    // Add touch events for mobile
+    featuresScroll.addEventListener('touchstart', handleTouchStart, { passive: false });
+    featuresScroll.addEventListener('touchmove', handleTouchMove, { passive: false });
+    featuresScroll.addEventListener('touchend', handleTouchEnd, { passive: false });
+
+    // Optimize animation performance
+    const scrollingContent = featuresScroll.querySelector('div') as HTMLElement;
+    if (scrollingContent) {
+      scrollingContent.style.willChange = 'transform';
+      scrollingContent.style.backfaceVisibility = 'hidden';
+      scrollingContent.style.perspective = '1000px';
+    }
   }
 </script>
 
@@ -206,12 +253,29 @@ const decorations = [
     }
   }
 
+  @keyframes features-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
   .animate-float {
     animation: float 15s ease-in-out infinite;
   }
 
   .animate-float-delayed {
     animation: floatDelayed 18s ease-in-out infinite;
+  }
+
+  .animate-features-scroll {
+    animation: features-scroll 15s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
   }
 
   .grid > div {
@@ -225,21 +289,37 @@ const decorations = [
     --tw-gradient-to: rgba(35, 67, 95, 0.3);
   }
 
-  /* Hide scrollbar but keep functionality */
-  .hide-scrollbar {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-  }
-  
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+  /* Enhanced interaction states */
+  #featuresScroll:hover .animate-features-scroll {
+    animation-play-state: paused;
   }
 
-  /* Smooth scrolling */
-  .scroll-smooth {
-    scroll-behavior: smooth;
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .animate-features-scroll {
+      animation-duration: 12s;
+      animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .animate-features-scroll {
+      animation-duration: 18s;
+    }
+  }
+
+  /* Optimize animations for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-features-scroll {
+      animation: none !important;
+    }
+  }
+
+  /* Performance optimizations */
+  #featuresScroll {
+    transform: translateZ(0); /* Force hardware acceleration */
+    -webkit-overflow-scrolling: touch;
   }
 </style>
 

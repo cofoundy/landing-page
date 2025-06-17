@@ -32,6 +32,8 @@ jobs:
         run: pnpm install
       - name: Build site
         run: pnpm build
+        env:
+          PUBLIC_FORMSPREE_ENDPOINT: ${{ secrets.PUBLIC_FORMSPREE_ENDPOINT }}
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
