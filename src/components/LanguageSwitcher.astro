@@ -1,17 +1,21 @@
 ---
 import { languages, getLangFromUrl, getLocalizedPath } from '../utils/i18n';
 
-// Allow icon-only compact mode
-const { iconOnly = false } = Astro.props;
+// Allow icon-only compact mode and dark mode
+const { iconOnly = false, dark = false } = Astro.props;
 
 const currentLang = getLangFromUrl(Astro.url);
 const currentPath = Astro.url.pathname.replace(/^\/[a-z]{2}/, '') || '/';
 ---
 
-<div class="relative inline-block">
+<div class="relative inline-block" data-language-switcher>
   <button 
-    id="language-toggle"
-    class="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-md transition-colors"
+    data-language-toggle
+    class={`
+      flex items-center space-x-2 px-3 py-2 text-sm font-medium
+      ${dark ? 'text-white hover:text-primary' : 'text-gray-700 hover:text-primary'}
+      focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-md transition-colors relative z-[60]
+    `}
     aria-expanded="false"
     aria-haspopup="true"
   >
@@ -27,8 +31,11 @@ const currentPath = Astro.url.pathname.replace(/^\/[a-z]{2}/, '') || '/';
   </button>
   
   <div 
-    id="language-menu"
-    class="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible transform scale-95 transition-all duration-200 ease-out z-50"
+    data-language-menu
+    class={`
+      absolute right-0 mt-2 w-40 rounded-md shadow-lg opacity-0 invisible transform scale-95 transition-all duration-200 ease-out z-50
+      ${dark ? 'bg-dark/90 backdrop-blur-md ring-1 ring-white/20' : 'bg-white ring-1 ring-black ring-opacity-5'}
+    `}
     role="menu"
     aria-orientation="vertical"
   >
@@ -36,11 +43,13 @@ const currentPath = Astro.url.pathname.replace(/^\/[a-z]{2}/, '') || '/';
       {Object.entries(languages).map(([lang, name]) => (
         <a
           href={getLocalizedPath(currentPath, lang)}
-          class={`block px-4 py-2 text-sm transition-colors ${
-            lang === currentLang
-              ? 'bg-primary/10 text-primary font-medium'
-              : 'text-gray-700 hover:bg-gray-50 hover:text-primary'
-          }`}
+          class={`
+            block px-4 py-2 text-sm transition-colors
+            ${lang === currentLang
+              ? (dark ? 'bg-primary/20 text-primary font-medium' : 'bg-primary/10 text-primary font-medium')
+              : (dark ? 'text-white hover:bg-white/10 hover:text-primary' : 'text-gray-700 hover:bg-gray-50 hover:text-primary')
+            }
+          `}
           role="menuitem"
         >
           <span class="flex items-center space-x-2">
@@ -58,16 +67,18 @@ const currentPath = Astro.url.pathname.replace(/^\/[a-z]{2}/, '') || '/';
 </div>
 
 <script>
-  // Handle language switcher dropdown
-  const toggle = document.getElementById('language-toggle');
-  const menu = document.getElementById('language-menu');
-  
-  if (toggle && menu) {
-    toggle.addEventListener('click', () => {
+  // Handle multiple language switchers independently
+  document.querySelectorAll('[data-language-switcher]').forEach((wrapper) => {
+    const toggle = wrapper.querySelector('[data-language-toggle]') as HTMLElement | null;
+    const menu = wrapper.querySelector('[data-language-menu]') as HTMLElement | null;
+
+    if (!toggle || !menu) return;
+
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-      
       toggle.setAttribute('aria-expanded', (!isOpen).toString());
-      
+
       if (isOpen) {
         menu.classList.add('opacity-0', 'invisible', 'scale-95');
         menu.classList.remove('opacity-100', 'visible', 'scale-100');
@@ -76,16 +87,15 @@ const currentPath = Astro.url.pathname.replace(/^\/[a-z]{2}/, '') || '/';
         menu.classList.add('opacity-100', 'visible', 'scale-100');
       }
     });
-    
-    // Close menu when clicking outside
+
     document.addEventListener('click', (event) => {
-      if (!toggle.contains(event.target as Node) && !menu.contains(event.target as Node)) {
+      if (!wrapper.contains(event.target as Node)) {
         toggle.setAttribute('aria-expanded', 'false');
         menu.classList.add('opacity-0', 'invisible', 'scale-95');
         menu.classList.remove('opacity-100', 'visible', 'scale-100');
       }
     });
-  }
+  });
 </script>
 
 <style>

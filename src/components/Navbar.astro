@@ -31,7 +31,7 @@ const menuItems = [
       </a>
 
       <!-- Desktop Navigation (lg and up) -->
-      <nav class="hidden md:flex items-center space-x-6 lg:space-x-8">
+      <nav class="hidden lg:flex items-center space-x-6 lg:space-x-8">
         {
           menuItems.map((item) => (
             <a
@@ -48,7 +48,7 @@ const menuItems = [
         </div>
         <a
           href={routes.contact}
-          class="inline-flex items-center px-4 lg:px-6 py-2.5 lg:py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-primary/20 text-[0.9rem] lg:text-[1rem] whitespace-nowrap"
+          class="inline-flex items-center px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-primary/20 text-sm md:text-[0.9rem] lg:text-[1rem] whitespace-nowrap"
         >
           {t('hero.cta')}
         </a>
@@ -57,7 +57,7 @@ const menuItems = [
       <!-- Mobile Menu Button -->
       <button
         id="menuButton"
-        class="relative z-[60] w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 transition-colors duration-300 md:hidden backdrop-blur-sm"
+        class="relative z-[60] w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 transition-colors duration-300 lg:hidden backdrop-blur-sm"
         aria-label="Toggle Menu"
       >
         <div
@@ -78,7 +78,7 @@ const menuItems = [
       <!-- Mobile Menu Overlay -->
       <div
         id="mobileMenu"
-        class="fixed inset-0 z-50 opacity-0 pointer-events-none transition-all duration-300 md:hidden"
+        class="fixed inset-0 z-50 opacity-0 pointer-events-none transition-all duration-300 lg:hidden"
       >
         <!-- Menu Content -->
         <div
@@ -97,7 +97,7 @@ const menuItems = [
             }
             <div class="px-6 py-3 border-t border-white/10">
               <!-- Full language switcher on lg screens -->
-              <LanguageSwitcher />
+              <LanguageSwitcher dark={true} />
             </div>
             <div class="px-6 pt-3">
               <a
