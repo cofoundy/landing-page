@@ -7,7 +7,7 @@ const t = useTranslations(currentLang);
 ---
 
 <section
-  class="hero relative flex min-h-screen items-center overflow-hidden bg-white pb-24 pt-28 md:pb-48 md:pt-32"
+  class="hero relative flex min-h-screen items-center overflow-hidden bg-white pb-20 pt-24 md:pb-32 md:pt-28"
 >
   <!-- Animated background -->
   <div class="absolute inset-0">
@@ -43,11 +43,11 @@ const t = useTranslations(currentLang);
   </div>
 
   <div class="container relative mx-auto px-4">
-    <div class="grid items-center gap-8 md:gap-12 lg:grid-cols-2">
+    <div class="grid items-center gap-4 md:gap-8 lg:gap-12 lg:grid-cols-2">
       <!-- Content -->
       <div class="relative z-10 text-center lg:text-left">
         <h1
-          class="text-4xl font-bold text-secondary sm:text-5xl md:text-6xl"
+          class="text-3xl font-bold leading-tight text-secondary sm:text-4xl md:text-6xl"
         >
           {t("hero.title")}
         </h1>
@@ -57,7 +57,7 @@ const t = useTranslations(currentLang);
           {t("hero.subtitle")}
         </p>
         <div
-          class="mt-8 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start"
+          class="mt-6 flex flex-col justify-center gap-3 sm:flex-row lg:gap-4 lg:justify-start"
         >
           <a
             href={routes.contact}
@@ -87,13 +87,13 @@ const t = useTranslations(currentLang);
       </div>
 
       <!-- Hero Image -->
-      <div class="relative z-10 mt-12 lg:mt-0">
+      <div class="relative z-10 mt-0 lg:mt-0">
         <!-- Code animation background -->
         <div
-          class="absolute inset-0 -right-4 flex items-center opacity-70 md:-right-8 md:opacity-100"
+          class="absolute inset-0 -right-4 hidden opacity-70 sm:flex md:-right-8 md:opacity-100"
         >
           <div
-            class="h-3/4 w-full overflow-hidden rounded-3xl border border-secondary/10 bg-gradient-to-r from-primary/5 to-secondary/5 backdrop-blur-sm"
+            class="h-1/2 w-full overflow-hidden rounded-3xl border border-secondary/10 bg-gradient-to-r from-primary/5 to-secondary/5 backdrop-blur-sm md:h-3/4"
           >
             <div class="animate-code-scroll">
               <pre
@@ -126,7 +126,7 @@ class WebApp {
 
         <!-- Unicorn image with floating animation -->
         <div
-          class="relative mx-auto animate-float-slow px-4 transition-transform duration-700 hover:scale-102 md:px-0 lg:w-full"
+          class="relative mx-auto animate-float-slow px-4 transition-transform duration-700 hover:scale-102 md:px-0 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-none lg:w-full"
         >
           <picture>
             <!-- Mobile optimized image -->
@@ -147,7 +147,7 @@ class WebApp {
             <img
               src="/unicornio-programando.webp"
               alt="Cofoundy Tech Unicorn"
-              class="relative z-10 w-full h-auto"
+              class="relative z-10 w-full h-auto max-h-80 sm:max-h-full"
               width="800"
               height="600"
               loading="eager"
