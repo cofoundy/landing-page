@@ -1,0 +1,112 @@
+---
+// This component only runs on the default language homepage to redirect users
+import { defaultLang } from '../utils/i18n';
+---
+
+<!-- Language Auto-Detection Script -->
+<script>
+  import { detectOptimalLanguage, redirectToLanguage, getCurrentLanguageFromPath } from '../utils/languageDetection';
+  
+  // Only run auto-detection on the homepage of default language
+  async function handleLanguageDetection() {
+    // Check if we're on the root page (default language homepage)
+    const currentPath = window.location.pathname;
+    const isHomepage = currentPath === '/';
+    const currentLang = getCurrentLanguageFromPath();
+    
+    // Only auto-redirect from the default language homepage
+    if (!isHomepage || currentLang !== 'es') {
+      return;
+    }
+    
+    // Check if user has already been redirected in this session
+    const hasBeenRedirected = sessionStorage.getItem('language-redirect-attempted');
+    if (hasBeenRedirected) {
+      return;
+    }
+    
+    // Mark that we've attempted redirection in this session
+    sessionStorage.setItem('language-redirect-attempted', 'true');
+    
+    try {
+      // Detect optimal language for user
+      const optimalLanguage = await detectOptimalLanguage();
+      
+      // Only redirect if detected language is different from current
+      if (optimalLanguage !== 'es') {
+        console.log(`🌍 Auto-redirecting to ${optimalLanguage} based on user preferences`);
+        redirectToLanguage(optimalLanguage, currentPath);
+      }
+    } catch (error) {
+      console.warn('Language detection failed:', error);
+      // Fail silently, stay on current page
+    }
+  }
+  
+  // Wait for DOM to be ready, then detect language
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', handleLanguageDetection);
+  } else {
+    handleLanguageDetection();
+  }
+</script>
+
+<!-- Non-intrusive loading indicator for redirects -->
+<div 
+  id="language-redirect-loader" 
+  class="fixed top-4 right-4 bg-primary/90 backdrop-blur-sm text-white px-4 py-2 rounded-lg shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 z-[9999]"
+>
+  <div class="flex items-center space-x-2">
+    <div class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+    <span class="text-sm font-medium">Detecting language...</span>
+  </div>
+</div>
+
+<script>
+  // Show loading indicator during detection
+  let redirectTimer: ReturnType<typeof setTimeout>;
+  
+  const showRedirectLoader = () => {
+    const loader = document.getElementById('language-redirect-loader');
+    if (loader) {
+      loader.classList.remove('opacity-0');
+      loader.classList.add('opacity-100');
+      
+      // Hide loader after 3 seconds max
+      redirectTimer = setTimeout(() => {
+        loader.classList.add('opacity-0');
+        loader.classList.remove('opacity-100');
+      }, 3000);
+    }
+  };
+  
+  const hideRedirectLoader = () => {
+    clearTimeout(redirectTimer);
+    const loader = document.getElementById('language-redirect-loader');
+    if (loader) {
+      loader.classList.add('opacity-0');
+      loader.classList.remove('opacity-100');
+    }
+  };
+  
+  // Show loader when starting detection (only on homepage)
+  if (window.location.pathname === '/') {
+    const hasBeenRedirected = sessionStorage.getItem('language-redirect-attempted');
+    if (!hasBeenRedirected) {
+      setTimeout(showRedirectLoader, 100); // Small delay to avoid flash
+    }
+  }
+  
+  // Hide loader when page is about to unload (redirect happening)
+  window.addEventListener('beforeunload', hideRedirectLoader);
+  
+  // Hide loader if we're staying on the page
+  setTimeout(hideRedirectLoader, 2000);
+</script>
+
+<style>
+  /* Ensure the loader doesn't interfere with page content */
+  #language-redirect-loader {
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+</style> 
