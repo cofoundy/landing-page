@@ -1,11 +1,15 @@
 ---
 import { routes } from "../utils/routes";
+import { getLangFromUrl, useTranslations } from "../utils/i18n";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
 
 const menuItems = [
-  { text: "Servicios", href: routes.services },
-  { text: "Proyectos", href: routes.projects },
-  { text: "Proceso", href: routes.process },
-  { text: "Contacto", href: routes.contact },
+  { text: t('nav.services'), href: routes.services },
+  { text: t('nav.features'), href: routes.features || "#features" },
+  { text: t('nav.contact'), href: routes.contact },
 ];
 ---
 
@@ -38,11 +42,12 @@ const menuItems = [
             </a>
           ))
         }
+        <LanguageSwitcher />
         <a
           href={routes.contact}
           class="inline-flex items-center px-4 lg:px-6 py-2.5 lg:py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-primary/20 text-[0.9rem] lg:text-[1rem] whitespace-nowrap"
         >
-          Iniciar Proyecto
+          {t('hero.cta')}
         </a>
       </nav>
 
@@ -87,12 +92,15 @@ const menuItems = [
                 </a>
               ))
             }
+            <div class="px-6 py-3 border-t border-white/10">
+              <LanguageSwitcher />
+            </div>
             <div class="px-6 pt-3">
               <a
                 href={routes.contact}
                 class="inline-flex w-full items-center justify-center px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
               >
-                Iniciar Proyecto
+                {t('hero.cta')}
               </a>
             </div>
           </nav>

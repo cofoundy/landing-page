@@ -1,26 +1,36 @@
 ---
 import StructuredData from "../components/StructuredData.astro";
+import { getLangFromUrl, useTranslations, languages, getLocalizedPath } from "../utils/i18n";
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
   image?: string;
   canonicalURL?: string;
 }
 
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
 const {
-  title,
-  description = "Consultora de software especializada en desarrollo web e inteligencia artificial, transformando ideas en soluciones tecnológicas.",
+  title = t('meta.title'),
+  description = t('meta.description'),
   image = "/images/cofoundy-og-image.jpg",
   canonicalURL = Astro.url.href,
 } = Astro.props;
 
 // Base URL for canonical and OG links
 const siteURL = "https://cofoundy.dev";
+
+// Generate alternate language URLs for SEO
+const alternateUrls = Object.keys(languages).map(lang => ({
+  lang,
+  url: new URL(getLocalizedPath(Astro.url.pathname.replace(/^\/[a-z]{2}/, '') || '/', lang), siteURL).href
+}));
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang={currentLang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -32,11 +42,16 @@ const siteURL = "https://cofoundy.dev";
     <meta name="author" content="Cofoundy" />
     <meta
       name="keywords"
-      content="desarrollo web, inteligencia artificial, software, consultora tech, startup MVP, landing page, chatbot, IA, desarrollo software, servicios de desarrollo"
+      content={t('meta.keywords')}
     />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Alternate language URLs for SEO -->
+    {alternateUrls.map(({ lang, url }) => (
+      <link rel="alternate" hreflang={lang} href={url} />
+    ))}
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -44,8 +59,13 @@ const siteURL = "https://cofoundy.dev";
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, siteURL).href} />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale" content={currentLang === 'es' ? 'es_ES' : currentLang === 'en' ? 'en_US' : 'pt_BR'} />
     <meta property="og:site_name" content="Cofoundy" />
+    
+    <!-- Alternate locales for social sharing -->
+    {Object.keys(languages).filter(lang => lang !== currentLang).map(lang => (
+      <meta property="og:locale:alternate" content={lang === 'es' ? 'es_ES' : lang === 'en' ? 'en_US' : 'pt_BR'} />
+    ))}
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />

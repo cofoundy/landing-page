@@ -1,32 +1,31 @@
 ---
+import { getLangFromUrl, useTranslations } from "../utils/i18n";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
 const servicesRow1 = [
   {
-    title: "SOFTWARE A MEDIDA",
-    description: "Sistemas personalizados para tu empresa",
+    title: t('services.custom_software.title'),
+    description: t('services.custom_software.description'),
     icon: "💻",
     accent: "from-[#46A0D0] to-[#1B577E]"
   },
-  // {
-  //   title: "BUSINESS INTELLIGENCE",
-  //   description: "Dashboards y análisis de datos",
-  //   icon: "📊",
-  //   accent: "from-[#1B577E] to-[#23435F]"
-  // },
   {
-    title: "CONSULTORÍA TI",
-    description: "Transformación digital empresarial",
+    title: t('services.it_consulting.title'),
+    description: t('services.it_consulting.description'),
     icon: "🔧",
     accent: "from-[#23435F] to-[#46A0D0]"
   },
   {
-    title: "DESARROLLO DE MVP",
-    description: "Prototipos rápidos para startups",
+    title: t('services.mvp_dev.title'),
+    description: t('services.mvp_dev.description'),
     icon: "🚀",
     accent: "from-[#46A0D0] to-[#23435F]"
   },
   {
-    title: "DESARROLLO WEB",
-    description: "Aplicaciones web modernas",
+    title: t('services.web.title'),
+    description: t('services.web.description'),
     icon: "🌐",
     accent: "from-[#46A0D0] to-[#23435F]"
   }
@@ -34,26 +33,26 @@ const servicesRow1 = [
 
 const servicesRow2 = [
   {
-    title: "APPS MÓVILES",
-    description: "Desarrollo iOS y Android",
+    title: t('services.mobile.title'),
+    description: t('services.mobile.description'),
     icon: "📱",
     accent: "from-[#1B577E] to-[#46A0D0]"
   },
   {
-    title: "MACHINE LEARNING",
-    description: "IA y modelos predictivos",
+    title: t('services.ml.title'),
+    description: t('services.ml.description'),
     icon: "🤖",
     accent: "from-[#23435F] to-[#1B577E]"
   },
   {
-    title: "SOLUCIONES DE DATOS EN TIEMPO REAL",
-    description: "Procesamiento y análisis de datos en tiempo real",
+    title: t('services.realtime.title'),
+    description: t('services.realtime.description'),
     icon: "⏱️",
     accent: "from-[#1B577E] to-[#46A0D0]"
   },
   {
-    title: "CLOUD & DEVOPS",
-    description: "Infraestructura y automatización",
+    title: t('services.cloud.title'),
+    description: t('services.cloud.description'),
     icon: "☁️",
     accent: "from-[#46A0D0] to-[#1B577E]"
   },
@@ -68,7 +67,7 @@ const servicesRow2 = [
   <div class="container relative mx-auto px-4 mb-8 md:mb-20">
     <div class="relative inline-block left-1/2 -translate-x-1/2">
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center tracking-wide">
-        NUESTROS SERVICIOS
+        {t('services.title').toUpperCase()}
       </h2>
       <div class="absolute -bottom-3 md:-bottom-4 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
     </div>
@@ -168,7 +167,7 @@ const servicesRow2 = [
         href="#contact"
         class="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 hover:shadow-lg text-base sm:text-lg"
       >
-        Iniciar Proyecto
+        {t('hero.cta')}
         <svg class="ml-2 w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
         </svg>

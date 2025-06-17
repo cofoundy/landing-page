@@ -6,4 +6,11 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   site: 'https://cofoundy.dev',
   integrations: [tailwind()],
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en', 'pt'],
+    routing: {
+      prefixDefaultLocale: false
+    }
+  }
 });

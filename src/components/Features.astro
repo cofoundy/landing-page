@@ -1,29 +1,34 @@
 ---
+import { getLangFromUrl, useTranslations } from "../utils/i18n";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
 const features = [
   {
     icon: "💻",
-    title: "Desarrollo Web",
-    description: "Frontend, Backend y Base de datos",
+    title: t('features.web_dev.title'),
+    description: t('features.web_dev.description'),
   },
   {
     icon: "🧠",
-    title: "Inteligencia Artificial",
-    description: "GenAI, Computer Vision y Machine Learning",
+    title: t('features.ai.title'),
+    description: t('features.ai.description'),
   },
   {
     icon: "🚀",
-    title: "MVPs",
-    description: "Desarrollo ágil de productos mínimos viables",
+    title: t('features.mvps.title'),
+    description: t('features.mvps.description'),
   },
   {
     icon: "👥",
-    title: "Co-fundador Técnico",
-    description: "Socios tecnológicos para tu proyecto",
+    title: t('features.cofounder.title'),
+    description: t('features.cofounder.description'),
   },
   {
     icon: "⚡",
-    title: "Tiempo Real",
-    description: "Soluciones de datos en tiempo real",
+    title: t('features.realtime.title'),
+    description: t('features.realtime.description'),
   },
 ];
 

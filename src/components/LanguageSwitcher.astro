@@ -1,0 +1,104 @@
+---
+import { languages, getLangFromUrl, getLocalizedPath } from '../utils/i18n';
+
+const currentLang = getLangFromUrl(Astro.url);
+const currentPath = Astro.url.pathname.replace(/^\/[a-z]{2}/, '') || '/';
+---
+
+<div class="relative inline-block">
+  <button 
+    id="language-toggle"
+    class="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-md transition-colors"
+    aria-expanded="false"
+    aria-haspopup="true"
+  >
+    <span class="text-lg">🌐</span>
+    <span>{languages[currentLang]}</span>
+    <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+  
+  <div 
+    id="language-menu"
+    class="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible transform scale-95 transition-all duration-200 ease-out z-50"
+    role="menu"
+    aria-orientation="vertical"
+  >
+    <div class="py-1" role="none">
+      {Object.entries(languages).map(([lang, name]) => (
+        <a
+          href={getLocalizedPath(currentPath, lang)}
+          class={`block px-4 py-2 text-sm transition-colors ${
+            lang === currentLang
+              ? 'bg-primary/10 text-primary font-medium'
+              : 'text-gray-700 hover:bg-gray-50 hover:text-primary'
+          }`}
+          role="menuitem"
+        >
+          <span class="flex items-center space-x-2">
+            <span>{name}</span>
+            {lang === currentLang && (
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+            )}
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  // Handle language switcher dropdown
+  const toggle = document.getElementById('language-toggle');
+  const menu = document.getElementById('language-menu');
+  
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      
+      toggle.setAttribute('aria-expanded', (!isOpen).toString());
+      
+      if (isOpen) {
+        menu.classList.add('opacity-0', 'invisible', 'scale-95');
+        menu.classList.remove('opacity-100', 'visible', 'scale-100');
+      } else {
+        menu.classList.remove('opacity-0', 'invisible', 'scale-95');
+        menu.classList.add('opacity-100', 'visible', 'scale-100');
+      }
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (event) => {
+      if (!toggle.contains(event.target as Node) && !menu.contains(event.target as Node)) {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.classList.add('opacity-0', 'invisible', 'scale-95');
+        menu.classList.remove('opacity-100', 'visible', 'scale-100');
+      }
+    });
+  }
+</script>
+
+<style>
+  :root {
+    --primary: #46a0d0;
+  }
+  
+  .text-primary {
+    color: var(--primary);
+  }
+  
+  .hover\:text-primary:hover {
+    color: var(--primary);
+  }
+  
+  .focus\:ring-primary\/20:focus {
+    box-shadow: 0 0 0 3px rgb(70 160 208 / 0.2);
+  }
+  
+  .bg-primary\/10 {
+    background-color: rgb(70 160 208 / 0.1);
+  }
+</style> 
