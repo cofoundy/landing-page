@@ -7,7 +7,7 @@ const t = useTranslations(currentLang);
 ---
 
 <section
-  class="hero relative min-h-screen flex items-center pt-28 md:pt-32 pb-24 md:pb-32 overflow-hidden bg-white"
+  class="hero relative flex min-h-screen items-center overflow-hidden bg-white pb-24 pt-28 md:pb-48 md:pt-32"
 >
   <!-- Animated background -->
   <div class="absolute inset-0">
@@ -43,29 +43,29 @@ const t = useTranslations(currentLang);
   </div>
 
   <div class="container relative mx-auto px-4">
-    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+    <div class="grid items-center gap-8 md:gap-12 lg:grid-cols-2">
       <!-- Content -->
-      <div class="relative z-10 text-center md:text-left">
+      <div class="relative z-10 text-center lg:text-left">
         <h1
-          class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 text-secondary mt-4"
+          class="text-4xl font-bold text-secondary sm:text-5xl md:text-6xl"
         >
-          {t('hero.title')}
+          {t("hero.title")}
         </h1>
         <p
-          class="text-lg md:text-xl text-secondary/90 mb-6 md:mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+          class="text-lg leading-relaxed text-secondary/90 md:text-xl lg:mx-0"
         >
-          {t('hero.subtitle')}
+          {t("hero.subtitle")}
         </p>
         <div
-          class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+          class="mt-8 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start"
         >
           <a
             href={routes.contact}
-            class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg group text-base sm:text-lg"
+            class="group inline-flex transform items-center justify-center rounded-xl bg-primary px-6 py-3 text-base font-medium text-white transition-all duration-300 hover:scale-105 hover:bg-primary-dark hover:shadow-lg sm:px-8 sm:py-4 sm:text-lg"
           >
-            {t('hero.cta')}
+            {t("hero.cta")}
             <svg
-              class="ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1"
+              class="ml-2 h-4 w-4 transform transition-transform duration-300 group-hover:translate-x-1 sm:h-5 sm:w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -79,25 +79,26 @@ const t = useTranslations(currentLang);
           </a>
           <a
             href={routes.services}
-            class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-secondary/5 hover:bg-secondary/10 text-secondary font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg backdrop-blur-sm border border-secondary/20 text-base sm:text-lg"
+            class="inline-flex transform items-center justify-center rounded-xl border border-secondary/20 bg-secondary/5 px-6 py-3 text-base font-medium text-secondary backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-secondary/10 hover:shadow-lg sm:px-8 sm:py-4 sm:text-lg"
           >
-            {t('hero.secondary_cta')}
+            {t("hero.secondary_cta")}
           </a>
         </div>
       </div>
 
       <!-- Hero Image -->
-      <div class="relative z-10 mt-8 md:mt-0">
+      <div class="relative z-10 mt-12 lg:mt-0">
         <!-- Code animation background -->
         <div
-          class="absolute inset-0 -right-4 md:-right-8 flex items-center opacity-70 md:opacity-100"
+          class="absolute inset-0 -right-4 flex items-center opacity-70 md:-right-8 md:opacity-100"
         >
           <div
-            class="w-full h-3/4 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-3xl overflow-hidden backdrop-blur-sm border border-secondary/10"
+            class="h-3/4 w-full overflow-hidden rounded-3xl border border-secondary/10 bg-gradient-to-r from-primary/5 to-secondary/5 backdrop-blur-sm"
           >
             <div class="animate-code-scroll">
               <pre
-                class="text-[8px] md:text-[10px] leading-tight text-primary/60 p-4">
+                class="p-4 text-[8px] leading-tight text-primary/60 md:text-[10px]"
+              >
                 <code>{`function initAI() {
   const model = new NeuralNetwork();
   model.train(data);
@@ -125,7 +126,7 @@ class WebApp {
 
         <!-- Unicorn image with floating animation -->
         <div
-          class="relative transform hover:scale-102 transition-transform duration-700 animate-float-slow px-4 md:px-0 md:w-4/5 lg:w-full mx-auto"
+          class="relative mx-auto animate-float-slow px-4 transition-transform duration-700 hover:scale-102 md:px-0 lg:w-full"
         >
           <picture>
             <!-- Mobile optimized image -->
