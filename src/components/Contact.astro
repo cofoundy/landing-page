@@ -224,7 +224,11 @@ const t = useTranslations(currentLang);
           <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
             {t('contact.form_title')}
           </h2>
-          <form class="space-y-4 md:space-y-6">
+          <form
+            action={import.meta.env.PUBLIC_FORMSPREE_ENDPOINT}
+            method="POST"
+            class="space-y-4 md:space-y-6"
+          >
             <div>
               <label class="block text-white/80 mb-1 md:mb-2" for="name"
                 >{t('contact.name')}</label
@@ -232,6 +236,7 @@ const t = useTranslations(currentLang);
               <input
                 type="text"
                 id="name"
+                name="name"
                 class="w-full px-4 py-2 md:py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-300"
                 placeholder={t('contact.name_placeholder')}
               />
@@ -243,6 +248,7 @@ const t = useTranslations(currentLang);
               <input
                 type="email"
                 id="email"
+                name="email"
                 class="w-full px-4 py-2 md:py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-300"
                 placeholder={t('contact.email_placeholder')}
               />
@@ -253,6 +259,7 @@ const t = useTranslations(currentLang);
               >
               <textarea
                 id="message"
+                name="message"
                 rows="3"
                 class="w-full px-4 py-2 md:py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-300 resize-none"
                 placeholder={t('contact.message_placeholder')}></textarea>
