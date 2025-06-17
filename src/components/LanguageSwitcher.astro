@@ -1,6 +1,9 @@
 ---
 import { languages, getLangFromUrl, getLocalizedPath } from '../utils/i18n';
 
+// Allow icon-only compact mode
+const { iconOnly = false } = Astro.props;
+
 const currentLang = getLangFromUrl(Astro.url);
 const currentPath = Astro.url.pathname.replace(/^\/[a-z]{2}/, '') || '/';
 ---
@@ -13,10 +16,14 @@ const currentPath = Astro.url.pathname.replace(/^\/[a-z]{2}/, '') || '/';
     aria-haspopup="true"
   >
     <span class="text-lg">🌐</span>
-    <span>{languages[currentLang]}</span>
-    <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-    </svg>
+    { !iconOnly && (
+      <>
+        <span>{languages[currentLang]}</span>
+        <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </>
+    ) }
   </button>
   
   <div 
