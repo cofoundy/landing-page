@@ -43,9 +43,9 @@ const t = useTranslations(currentLang);
   </div>
 
   <div class="container relative mx-auto px-4">
-    <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
       <!-- Content -->
-      <div class="relative z-10 text-center lg:text-left">
+      <div class="relative z-10 text-center md:text-left">
         <h1
           class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 text-secondary mt-4"
         >
@@ -87,9 +87,11 @@ const t = useTranslations(currentLang);
       </div>
 
       <!-- Hero Image -->
-      <div class="relative z-10 mt-8 lg:mt-0">
+      <div class="relative z-10 mt-8 md:mt-0">
         <!-- Code animation background -->
-        <div class="absolute inset-0 -right-4 md:-right-8 flex items-center">
+        <div
+          class="absolute inset-0 -right-4 md:-right-8 flex items-center opacity-70 md:opacity-100"
+        >
           <div
             class="w-full h-3/4 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-3xl overflow-hidden backdrop-blur-sm border border-secondary/10"
           >
@@ -123,7 +125,7 @@ class WebApp {
 
         <!-- Unicorn image with floating animation -->
         <div
-          class="relative transform hover:scale-102 transition-transform duration-700 animate-float-slow px-4 md:px-0"
+          class="relative transform hover:scale-102 transition-transform duration-700 animate-float-slow px-4 md:px-0 md:w-4/5 lg:w-full mx-auto"
         >
           <picture>
             <!-- Mobile optimized image -->
