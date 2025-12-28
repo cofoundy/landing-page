@@ -5,28 +5,39 @@ import Footer from '../../components/Footer.astro';
 ---
 
 <Layout title="Politica de Privacidade - Cofoundy">
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen bg-dark">
     <Navbar />
-    <main class="pt-32 pb-16">
-      <div class="container mx-auto px-4 max-w-3xl">
-        <h1 class="text-4xl font-bold text-secondary mb-8">Politica de Privacidade</h1>
-        <p class="text-gray-500 mb-8">Ultima atualizacao: Dezembro 2025</p>
 
-        <div class="prose prose-lg max-w-none text-gray-700 space-y-6">
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">1. Informacoes que Coletamos</h2>
-            <p>Cofoundy coleta informacoes que voce nos fornece diretamente, incluindo:</p>
-            <ul class="list-disc pl-6 space-y-2">
+    <section class="relative pt-32 pb-16 bg-dark overflow-hidden">
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(70,160,208,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(70,160,208,0.05)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+      </div>
+      <div class="container relative mx-auto px-4 max-w-3xl">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Politica de Privacidade</h1>
+        <p class="text-white/60">Ultima atualizacao: Dezembro 2025</p>
+      </div>
+    </section>
+
+    <main class="bg-white py-12 md:py-16">
+      <div class="container mx-auto px-4 max-w-3xl">
+        <div class="prose prose-lg max-w-none text-secondary/80">
+
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">1. Informacoes que Coletamos</h2>
+            <p class="mb-3">Cofoundy coleta informacoes que voce nos fornece diretamente, incluindo:</p>
+            <ul class="list-disc pl-6 space-y-1 text-secondary/70">
               <li>Nome e dados de contato (email, telefone)</li>
               <li>Informacoes sobre sua empresa ou projeto</li>
               <li>Mensagens e comunicacoes que nos envia</li>
             </ul>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">2. Uso das Informacoes</h2>
-            <p>Utilizamos suas informacoes para:</p>
-            <ul class="list-disc pl-6 space-y-2">
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">2. Uso das Informacoes</h2>
+            <p class="mb-3">Utilizamos suas informacoes para:</p>
+            <ul class="list-disc pl-6 space-y-1 text-secondary/70">
               <li>Responder suas consultas e solicitacoes</li>
               <li>Fornecer nossos servicos de desenvolvimento de software</li>
               <li>Enviar comunicacoes relacionadas a projetos</li>
@@ -34,25 +45,25 @@ import Footer from '../../components/Footer.astro';
             </ul>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">3. Compartilhamento de Informacoes</h2>
-            <p>Nao vendemos, alugamos ou compartilhamos suas informacoes pessoais com terceiros, exceto:</p>
-            <ul class="list-disc pl-6 space-y-2">
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">3. Compartilhamento de Informacoes</h2>
+            <p class="mb-3">Nao vendemos, alugamos ou compartilhamos suas informacoes pessoais com terceiros, exceto:</p>
+            <ul class="list-disc pl-6 space-y-1 text-secondary/70">
               <li>Quando necessario para fornecer nossos servicos</li>
               <li>Quando exigido por lei</li>
               <li>Com seu consentimento explicito</li>
             </ul>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">4. Seguranca</h2>
-            <p>Implementamos medidas de seguranca tecnicas e organizacionais para proteger suas informacoes pessoais contra acesso nao autorizado, alteracao, divulgacao ou destruicao.</p>
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">4. Seguranca</h2>
+            <p class="text-secondary/70">Implementamos medidas de seguranca tecnicas e organizacionais para proteger suas informacoes pessoais contra acesso nao autorizado, alteracao, divulgacao ou destruicao.</p>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">5. Seus Direitos</h2>
-            <p>Voce tem o direito de:</p>
-            <ul class="list-disc pl-6 space-y-2">
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">5. Seus Direitos</h2>
+            <p class="mb-3">Voce tem o direito de:</p>
+            <ul class="list-disc pl-6 space-y-1 text-secondary/70">
               <li>Acessar suas informacoes pessoais</li>
               <li>Solicitar a correcao de dados imprecisos</li>
               <li>Solicitar a exclusao de seus dados</li>
@@ -60,16 +71,18 @@ import Footer from '../../components/Footer.astro';
             </ul>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">6. Contato</h2>
-            <p>Para duvidas sobre esta politica de privacidade, entre em contato:</p>
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">6. Contato</h2>
+            <p class="text-secondary/70">Para duvidas sobre esta politica de privacidade, entre em contato:</p>
             <p class="mt-2">
-              <strong>Email:</strong> <a href="mailto:info@cofoundy.dev" class="text-primary hover:underline">info@cofoundy.dev</a>
+              <a href="mailto:info@cofoundy.dev" class="text-primary hover:text-primary-dark font-medium">info@cofoundy.dev</a>
             </p>
           </section>
+
         </div>
       </div>
     </main>
+
     <Footer />
   </div>
 </Layout>

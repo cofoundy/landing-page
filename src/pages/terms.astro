@@ -5,23 +5,38 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Terminos de Servicio - Cofoundy">
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen bg-dark">
     <Navbar />
-    <main class="pt-32 pb-16">
-      <div class="container mx-auto px-4 max-w-3xl">
-        <h1 class="text-4xl font-bold text-secondary mb-8">Terminos de Servicio</h1>
-        <p class="text-gray-500 mb-8">Ultima actualizacion: Diciembre 2025</p>
 
-        <div class="prose prose-lg max-w-none text-gray-700 space-y-6">
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">1. Aceptacion de Terminos</h2>
-            <p>Al acceder y utilizar los servicios de Cofoundy, usted acepta estos terminos de servicio. Si no esta de acuerdo con alguna parte de estos terminos, no podra utilizar nuestros servicios.</p>
+    <!-- Hero header oscuro -->
+    <section class="relative pt-32 pb-16 bg-dark overflow-hidden">
+      <!-- Background effects -->
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(70,160,208,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(70,160,208,0.05)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="container relative mx-auto px-4 max-w-3xl">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Terminos de Servicio</h1>
+        <p class="text-white/60">Ultima actualizacion: Diciembre 2025</p>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <main class="bg-white py-12 md:py-16">
+      <div class="container mx-auto px-4 max-w-3xl">
+        <div class="prose prose-lg max-w-none text-secondary/80">
+
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">1. Aceptacion de Terminos</h2>
+            <p class="text-secondary/70">Al acceder y utilizar los servicios de Cofoundy, usted acepta estos terminos de servicio. Si no esta de acuerdo con alguna parte de estos terminos, no podra utilizar nuestros servicios.</p>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">2. Descripcion del Servicio</h2>
-            <p>Cofoundy es una consultora de software que ofrece:</p>
-            <ul class="list-disc pl-6 space-y-2">
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">2. Descripcion del Servicio</h2>
+            <p class="mb-3">Cofoundy es una consultora de software que ofrece:</p>
+            <ul class="list-disc pl-6 space-y-1 text-secondary/70">
               <li>Desarrollo web y aplicaciones</li>
               <li>Soluciones de inteligencia artificial</li>
               <li>Desarrollo de MVPs para startups</li>
@@ -29,10 +44,10 @@ import Footer from '../components/Footer.astro';
             </ul>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">3. Obligaciones del Cliente</h2>
-            <p>Al contratar nuestros servicios, usted se compromete a:</p>
-            <ul class="list-disc pl-6 space-y-2">
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">3. Obligaciones del Cliente</h2>
+            <p class="mb-3">Al contratar nuestros servicios, usted se compromete a:</p>
+            <ul class="list-disc pl-6 space-y-1 text-secondary/70">
               <li>Proporcionar informacion veraz y actualizada</li>
               <li>Realizar los pagos acordados en los plazos establecidos</li>
               <li>Colaborar en la definicion de requisitos del proyecto</li>
@@ -40,31 +55,33 @@ import Footer from '../components/Footer.astro';
             </ul>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">4. Propiedad Intelectual</h2>
-            <p>Una vez completado el pago total del proyecto, el cliente recibe los derechos de uso del software desarrollado. Cofoundy retiene el derecho de utilizar componentes genericos y metodologias en otros proyectos.</p>
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">4. Propiedad Intelectual</h2>
+            <p class="text-secondary/70">Una vez completado el pago total del proyecto, el cliente recibe los derechos de uso del software desarrollado. Cofoundy retiene el derecho de utilizar componentes genericos y metodologias en otros proyectos.</p>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">5. Limitacion de Responsabilidad</h2>
-            <p>Cofoundy no sera responsable por danos indirectos, incidentales o consecuentes que resulten del uso de nuestros servicios o productos.</p>
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">5. Limitacion de Responsabilidad</h2>
+            <p class="text-secondary/70">Cofoundy no sera responsable por danos indirectos, incidentales o consecuentes que resulten del uso de nuestros servicios o productos.</p>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">6. Modificaciones</h2>
-            <p>Nos reservamos el derecho de modificar estos terminos en cualquier momento. Los cambios entraran en vigor inmediatamente despues de su publicacion en este sitio.</p>
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">6. Modificaciones</h2>
+            <p class="text-secondary/70">Nos reservamos el derecho de modificar estos terminos en cualquier momento. Los cambios entraran en vigor inmediatamente despues de su publicacion en este sitio.</p>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">7. Contacto</h2>
-            <p>Para consultas sobre estos terminos, contactenos en:</p>
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">7. Contacto</h2>
+            <p class="text-secondary/70">Para consultas sobre estos terminos, contactenos en:</p>
             <p class="mt-2">
-              <strong>Email:</strong> <a href="mailto:info@cofoundy.dev" class="text-primary hover:underline">info@cofoundy.dev</a>
+              <a href="mailto:info@cofoundy.dev" class="text-primary hover:text-primary-dark font-medium">info@cofoundy.dev</a>
             </p>
           </section>
+
         </div>
       </div>
     </main>
+
     <Footer />
   </div>
 </Layout>

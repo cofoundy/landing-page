@@ -5,28 +5,39 @@ import Footer from '../../components/Footer.astro';
 ---
 
 <Layout title="Privacy Policy - Cofoundy">
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen bg-dark">
     <Navbar />
-    <main class="pt-32 pb-16">
-      <div class="container mx-auto px-4 max-w-3xl">
-        <h1 class="text-4xl font-bold text-secondary mb-8">Privacy Policy</h1>
-        <p class="text-gray-500 mb-8">Last updated: December 2025</p>
 
-        <div class="prose prose-lg max-w-none text-gray-700 space-y-6">
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">1. Information We Collect</h2>
-            <p>Cofoundy collects information that you provide directly to us, including:</p>
-            <ul class="list-disc pl-6 space-y-2">
+    <section class="relative pt-32 pb-16 bg-dark overflow-hidden">
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(70,160,208,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(70,160,208,0.05)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+      </div>
+      <div class="container relative mx-auto px-4 max-w-3xl">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Privacy Policy</h1>
+        <p class="text-white/60">Last updated: December 2025</p>
+      </div>
+    </section>
+
+    <main class="bg-white py-12 md:py-16">
+      <div class="container mx-auto px-4 max-w-3xl">
+        <div class="prose prose-lg max-w-none text-secondary/80">
+
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">1. Information We Collect</h2>
+            <p class="mb-3">Cofoundy collects information that you provide directly to us, including:</p>
+            <ul class="list-disc pl-6 space-y-1 text-secondary/70">
               <li>Name and contact information (email, phone)</li>
               <li>Information about your company or project</li>
               <li>Messages and communications you send us</li>
             </ul>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">2. Use of Information</h2>
-            <p>We use your information to:</p>
-            <ul class="list-disc pl-6 space-y-2">
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">2. Use of Information</h2>
+            <p class="mb-3">We use your information to:</p>
+            <ul class="list-disc pl-6 space-y-1 text-secondary/70">
               <li>Respond to your inquiries and requests</li>
               <li>Provide our software development services</li>
               <li>Send project-related communications</li>
@@ -34,25 +45,25 @@ import Footer from '../../components/Footer.astro';
             </ul>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">3. Information Sharing</h2>
-            <p>We do not sell, rent, or share your personal information with third parties, except:</p>
-            <ul class="list-disc pl-6 space-y-2">
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">3. Information Sharing</h2>
+            <p class="mb-3">We do not sell, rent, or share your personal information with third parties, except:</p>
+            <ul class="list-disc pl-6 space-y-1 text-secondary/70">
               <li>When necessary to provide our services</li>
               <li>When required by law</li>
               <li>With your explicit consent</li>
             </ul>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">4. Security</h2>
-            <p>We implement technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">4. Security</h2>
+            <p class="text-secondary/70">We implement technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">5. Your Rights</h2>
-            <p>You have the right to:</p>
-            <ul class="list-disc pl-6 space-y-2">
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">5. Your Rights</h2>
+            <p class="mb-3">You have the right to:</p>
+            <ul class="list-disc pl-6 space-y-1 text-secondary/70">
               <li>Access your personal information</li>
               <li>Request correction of inaccurate data</li>
               <li>Request deletion of your data</li>
@@ -60,16 +71,18 @@ import Footer from '../../components/Footer.astro';
             </ul>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">6. Contact</h2>
-            <p>For inquiries about this privacy policy, contact us at:</p>
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">6. Contact</h2>
+            <p class="text-secondary/70">For inquiries about this privacy policy, contact us at:</p>
             <p class="mt-2">
-              <strong>Email:</strong> <a href="mailto:info@cofoundy.dev" class="text-primary hover:underline">info@cofoundy.dev</a>
+              <a href="mailto:info@cofoundy.dev" class="text-primary hover:text-primary-dark font-medium">info@cofoundy.dev</a>
             </p>
           </section>
+
         </div>
       </div>
     </main>
+
     <Footer />
   </div>
 </Layout>

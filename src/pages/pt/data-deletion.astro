@@ -5,33 +5,41 @@ import Footer from '../../components/Footer.astro';
 ---
 
 <Layout title="Exclusao de Dados - Cofoundy">
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen bg-dark">
     <Navbar />
-    <main class="pt-32 pb-16">
+
+    <section class="relative pt-32 pb-16 bg-dark overflow-hidden">
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(70,160,208,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(70,160,208,0.05)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+      </div>
+      <div class="container relative mx-auto px-4 max-w-3xl">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Exclusao de Dados</h1>
+        <p class="text-white/60">Ultima atualizacao: Dezembro 2025</p>
+      </div>
+    </section>
+
+    <main class="bg-white py-12 md:py-16">
       <div class="container mx-auto px-4 max-w-3xl">
-        <h1 class="text-4xl font-bold text-secondary mb-8">Exclusao de Dados</h1>
-        <p class="text-gray-500 mb-8">Ultima atualizacao: Dezembro 2025</p>
+        <div class="prose prose-lg max-w-none text-secondary/80">
 
-        <div class="prose prose-lg max-w-none text-gray-700 space-y-6">
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">Como solicitar a exclusao dos seus dados</h2>
-            <p>Na Cofoundy respeitamos sua privacidade e seu direito de controlar seus dados pessoais. Se voce deseja que excluamos as informacoes que temos sobre voce, pode solicitar seguindo estes passos:</p>
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">Como solicitar a exclusao dos seus dados</h2>
+            <p class="text-secondary/70">Na Cofoundy respeitamos sua privacidade e seu direito de controlar seus dados pessoais. Se voce deseja que excluamos as informacoes que temos sobre voce, pode solicitar seguindo estes passos:</p>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">1. Envie sua solicitacao</h2>
-            <p>Envie um email para:</p>
-            <p class="mt-2 mb-4">
-              <a href="mailto:info@cofoundy.dev?subject=Solicitacao%20de%20exclusao%20de%20dados" class="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors">
-                info@cofoundy.dev
-              </a>
-            </p>
-            <p>Com o assunto: <strong>"Solicitacao de exclusao de dados"</strong></p>
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">1. Envie sua solicitacao</h2>
+            <p class="mb-4 text-secondary/70">Envie um email com o assunto <strong class="text-secondary">"Solicitacao de exclusao de dados"</strong> para:</p>
+            <a href="mailto:info@cofoundy.dev?subject=Solicitacao%20de%20exclusao%20de%20dados" class="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-xl hover:bg-primary-dark transition-colors">
+              info@cofoundy.dev
+            </a>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">2. Inclua as seguintes informacoes</h2>
-            <ul class="list-disc pl-6 space-y-2">
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">2. Inclua as seguintes informacoes</h2>
+            <ul class="list-disc pl-6 space-y-1 text-secondary/70">
               <li>Seu nome completo</li>
               <li>Email associado a sua conta ou comunicacoes</li>
               <li>Numero de telefone (se aplicavel)</li>
@@ -39,20 +47,20 @@ import Footer from '../../components/Footer.astro';
             </ul>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">3. Processamento</h2>
-            <p>Apos recebermos sua solicitacao:</p>
-            <ul class="list-disc pl-6 space-y-2">
-              <li>Confirmaremos o recebimento em ate <strong>48 horas</strong></li>
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">3. Processamento</h2>
+            <p class="mb-3 text-secondary/70">Apos recebermos sua solicitacao:</p>
+            <ul class="list-disc pl-6 space-y-1 text-secondary/70">
+              <li>Confirmaremos o recebimento em ate <strong class="text-secondary">48 horas</strong></li>
               <li>Verificaremos sua identidade por seguranca</li>
-              <li>Processaremos a exclusao em ate <strong>30 dias</strong></li>
+              <li>Processaremos a exclusao em ate <strong class="text-secondary">30 dias</strong></li>
               <li>Notificaremos voce quando concluido</li>
             </ul>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">Dados que excluimos</h2>
-            <ul class="list-disc pl-6 space-y-2">
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">Dados que excluimos</h2>
+            <ul class="list-disc pl-6 space-y-1 text-secondary/70">
               <li>Informacoes de contato (nome, email, telefone)</li>
               <li>Historico de comunicacoes</li>
               <li>Dados de projetos inativos</li>
@@ -60,26 +68,28 @@ import Footer from '../../components/Footer.astro';
             </ul>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">Excecoes</h2>
-            <p>Podemos reter certos dados quando necessario para:</p>
-            <ul class="list-disc pl-6 space-y-2">
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">Excecoes</h2>
+            <p class="mb-3 text-secondary/70">Podemos reter certos dados quando necessario para:</p>
+            <ul class="list-disc pl-6 space-y-1 text-secondary/70">
               <li>Cumprir obrigacoes legais ou fiscais</li>
               <li>Resolver disputas pendentes</li>
               <li>Prevenir fraude ou abuso</li>
             </ul>
           </section>
 
-          <section>
-            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">Contato</h2>
-            <p>Se tiver duvidas sobre este processo:</p>
+          <section class="mb-8">
+            <h2 class="text-xl font-semibold text-secondary mb-3">Contato</h2>
+            <p class="text-secondary/70">Se tiver duvidas sobre este processo:</p>
             <p class="mt-2">
-              <strong>Email:</strong> <a href="mailto:info@cofoundy.dev" class="text-primary hover:underline">info@cofoundy.dev</a>
+              <a href="mailto:info@cofoundy.dev" class="text-primary hover:text-primary-dark font-medium">info@cofoundy.dev</a>
             </p>
           </section>
+
         </div>
       </div>
     </main>
+
     <Footer />
   </div>
 </Layout>
