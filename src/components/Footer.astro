@@ -1,6 +1,6 @@
 ---
 import { routes, externalLinks } from '../utils/routes';
-import { getLangFromUrl, useTranslations } from "../utils/i18n";
+import { getLangFromUrl, useTranslations, getLocalizedPath } from "../utils/i18n";
 
 const currentLang = getLangFromUrl(Astro.url);
 const t = useTranslations(currentLang);
@@ -52,12 +52,12 @@ const currentYear = new Date().getFullYear();
             >{t('footer.contact')}</a
           >
           <a
-            href="/privacy"
+            href={getLocalizedPath('/privacy', currentLang)}
             class="text-white/60 hover:text-white transition-colors duration-300"
             >{t('footer.privacy')}</a
           >
           <a
-            href="/terms"
+            href={getLocalizedPath('/terms', currentLang)}
             class="text-white/60 hover:text-white transition-colors duration-300"
             >{t('footer.terms')}</a
           >
