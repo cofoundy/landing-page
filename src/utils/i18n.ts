@@ -83,6 +83,8 @@ export const translations = {
     'footer.home': 'Inicio',
     'footer.services': 'Servicios',
     'footer.contact': 'Contacto',
+    'footer.privacy': 'Privacidad',
+    'footer.terms': 'Términos',
     
     // Meta
     'meta.title': 'Cofoundy - Hacemos realidad tu proyecto tech',
@@ -166,6 +168,8 @@ export const translations = {
     'footer.home': 'Home',
     'footer.services': 'Services',
     'footer.contact': 'Contact',
+    'footer.privacy': 'Privacy',
+    'footer.terms': 'Terms',
     
     // Meta
     'meta.title': 'Cofoundy - We bring your tech project to life',
@@ -249,6 +253,8 @@ export const translations = {
     'footer.home': 'Início',
     'footer.services': 'Serviços',
     'footer.contact': 'Contato',
+    'footer.privacy': 'Privacidade',
+    'footer.terms': 'Termos',
     
     // Meta
     'meta.title': 'Cofoundy - Tornamos realidade seu projeto tech',

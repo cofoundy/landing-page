@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Politica de Privacidad - Cofoundy">
+  <div class="min-h-screen bg-white">
+    <Navbar />
+    <main class="pt-32 pb-16">
+      <div class="container mx-auto px-4 max-w-3xl">
+        <h1 class="text-4xl font-bold text-secondary mb-8">Politica de Privacidad</h1>
+        <p class="text-gray-500 mb-8">Ultima actualizacion: Diciembre 2025</p>
+
+        <div class="prose prose-lg max-w-none text-gray-700 space-y-6">
+          <section>
+            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">1. Informacion que Recopilamos</h2>
+            <p>Cofoundy recopila informacion que usted nos proporciona directamente, incluyendo:</p>
+            <ul class="list-disc pl-6 space-y-2">
+              <li>Nombre y datos de contacto (email, telefono)</li>
+              <li>Informacion de su empresa o proyecto</li>
+              <li>Mensajes y comunicaciones que nos envia</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">2. Uso de la Informacion</h2>
+            <p>Utilizamos su informacion para:</p>
+            <ul class="list-disc pl-6 space-y-2">
+              <li>Responder a sus consultas y solicitudes</li>
+              <li>Proporcionar nuestros servicios de desarrollo de software</li>
+              <li>Enviar comunicaciones relacionadas con proyectos</li>
+              <li>Mejorar nuestros servicios</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">3. Compartir Informacion</h2>
+            <p>No vendemos, alquilamos ni compartimos su informacion personal con terceros, excepto:</p>
+            <ul class="list-disc pl-6 space-y-2">
+              <li>Cuando sea necesario para proporcionar nuestros servicios</li>
+              <li>Cuando lo requiera la ley</li>
+              <li>Con su consentimiento explicito</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">4. Seguridad</h2>
+            <p>Implementamos medidas de seguridad tecnicas y organizativas para proteger su informacion personal contra acceso no autorizado, alteracion, divulgacion o destruccion.</p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">5. Sus Derechos</h2>
+            <p>Usted tiene derecho a:</p>
+            <ul class="list-disc pl-6 space-y-2">
+              <li>Acceder a su informacion personal</li>
+              <li>Solicitar la correccion de datos inexactos</li>
+              <li>Solicitar la eliminacion de sus datos</li>
+              <li>Oponerse al procesamiento de sus datos</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">6. Contacto</h2>
+            <p>Para consultas sobre esta politica de privacidad, contactenos en:</p>
+            <p class="mt-2">
+              <strong>Email:</strong> <a href="mailto:info@cofoundy.dev" class="text-primary hover:underline">info@cofoundy.dev</a>
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </div>
+</Layout>

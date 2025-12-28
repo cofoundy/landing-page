@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="Termos de Servico - Cofoundy">
+  <div class="min-h-screen bg-white">
+    <Navbar />
+    <main class="pt-32 pb-16">
+      <div class="container mx-auto px-4 max-w-3xl">
+        <h1 class="text-4xl font-bold text-secondary mb-8">Termos de Servico</h1>
+        <p class="text-gray-500 mb-8">Ultima atualizacao: Dezembro 2025</p>
+
+        <div class="prose prose-lg max-w-none text-gray-700 space-y-6">
+          <section>
+            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">1. Aceitacao dos Termos</h2>
+            <p>Ao acessar e utilizar os servicos da Cofoundy, voce concorda com estes termos de servico. Se nao concordar com qualquer parte destes termos, nao podera utilizar nossos servicos.</p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">2. Descricao do Servico</h2>
+            <p>Cofoundy e uma consultoria de software que oferece:</p>
+            <ul class="list-disc pl-6 space-y-2">
+              <li>Desenvolvimento web e aplicacoes</li>
+              <li>Solucoes de inteligencia artificial</li>
+              <li>Desenvolvimento de MVPs para startups</li>
+              <li>Consultoria tecnologica</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">3. Obrigacoes do Cliente</h2>
+            <p>Ao contratar nossos servicos, voce se compromete a:</p>
+            <ul class="list-disc pl-6 space-y-2">
+              <li>Fornecer informacoes verdadeiras e atualizadas</li>
+              <li>Realizar os pagamentos acordados nos prazos estabelecidos</li>
+              <li>Colaborar na definicao de requisitos do projeto</li>
+              <li>Respeitar os direitos de propriedade intelectual</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">4. Propriedade Intelectual</h2>
+            <p>Apos o pagamento total do projeto, o cliente recebe os direitos de uso do software desenvolvido. Cofoundy mantem o direito de utilizar componentes genericos e metodologias em outros projetos.</p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">5. Limitacao de Responsabilidade</h2>
+            <p>Cofoundy nao sera responsavel por danos indiretos, incidentais ou consequentes resultantes do uso de nossos servicos ou produtos.</p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">6. Modificacoes</h2>
+            <p>Reservamo-nos o direito de modificar estes termos a qualquer momento. As alteracoes entrarao em vigor imediatamente apos sua publicacao neste site.</p>
+          </section>
+
+          <section>
+            <h2 class="text-2xl font-semibold text-secondary mt-8 mb-4">7. Contato</h2>
+            <p>Para duvidas sobre estes termos, entre em contato:</p>
+            <p class="mt-2">
+              <strong>Email:</strong> <a href="mailto:info@cofoundy.dev" class="text-primary hover:underline">info@cofoundy.dev</a>
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </div>
+</Layout>
