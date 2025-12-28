@@ -5,7 +5,8 @@ import { languages, getLangFromUrl, getLocalizedPath } from '../utils/i18n';
 const { iconOnly = false, dark = false } = Astro.props;
 
 const currentLang = getLangFromUrl(Astro.url);
-const currentPath = Astro.url.pathname.replace(/^\/[a-z]{2}/, '') || '/';
+// Only remove language prefix if it's a known language code followed by / or end of string
+const currentPath = Astro.url.pathname.replace(/^\/(es|en|pt)(\/|$)/, '/') || '/';
 ---
 
 <div class="relative inline-block" data-language-switcher>
