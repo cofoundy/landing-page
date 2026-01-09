@@ -1,0 +1,117 @@
+---
+import { getLangFromUrl, useTranslations } from "../../utils/i18n";
+
+const siteUrl = "https://cofoundy.dev";
+const logoUrl = `${siteUrl}/favicon.svg`;
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const serviceData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": t('lp.meta.title'),
+  "description": t('lp.meta.description'),
+  "provider": {
+    "@type": "Organization",
+    "name": "Cofoundy",
+    "url": siteUrl,
+    "logo": logoUrl,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lima",
+      "addressCountry": "PE"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "email": "info@cofoundy.dev",
+      "availableLanguage": ["Spanish", "English", "Portuguese"]
+    }
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Peru"
+  },
+  "serviceType": "Landing Page Development",
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": "800",
+    "highPrice": "6000",
+    "priceCurrency": "PEN",
+    "offerCount": "3",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": t('lp.pricing.express.name'),
+        "description": t('lp.pricing.express.description'),
+        "price": "800",
+        "priceCurrency": "PEN"
+      },
+      {
+        "@type": "Offer",
+        "name": t('lp.pricing.professional.name'),
+        "description": t('lp.pricing.professional.description'),
+        "price": "1500",
+        "priceCurrency": "PEN"
+      },
+      {
+        "@type": "Offer",
+        "name": t('lp.pricing.enterprise.name'),
+        "description": t('lp.pricing.enterprise.description'),
+        "price": "3500",
+        "priceCurrency": "PEN"
+      }
+    ]
+  }
+};
+
+const faqData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": t('lp.faq.q1'),
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": t('lp.faq.a1')
+      }
+    },
+    {
+      "@type": "Question",
+      "name": t('lp.faq.q2'),
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": t('lp.faq.a2')
+      }
+    },
+    {
+      "@type": "Question",
+      "name": t('lp.faq.q3'),
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": t('lp.faq.a3')
+      }
+    },
+    {
+      "@type": "Question",
+      "name": t('lp.faq.q4'),
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": t('lp.faq.a4')
+      }
+    },
+    {
+      "@type": "Question",
+      "name": t('lp.faq.q5'),
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": t('lp.faq.a5')
+      }
+    }
+  ]
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(serviceData)} />
+<script type="application/ld+json" set:html={JSON.stringify(faqData)} />

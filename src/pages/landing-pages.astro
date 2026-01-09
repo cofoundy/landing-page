@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+// Landing Page specific components
+import LPStructuredData from '../components/landing-pages/LPStructuredData.astro';
+import LPHero from '../components/landing-pages/LPHero.astro';
+import LPTrustBar from '../components/landing-pages/LPTrustBar.astro';
+import LPProblemSolution from '../components/landing-pages/LPProblemSolution.astro';
+import LPValueProps from '../components/landing-pages/LPValueProps.astro';
+import LPPricing from '../components/landing-pages/LPPricing.astro';
+import LPPortfolio from '../components/landing-pages/LPPortfolio.astro';
+import LPTestimonials from '../components/landing-pages/LPTestimonials.astro';
+import LPProcess from '../components/landing-pages/LPProcess.astro';
+import LPFAQ from '../components/landing-pages/LPFAQ.astro';
+import LPFinalCTA from '../components/landing-pages/LPFinalCTA.astro';
+
+import { getLangFromUrl, useTranslations } from "../utils/i18n";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+// Meta tags for SEO and Google Ads
+const title = t('lp.meta.title');
+const description = t('lp.meta.description');
+const keywords = t('lp.meta.keywords');
+const canonicalURL = new URL('/landing-pages', Astro.site || 'https://cofoundy.dev');
+---
+
+<Layout
+  title={title}
+  description={description}
+>
+  <LPStructuredData />
+
+  <div class="min-h-screen bg-white">
+    <Navbar />
+
+    <main>
+      <!-- Section 1: Hero (Above the Fold) -->
+      <LPHero />
+
+      <!-- Section 2: Trust Bar (Social Proof Metrics) -->
+      <LPTrustBar />
+
+      <!-- Section 3: Problem/Solution (PAS Framework) -->
+      <LPProblemSolution />
+
+      <!-- Section 4: Value Propositions (3 Columns) -->
+      <LPValueProps />
+
+      <!-- Section 5: Pricing Tiers -->
+      <LPPricing />
+
+      <!-- Section 6: Portfolio/Case Studies -->
+      <LPPortfolio />
+
+      <!-- Section 7: Testimonials -->
+      <LPTestimonials />
+
+      <!-- Section 8: How It Works (Process) -->
+      <LPProcess />
+
+      <!-- Section 9: FAQ (Objection Handling) -->
+      <LPFAQ />
+
+      <!-- Section 10: Final CTA -->
+      <LPFinalCTA />
+    </main>
+
+    <!-- Section 11: Footer -->
+    <Footer />
+  </div>
+</Layout>
+
+<style is:global>
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Scroll offset for fixed navbar */
+  :target {
+    scroll-margin-top: 100px;
+  }
+</style>

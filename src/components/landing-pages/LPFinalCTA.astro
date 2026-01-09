@@ -1,0 +1,239 @@
+---
+import { getLangFromUrl, useTranslations } from "../../utils/i18n";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT || 'https://formspree.io/f/your-form-id';
+---
+
+<section id="contacto" class="relative bg-dark py-20 md:py-28 overflow-hidden">
+  <!-- Background effects -->
+  <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 1px 1px, rgba(70, 160, 208, 0.3) 1px, transparent 0); background-size: 40px 40px;"></div>
+
+  <!-- Floating orbs -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-20 left-20 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-20 right-20 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float-delayed"></div>
+  </div>
+
+  <div class="container relative mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+        <!-- Left: Content -->
+        <div class="text-center lg:text-left">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+            {t('lp.cta.title')}
+          </h2>
+
+          <p class="text-xl text-white/70 mb-8">
+            {t('lp.cta.subtitle')}
+          </p>
+
+          <!-- Trust indicators -->
+          <div class="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
+            <div class="flex items-center gap-2 text-white/60">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>{t('lp.cta.urgency')}</span>
+            </div>
+          </div>
+
+          <!-- WhatsApp alternative -->
+          <div class="hidden lg:block">
+            <p class="text-white/50 text-sm mb-3">{t('lp.cta.whatsapp')}</p>
+            <a
+              href="https://wa.me/51999999999"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-green-400 font-semibold hover:text-green-300 transition-colors"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              <span>+51 999 999 999</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-2xl">
+          <form
+            id="landing-contact-form"
+            action={formspreeEndpoint}
+            method="POST"
+            class="space-y-6"
+          >
+            <!-- Hidden fields for UTM tracking -->
+            <input type="hidden" name="utm_source" id="utm_source" />
+            <input type="hidden" name="utm_medium" id="utm_medium" />
+            <input type="hidden" name="utm_campaign" id="utm_campaign" />
+            <input type="hidden" name="utm_content" id="utm_content" />
+            <input type="hidden" name="utm_term" id="utm_term" />
+            <input type="hidden" name="gclid" id="gclid" />
+            <input type="hidden" name="page_source" value="landing-pages" />
+
+            <!-- Name -->
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                {t('lp.cta.form.name')} *
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder={t('lp.cta.form.name_placeholder')}
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
+              />
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                {t('lp.cta.form.email')} *
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder={t('lp.cta.form.email_placeholder')}
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
+              />
+            </div>
+
+            <!-- Phone -->
+            <div>
+              <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+                {t('lp.cta.form.phone')}
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder={t('lp.cta.form.phone_placeholder')}
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
+              />
+            </div>
+
+            <!-- Message -->
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                {t('lp.cta.form.project')}
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                placeholder={t('lp.cta.form.project_placeholder')}
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 resize-none"
+              ></textarea>
+            </div>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              class="w-full py-4 bg-primary text-white font-semibold rounded-xl hover:bg-primary-dark transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl flex items-center justify-center gap-2"
+              data-gtm-action="click"
+              data-gtm-category="landing-pages"
+              data-gtm-label="final-cta-submit"
+            >
+              <span id="submit-text">{t('lp.cta.form.submit')}</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+
+            <!-- Success message -->
+            <div id="form-success" class="hidden text-center text-green-600 font-medium py-4">
+              {t('lp.cta.form.success')}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Capture UTM parameters
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid'];
+
+    utmFields.forEach((field) => {
+      const value = params.get(field);
+      if (value) {
+        const input = document.getElementById(field) as HTMLInputElement;
+        if (input) input.value = value;
+      }
+    });
+
+    // Form submission handling
+    const form = document.getElementById('landing-contact-form') as HTMLFormElement;
+    const submitBtn = form?.querySelector('button[type="submit"]');
+    const submitText = document.getElementById('submit-text');
+    const successMessage = document.getElementById('form-success');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (submitBtn) submitBtn.setAttribute('disabled', 'true');
+      if (submitText) submitText.textContent = 'Enviando...';
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' },
+        });
+
+        if (response.ok) {
+          form.reset();
+          successMessage?.classList.remove('hidden');
+
+          // Track conversion
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'generate_lead', {
+              currency: 'PEN',
+              value: 190,
+            });
+          }
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        console.error('Form error:', error);
+        alert('Hubo un error. Por favor intenta de nuevo.');
+      } finally {
+        if (submitBtn) submitBtn.removeAttribute('disabled');
+        if (submitText) submitText.textContent = 'Solicitar Cotización';
+      }
+    });
+  });
+</script>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes float-delayed {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+  }
+
+  .animate-float {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float-delayed 10s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+</style>

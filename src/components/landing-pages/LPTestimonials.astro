@@ -1,0 +1,64 @@
+---
+import { getLangFromUrl, useTranslations } from "../../utils/i18n";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const testimonials = [
+  {
+    quote: t('lp.testimonials.genera.quote'),
+    author: t('lp.testimonials.genera.author'),
+    avatar: '🎓',
+    company: 'GENERA',
+  },
+];
+---
+
+<section class="relative bg-white py-20 md:py-28 overflow-hidden">
+  <!-- Background pattern -->
+  <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 1px 1px, #020B1B 1px, transparent 0); background-size: 40px 40px;"></div>
+
+  <div class="container relative mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4">
+        {t('lp.testimonials.title')}
+      </h2>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="max-w-4xl mx-auto">
+      {testimonials.map((testimonial) => (
+        <div class="relative bg-gradient-to-br from-primary/5 to-secondary/5 rounded-3xl p-8 md:p-12 border border-primary/10">
+          <!-- Quote icon -->
+          <div class="absolute top-6 left-6 text-6xl text-primary/20 font-serif">"</div>
+
+          <!-- Content -->
+          <div class="relative z-10">
+            <blockquote class="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8 pl-8">
+              {testimonial.quote}
+            </blockquote>
+
+            <div class="flex items-center gap-4 pl-8">
+              <div class="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-2xl shadow-lg">
+                {testimonial.avatar}
+              </div>
+              <div>
+                <div class="font-bold text-dark">{testimonial.author}</div>
+                <div class="text-primary font-medium">{testimonial.company}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Award badge -->
+          <div class="absolute bottom-6 right-6">
+            <div class="flex items-center gap-2 bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-medium">
+              <span>🏆</span>
+              <span>Ganador Startup Perú 12G</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

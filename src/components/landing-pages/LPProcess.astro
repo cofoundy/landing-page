@@ -1,0 +1,152 @@
+---
+import { getLangFromUrl, useTranslations } from "../../utils/i18n";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const steps = [
+  {
+    number: t('lp.process.step1.number'),
+    title: t('lp.process.step1.title'),
+    description: t('lp.process.step1.description'),
+    icon: '/icons/puvaffet.json', // document
+  },
+  {
+    number: t('lp.process.step2.number'),
+    title: t('lp.process.step2.title'),
+    description: t('lp.process.step2.description'),
+    icon: '/icons/kkvxgpti.json', // search
+  },
+  {
+    number: t('lp.process.step3.number'),
+    title: t('lp.process.step3.title'),
+    description: t('lp.process.step3.description'),
+    icon: '/icons/qbaenubu.json', // code
+  },
+  {
+    number: t('lp.process.step4.number'),
+    title: t('lp.process.step4.title'),
+    description: t('lp.process.step4.description'),
+    icon: '/icons/fttvwdlw.json', // rocket
+  },
+];
+---
+
+<section class="relative bg-white py-20 md:py-28 overflow-hidden">
+  <!-- Background pattern -->
+  <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 1px 1px, #020B1B 1px, transparent 0); background-size: 40px 40px;"></div>
+
+  <div class="container relative mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4">
+        {t('lp.process.title')}
+      </h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        {t('lp.process.subtitle')}
+      </p>
+    </div>
+
+    <!-- Process Steps -->
+    <div class="max-w-5xl mx-auto">
+      <!-- Desktop: Horizontal Timeline -->
+      <div class="hidden md:block relative">
+        <!-- Connection line -->
+        <div class="absolute top-16 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-primary rounded-full"></div>
+
+        <div class="grid grid-cols-4 gap-8 relative">
+          {steps.map((step, index) => (
+            <div class="relative text-center group" style={`animation-delay: ${index * 200}ms`}>
+              {/* Step circle */}
+              <div class="relative z-10 w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-xl border-4 border-primary flex items-center justify-center transform transition-transform duration-300 group-hover:scale-110">
+                <lord-icon
+                  src={step.icon}
+                  trigger="hover"
+                  colors="primary:#46a0d0,secondary:#1b577e"
+                  style="width:56px;height:56px">
+                </lord-icon>
+              </div>
+
+              {/* Number badge */}
+              <div class="absolute top-0 right-1/2 translate-x-1/2 -translate-y-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm shadow-lg">
+                {step.number}
+              </div>
+
+              {/* Content */}
+              <h3 class="text-xl font-bold text-dark mb-2">{step.title}</h3>
+              <p class="text-gray-600 text-sm">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Mobile: Vertical Timeline -->
+      <div class="md:hidden relative">
+        {/* Connection line */}
+        <div class="absolute top-0 bottom-0 left-8 w-1 bg-gradient-to-b from-primary via-secondary to-primary rounded-full"></div>
+
+        <div class="space-y-8">
+          {steps.map((step, index) => (
+            <div class="relative flex items-start gap-6 pl-4" style={`animation-delay: ${index * 200}ms`}>
+              {/* Step circle */}
+              <div class="relative z-10 w-16 h-16 bg-white rounded-full shadow-xl border-4 border-primary flex items-center justify-center flex-shrink-0">
+                <lord-icon
+                  src={step.icon}
+                  trigger="hover"
+                  colors="primary:#46a0d0,secondary:#1b577e"
+                  style="width:28px;height:28px">
+                </lord-icon>
+                {/* Number badge */}
+                <div class="absolute -top-2 -right-2 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xs shadow-lg">
+                  {step.number}
+                </div>
+              </div>
+
+              {/* Content */}
+              <div class="pt-2">
+                <h3 class="text-lg font-bold text-dark mb-1">{step.title}</h3>
+                <p class="text-gray-600 text-sm">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Timeline note */}
+      <div class="mt-12 text-center">
+        <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-6 py-3 rounded-full">
+          <lord-icon
+            src="/icons/aqrzgjfy.json"
+            trigger="loop"
+            colors="primary:#46a0d0,secondary:#1b577e"
+            style="width:24px;height:24px">
+          </lord-icon>
+          <span class="font-semibold">{t('lp.process.timeline')}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid > div, .space-y-8 > div {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Hover effect on circles */
+  .group:hover lord-icon {
+    filter: drop-shadow(0 0 8px #46a0d0);
+  }
+</style>

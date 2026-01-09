@@ -1,0 +1,153 @@
+---
+import { getLangFromUrl, useTranslations } from "../../utils/i18n";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const plans = [
+  {
+    name: t('lp.pricing.express.name'),
+    price: t('lp.pricing.express.price'),
+    description: t('lp.pricing.express.description'),
+    features: [
+      t('lp.pricing.express.feature1'),
+      t('lp.pricing.express.feature2'),
+      t('lp.pricing.express.feature3'),
+      t('lp.pricing.express.feature4'),
+      t('lp.pricing.express.feature5'),
+    ],
+    highlighted: false,
+    badge: null,
+  },
+  {
+    name: t('lp.pricing.professional.name'),
+    price: t('lp.pricing.professional.price'),
+    description: t('lp.pricing.professional.description'),
+    features: [
+      t('lp.pricing.professional.feature1'),
+      t('lp.pricing.professional.feature2'),
+      t('lp.pricing.professional.feature3'),
+      t('lp.pricing.professional.feature4'),
+      t('lp.pricing.professional.feature5'),
+      t('lp.pricing.professional.feature6'),
+    ],
+    highlighted: true,
+    badge: t('lp.pricing.professional.badge'),
+  },
+  {
+    name: t('lp.pricing.enterprise.name'),
+    price: t('lp.pricing.enterprise.price'),
+    description: t('lp.pricing.enterprise.description'),
+    features: [
+      t('lp.pricing.enterprise.feature1'),
+      t('lp.pricing.enterprise.feature2'),
+      t('lp.pricing.enterprise.feature3'),
+      t('lp.pricing.enterprise.feature4'),
+      t('lp.pricing.enterprise.feature5'),
+      t('lp.pricing.enterprise.feature6'),
+    ],
+    highlighted: false,
+    badge: null,
+  },
+];
+---
+
+<section id="precios" class="relative bg-gradient-to-br from-gray-50 to-white py-20 md:py-28 overflow-hidden">
+  <!-- Background pattern -->
+  <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 1px 1px, #020B1B 1px, transparent 0); background-size: 40px 40px;"></div>
+
+  <div class="container relative mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4">
+        {t('lp.pricing.title')}
+      </h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        {t('lp.pricing.subtitle')}
+      </p>
+    </div>
+
+    <!-- Pricing Grid -->
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {plans.map((plan, index) => (
+        <div
+          class={`relative rounded-2xl transition-all duration-500 ${
+            plan.highlighted
+              ? 'bg-dark text-white scale-105 shadow-2xl z-10'
+              : 'bg-white border-2 border-gray-100 hover:border-primary/30 hover:shadow-xl'
+          }`}
+        >
+          {/* Popular badge */}
+          {plan.badge && (
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+              <span class="inline-block bg-primary text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-lg">
+                {plan.badge}
+              </span>
+            </div>
+          )}
+
+          <div class="p-8">
+            {/* Plan name */}
+            <h3 class={`text-xl font-bold mb-2 ${plan.highlighted ? 'text-white' : 'text-dark'}`}>
+              {plan.name}
+            </h3>
+
+            {/* Description */}
+            <p class={`text-sm mb-6 ${plan.highlighted ? 'text-white/70' : 'text-gray-500'}`}>
+              {plan.description}
+            </p>
+
+            {/* Price */}
+            <div class="mb-8">
+              <span class={`text-3xl md:text-4xl font-bold ${plan.highlighted ? 'text-white' : 'text-dark'}`}>
+                {plan.price}
+              </span>
+            </div>
+
+            {/* Features */}
+            <ul class="space-y-3 mb-8">
+              {plan.features.map((feature) => (
+                <li class="flex items-start gap-3">
+                  <svg
+                    class={`w-5 h-5 flex-shrink-0 mt-0.5 ${plan.highlighted ? 'text-primary' : 'text-green-500'}`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span class={`text-sm ${plan.highlighted ? 'text-white/80' : 'text-gray-600'}`}>
+                    {feature}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            {/* CTA Button */}
+            <a
+              href="#contacto"
+              class={`block w-full py-3.5 px-6 text-center font-semibold rounded-xl transition-all duration-300 ${
+                plan.highlighted
+                  ? 'bg-primary text-white hover:bg-primary-dark shadow-lg shadow-primary/25'
+                  : 'bg-dark text-white hover:bg-primary'
+              }`}
+              data-gtm-action="click"
+              data-gtm-category="landing-pages"
+              data-gtm-label={`pricing-cta-${plan.name.toLowerCase()}`}
+            >
+              {t('lp.pricing.cta')}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Note */}
+    <p class="text-center text-sm text-gray-500 mt-8">
+      {t('lp.pricing.note')}
+    </p>
+  </div>
+</section>
