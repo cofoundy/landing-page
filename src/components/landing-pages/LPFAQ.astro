@@ -111,4 +111,15 @@ const faqs = [
       transform: translateY(0);
     }
   }
+
+  /* Respect user preference for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .faq-content {
+      animation: none;
+    }
+
+    .faq-icon {
+      transition: none;
+    }
+  }
 </style>

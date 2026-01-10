@@ -149,4 +149,12 @@ const steps = [
   .group:hover lord-icon {
     filter: drop-shadow(0 0 8px #46a0d0);
   }
+
+  /* Respect user preference for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .grid > div, .space-y-8 > div {
+      animation: none;
+      opacity: 1;
+    }
+  }
 </style>
