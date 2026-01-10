@@ -6,13 +6,25 @@ const t = useTranslations(currentLang);
 ---
 
 <section class="relative min-h-screen bg-gradient-to-br from-white via-gray-50 to-blue-50 pt-20 pb-16 overflow-hidden">
-  <!-- Mesh grid background -->
-  <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 1px 1px, rgba(70, 160, 208, 0.15) 1px, transparent 0); background-size: 40px 40px;"></div>
+  <!-- Mesh grid background with gradient mask -->
+  <div class="absolute inset-0 bg-[linear-gradient(rgba(70,160,208,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(70,160,208,0.1)_1px,transparent_1px)] bg-[size:24px_24px] md:bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_100%_100%_at_50%_-20%,#fff_70%,transparent_100%)]"></div>
 
   <!-- Floating shapes -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute top-20 right-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float"></div>
-    <div class="absolute bottom-40 left-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float-delayed"></div>
+    <div class="absolute top-1/4 left-1/4 w-64 md:w-96 h-64 md:h-96 bg-primary/20 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-64 md:w-96 h-64 md:h-96 bg-secondary/20 rounded-full blur-3xl animate-float-delayed"></div>
+  </div>
+
+  <!-- Particle effect -->
+  <div class="particle-container">
+    {
+      Array.from({ length: 30 }).map((_, i) => (
+        <div
+          class="particle"
+          style={`--delay: ${i * 0.3}s; --size: ${Math.random() * 3 + 1}px; --start-x: ${Math.random() * 100}%;`}
+        />
+      ))
+    }
   </div>
 
   <div class="container relative mx-auto px-4 lg:px-8">
@@ -20,8 +32,8 @@ const t = useTranslations(currentLang);
 
       <!-- Left Column: Content -->
       <div class="flex-1 text-center lg:text-left max-w-2xl lg:max-w-none">
-        <!-- H1 - Main headline optimized for Google Ads -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-dark leading-tight mb-6">
+        <!-- H1 - Main headline with gradient text -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-gradient-to-r from-dark via-primary to-secondary bg-clip-text text-transparent">
           {t('lp.hero.title')}
         </h1>
 
@@ -34,19 +46,19 @@ const t = useTranslations(currentLang);
         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
           <a
             href="#contacto"
-            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-primary rounded-xl hover:bg-primary-dark transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5"
+            class="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-primary rounded-xl hover:bg-primary-dark transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 hover:scale-105"
             data-gtm-action="click"
             data-gtm-category="landing-pages"
             data-gtm-label="hero-cta-primary"
           >
             {t('lp.hero.cta')}
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
           <a
             href="#precios"
-            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-dark bg-white border-2 border-gray-200 rounded-xl hover:border-primary hover:text-primary transition-all duration-300"
+            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-dark bg-white border-2 border-gray-200 rounded-xl hover:border-primary hover:text-primary hover:scale-105 transition-all duration-300"
             data-gtm-action="click"
             data-gtm-category="landing-pages"
             data-gtm-label="hero-cta-secondary"
@@ -80,9 +92,9 @@ const t = useTranslations(currentLang);
 
       <!-- Right Column: Visual -->
       <div class="flex-1 w-full max-w-xl lg:max-w-none">
-        <div class="relative">
+        <div class="relative transform hover:scale-[1.02] transition-transform duration-700">
           <!-- Device mockup with landing page preview -->
-          <div class="relative bg-white rounded-2xl shadow-2xl p-4 transform hover:scale-[1.02] transition-transform duration-500">
+          <div class="relative bg-white rounded-2xl shadow-2xl p-4">
             <!-- Browser chrome -->
             <div class="flex items-center gap-2 pb-3 border-b border-gray-100">
               <div class="flex gap-1.5">
@@ -129,13 +141,16 @@ const t = useTranslations(currentLang);
                 <div class="h-6 bg-primary rounded-lg w-24 mx-auto"></div>
               </div>
             </div>
+
+            <!-- Glow effect behind mockup -->
+            <div class="absolute inset-0 -z-10 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-2xl blur-3xl opacity-50 scale-90 animate-pulse"></div>
           </div>
 
           <!-- Floating elements -->
-          <div class="absolute -top-4 -right-4 bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg animate-bounce-slow">
+          <div class="absolute -top-4 -right-4 bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg animate-bounce-slow z-10">
             +40% Conversion
           </div>
-          <div class="absolute -bottom-4 -left-4 bg-white shadow-xl rounded-xl p-3 hidden sm:block">
+          <div class="absolute -bottom-4 -left-4 bg-white shadow-xl rounded-xl p-3 hidden sm:block z-10">
             <div class="flex items-center gap-2">
               <div class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
                 <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
@@ -153,30 +168,70 @@ const t = useTranslations(currentLang);
     </div>
   </div>
 
-  <!-- Wave transition to next section -->
-  <div class="absolute bottom-0 left-0 right-0">
-    <svg class="w-full h-16 md:h-24" viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M0 50L48 45.7C96 41.3 192 32.7 288 27.8C384 23 480 22 576 28.8C672 35.7 768 50.3 864 55.2C960 60 1056 55 1152 46.8C1248 38.7 1344 27.3 1392 21.7L1440 16V100H0V50Z" fill="#020B1B"/>
-    </svg>
+  <!-- Bottom wave decoration with animated layers -->
+  <div class="absolute bottom-0 left-0 right-0 h-48 md:h-64 overflow-hidden pointer-events-none">
+    <!-- Smooth gradient overlay -->
+    <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-dark"></div>
+
+    <!-- Animated wave layers -->
+    <div class="absolute inset-0 opacity-20">
+      <svg class="w-full h-full" viewBox="0 0 1440 100" fill="none" preserveAspectRatio="none">
+        <path
+          class="animate-wave-slow"
+          d="M0 50L48 45.7C96 41.3 192 32.7 288 27.8C384 23 480 22 576 28.8C672 35.7 768 50.3 864 55.2C960 60 1056 55 1152 46.8C1248 38.7 1344 27.3 1392 21.7L1440 16V100H0V50Z"
+          fill="url(#wave-gradient-1)"></path>
+      </svg>
+    </div>
+    <div class="absolute inset-0 opacity-30">
+      <svg class="w-full h-full" viewBox="0 0 1440 100" fill="none" preserveAspectRatio="none">
+        <path
+          class="animate-wave-medium"
+          d="M0 70L48 64.3C96 58.7 192 47.3 288 44.7C384 42 480 48 576 54.8C672 61.7 768 69.3 864 69.2C960 69 1056 61 1152 55.2C1248 49.3 1344 45.7 1392 43.8L1440 42V100H0V70Z"
+          fill="url(#wave-gradient-2)"></path>
+      </svg>
+    </div>
+    <div class="absolute inset-0 opacity-40">
+      <svg class="w-full h-full" viewBox="0 0 1440 100" fill="none" preserveAspectRatio="none">
+        <path
+          class="animate-wave-fast"
+          d="M0 80L48 77.3C96 74.7 192 69.3 288 71.2C384 73 480 82 576 84.8C672 87.7 768 84.3 864 79.2C960 74 1056 67 1152 65.2C1248 63.3 1344 66.7 1392 68.3L1440 70V100H0V80Z"
+          fill="url(#wave-gradient-3)"></path>
+        <defs>
+          <linearGradient id="wave-gradient-1" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#46A0D0"></stop>
+            <stop offset="100%" stop-color="#020B1B"></stop>
+          </linearGradient>
+          <linearGradient id="wave-gradient-2" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#46A0D0"></stop>
+            <stop offset="100%" stop-color="#020B1B"></stop>
+          </linearGradient>
+          <linearGradient id="wave-gradient-3" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#46A0D0"></stop>
+            <stop offset="100%" stop-color="#020B1B"></stop>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
   </div>
 </section>
 
 <style>
+  /* Floating animations */
   @keyframes float {
     0%, 100% {
-      transform: translateY(0);
+      transform: translateY(0) rotate(0);
     }
     50% {
-      transform: translateY(-20px);
+      transform: translateY(-20px) rotate(5deg);
     }
   }
 
   @keyframes float-delayed {
     0%, 100% {
-      transform: translateY(0);
+      transform: translateY(0) rotate(0);
     }
     50% {
-      transform: translateY(-30px);
+      transform: translateY(-30px) rotate(-5deg);
     }
   }
 
@@ -190,15 +245,143 @@ const t = useTranslations(currentLang);
   }
 
   .animate-float {
-    animation: float 8s ease-in-out infinite;
+    animation: float 15s ease-in-out infinite;
   }
 
   .animate-float-delayed {
-    animation: float-delayed 10s ease-in-out infinite;
-    animation-delay: 2s;
+    animation: float-delayed 18s ease-in-out infinite;
   }
 
   .animate-bounce-slow {
     animation: bounce-slow 2s ease-in-out infinite;
+  }
+
+  /* Pulse animation for glow effect */
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.5;
+      transform: scale(0.9);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1);
+    }
+  }
+
+  .animate-pulse {
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  /* Particle animation */
+  .particle-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    background: radial-gradient(circle at center, rgba(70, 160, 208, 0.7) 0%, transparent 100%);
+    border-radius: 50%;
+    top: 0;
+    left: var(--start-x);
+    animation: particle 8s ease-in infinite;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes particle {
+    0% {
+      transform: translateY(-20px) scale(0);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) scale(1);
+      opacity: 0;
+    }
+  }
+
+  /* Wave animations */
+  @keyframes wave-slow {
+    0%, 100% {
+      d: path("M0 50L48 45.7C96 41.3 192 32.7 288 27.8C384 23 480 22 576 28.8C672 35.7 768 50.3 864 55.2C960 60 1056 55 1152 46.8C1248 38.7 1344 27.3 1392 21.7L1440 16V100H0V50Z");
+    }
+    50% {
+      d: path("M0 60L48 55.7C96 51.3 192 42.7 288 37.8C384 33 480 32 576 38.8C672 45.7 768 60.3 864 65.2C960 70 1056 65 1152 56.8C1248 48.7 1344 37.3 1392 31.7L1440 26V100H0V60Z");
+    }
+  }
+
+  @keyframes wave-medium {
+    0%, 100% {
+      d: path("M0 70L48 64.3C96 58.7 192 47.3 288 44.7C384 42 480 48 576 54.8C672 61.7 768 69.3 864 69.2C960 69 1056 61 1152 55.2C1248 49.3 1344 45.7 1392 43.8L1440 42V100H0V70Z");
+    }
+    50% {
+      d: path("M0 80L48 74.3C96 68.7 192 57.3 288 54.7C384 52 480 58 576 64.8C672 71.7 768 79.3 864 79.2C960 79 1056 71 1152 65.2C1248 59.3 1344 55.7 1392 53.8L1440 52V100H0V80Z");
+    }
+  }
+
+  @keyframes wave-fast {
+    0%, 100% {
+      d: path("M0 80L48 77.3C96 74.7 192 69.3 288 71.2C384 73 480 82 576 84.8C672 87.7 768 84.3 864 79.2C960 74 1056 67 1152 65.2C1248 63.3 1344 66.7 1392 68.3L1440 70V100H0V80Z");
+    }
+    50% {
+      d: path("M0 90L48 87.3C96 84.7 192 79.3 288 81.2C384 83 480 92 576 94.8C672 97.7 768 94.3 864 89.2C960 84 1056 77 1152 75.2C1248 73.3 1344 76.7 1392 78.3L1440 80V100H0V90Z");
+    }
+  }
+
+  .animate-wave-slow {
+    animation: wave-slow 8s ease-in-out infinite;
+  }
+
+  .animate-wave-medium {
+    animation: wave-medium 6s ease-in-out infinite;
+  }
+
+  .animate-wave-fast {
+    animation: wave-fast 4s ease-in-out infinite;
+  }
+
+  /* Reduce animations on mobile for performance */
+  @media (max-width: 640px) {
+    .animate-float,
+    .animate-float-delayed {
+      animation-duration: 0s;
+    }
+
+    .particle-container {
+      display: none;
+    }
+
+    .blur-3xl {
+      --tw-blur: blur(24px);
+    }
+  }
+
+  /* Reduce animations on tablet */
+  @media (max-width: 1024px) {
+    .particle-container {
+      opacity: 0.5;
+    }
+  }
+
+  /* Respect user preference for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-float-delayed,
+    .animate-bounce-slow,
+    .animate-pulse,
+    .animate-wave-slow,
+    .animate-wave-medium,
+    .animate-wave-fast {
+      animation: none !important;
+    }
+
+    .particle-container {
+      display: none;
+    }
   }
 </style>
