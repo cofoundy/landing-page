@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
+import LPNavbar from '../components/landing-pages/LPNavbar.astro';
 import Footer from '../components/Footer.astro';
 
 // Landing Page specific components
@@ -10,7 +10,7 @@ import LPTrustBar from '../components/landing-pages/LPTrustBar.astro';
 import LPProblemSolution from '../components/landing-pages/LPProblemSolution.astro';
 import LPValueProps from '../components/landing-pages/LPValueProps.astro';
 import LPPricing from '../components/landing-pages/LPPricing.astro';
-import LPPortfolio from '../components/landing-pages/LPPortfolio.astro';
+// import LPPortfolio from '../components/landing-pages/LPPortfolio.astro'; // Hidden temporarily
 import LPTestimonials from '../components/landing-pages/LPTestimonials.astro';
 import LPProcess from '../components/landing-pages/LPProcess.astro';
 import LPFAQ from '../components/landing-pages/LPFAQ.astro';
@@ -35,7 +35,7 @@ const canonicalURL = new URL('/landing-pages', Astro.site || 'https://cofoundy.d
   <LPStructuredData />
 
   <div class="min-h-screen bg-white">
-    <Navbar />
+    <LPNavbar />
 
     <main>
       <!-- Section 1: Hero (Above the Fold) -->
@@ -53,8 +53,8 @@ const canonicalURL = new URL('/landing-pages', Astro.site || 'https://cofoundy.d
       <!-- Section 5: Pricing Tiers -->
       <LPPricing />
 
-      <!-- Section 6: Portfolio/Case Studies -->
-      <LPPortfolio />
+      <!-- Section 6: Portfolio/Case Studies (Hidden temporarily) -->
+      <!-- <LPPortfolio /> -->
 
       <!-- Section 7: Testimonials -->
       <LPTestimonials />
