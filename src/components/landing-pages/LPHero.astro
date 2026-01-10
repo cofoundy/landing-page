@@ -27,73 +27,73 @@ const t = useTranslations(currentLang);
     }
   </div>
 
-  <div class="container relative mx-auto px-4 lg:px-8">
-    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 min-h-[calc(100vh-8rem)]">
+  <div class="container relative mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row items-center gap-8 sm:gap-10 lg:gap-16 min-h-[calc(100vh-8rem)] py-8 sm:py-12 lg:py-0">
 
       <!-- Left Column: Content -->
-      <div class="flex-1 text-center lg:text-left max-w-2xl lg:max-w-none">
+      <div class="flex-1 text-center lg:text-left max-w-2xl lg:max-w-none w-full">
         <!-- Badge superior -->
-        <div class="inline-block mb-4 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-sm font-semibold text-dark">
+        <div class="inline-block mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/10 border border-primary/20 rounded-full text-xs sm:text-sm font-semibold text-dark">
           {t('lp.hero.badge')}
         </div>
 
         <!-- Pre-headline -->
-        <p class="text-base sm:text-lg text-gray-600 mb-4 font-medium">
+        <p class="text-sm sm:text-base md:text-lg text-gray-600 mb-3 sm:mb-4 font-medium px-4 sm:px-0">
           {t('lp.hero.preheadline')}
         </p>
 
         <!-- H1 - Main headline with gradient text -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 max-w-4xl">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6 max-w-4xl mx-auto lg:mx-0 px-2 sm:px-0">
           <span class="bg-gradient-to-r from-dark via-primary to-secondary bg-clip-text text-transparent">
             Tu Landing Page Lista en 7 Días — O No Pagas
           </span>
         </h1>
 
         <!-- Subheadline -->
-        <p class="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+        <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0 px-4 sm:px-0">
           {t('lp.hero.subtitle')}
         </p>
 
         <!-- CTA Button (solo principal) -->
-        <div class="flex flex-col items-center lg:items-start gap-4 mb-10">
+        <div class="flex flex-col items-center lg:items-start gap-3 sm:gap-4 mb-8 sm:mb-10">
           <a
             href="https://wa.link/3wf2cv"
             target="_blank"
             rel="noopener noreferrer"
-            class="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-primary to-primary-dark rounded-xl hover:shadow-2xl transition-all duration-300 shadow-lg hover:-translate-y-1"
+            class="group inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-white bg-gradient-to-r from-primary to-primary-dark rounded-xl hover:shadow-2xl transition-all duration-300 shadow-lg hover:-translate-y-1 w-full sm:w-auto max-w-md"
             data-gtm-action="click"
             data-gtm-category="landing-pages"
             data-gtm-label="hero-cta-primary"
           >
             🚀 Quiero Mi Landing en 7 Días
-            <svg class="w-5 h-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
 
           <!-- Disclaimer pequeño -->
-          <p class="text-xs text-gray-500 max-w-md text-center lg:text-left">
+          <p class="text-xs sm:text-sm text-gray-500 max-w-md text-center lg:text-left px-4 sm:px-0">
             Solo aceptamos 5 proyectos por mes
           </p>
         </div>
 
         <!-- Stats Badges (mini version) -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto lg:mx-0">
-          <div class="text-center lg:text-left bg-white/80 backdrop-blur-sm rounded-xl p-3 shadow-sm">
-            <div class="text-2xl font-bold text-primary">+150</div>
-            <div class="text-xs text-gray-600">proyectos</div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-2xl mx-auto lg:mx-0 px-4 sm:px-0">
+          <div class="text-center lg:text-left bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl p-2.5 sm:p-3 shadow-sm">
+            <div class="text-xl sm:text-2xl font-bold text-primary">+150</div>
+            <div class="text-[10px] sm:text-xs text-gray-600">proyectos</div>
           </div>
-          <div class="text-center lg:text-left bg-white/80 backdrop-blur-sm rounded-xl p-3 shadow-sm">
-            <div class="text-2xl font-bold text-primary">95%</div>
-            <div class="text-xs text-gray-600">repiten</div>
+          <div class="text-center lg:text-left bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl p-2.5 sm:p-3 shadow-sm">
+            <div class="text-xl sm:text-2xl font-bold text-primary">95%</div>
+            <div class="text-[10px] sm:text-xs text-gray-600">repiten</div>
           </div>
-          <div class="text-center lg:text-left bg-white/80 backdrop-blur-sm rounded-xl p-3 shadow-sm">
-            <div class="text-2xl font-bold text-primary">7 días</div>
-            <div class="text-xs text-gray-600">entrega</div>
+          <div class="text-center lg:text-left bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl p-2.5 sm:p-3 shadow-sm">
+            <div class="text-xl sm:text-2xl font-bold text-primary">7 días</div>
+            <div class="text-[10px] sm:text-xs text-gray-600">entrega</div>
           </div>
-          <div class="text-center lg:text-left bg-white/80 backdrop-blur-sm rounded-xl p-3 shadow-sm">
-            <div class="text-2xl font-bold text-primary">24h</div>
-            <div class="text-xs text-gray-600">respuesta</div>
+          <div class="text-center lg:text-left bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl p-2.5 sm:p-3 shadow-sm">
+            <div class="text-xl sm:text-2xl font-bold text-primary">24h</div>
+            <div class="text-[10px] sm:text-xs text-gray-600">respuesta</div>
           </div>
         </div>
       </div>
