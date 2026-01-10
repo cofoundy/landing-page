@@ -6,9 +6,9 @@ const t = useTranslations(currentLang);
 
 const stats = [
   { value: t('lp.trust.projects'), label: t('lp.trust.projects_label'), icon: '/icons/whtfgdfm.json' }, // trending chart
-  { value: t('lp.trust.months'), label: t('lp.trust.months_label'), icon: '/icons/aqrzgjfy.json' }, // clock
-  { value: t('lp.trust.award'), label: t('lp.trust.award_label'), icon: '/icons/lupuorrc.json' }, // confetti celebration
-  { value: t('lp.trust.clients'), label: t('lp.trust.clients_label'), icon: '/icons/surjmvno.json' }, // star
+  { value: t('lp.trust.retention'), label: t('lp.trust.retention_label'), icon: '/icons/surjmvno.json' }, // star - clientes repiten
+  { value: t('lp.trust.ontime'), label: t('lp.trust.ontime_label'), icon: '/icons/lupuorrc.json' }, // confetti - entregado a tiempo
+  { value: t('lp.trust.response'), label: t('lp.trust.response_label'), icon: '/icons/aqrzgjfy.json' }, // clock - tiempo respuesta
 ];
 ---
 
@@ -69,5 +69,14 @@ const stats = [
 
   .group:hover lord-icon {
     filter: drop-shadow(0 0 12px #46a0d0);
+  }
+
+  /* Respect user preference for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .count-up {
+      animation: none;
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>
