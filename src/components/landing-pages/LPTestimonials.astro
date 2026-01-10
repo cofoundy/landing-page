@@ -3,62 +3,86 @@ import { getLangFromUrl, useTranslations } from "../../utils/i18n";
 
 const currentLang = getLangFromUrl(Astro.url);
 const t = useTranslations(currentLang);
-
-const testimonials = [
-  {
-    quote: t('lp.testimonials.genera.quote'),
-    author: t('lp.testimonials.genera.author'),
-    avatar: '🎓',
-    company: 'GENERA',
-  },
-];
 ---
 
-<section class="relative bg-white py-20 md:py-28 overflow-hidden">
-  <!-- Background pattern -->
-  <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 1px 1px, #020B1B 1px, transparent 0); background-size: 40px 40px;"></div>
+<section class="relative bg-white py-16 md:py-24">
+  <div class="container mx-auto px-4">
 
-  <div class="container relative mx-auto px-4">
-    <!-- Section Header -->
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4">
-        {t('lp.testimonials.title')}
-      </h2>
-    </div>
-
-    <!-- Testimonials -->
-    <div class="max-w-4xl mx-auto">
-      {testimonials.map((testimonial) => (
-        <div class="relative bg-gradient-to-br from-primary/5 to-secondary/5 rounded-3xl p-8 md:p-12 border border-primary/10">
-          <!-- Quote icon -->
-          <div class="absolute top-6 left-6 text-6xl text-primary/20 font-serif">"</div>
-
-          <!-- Content -->
-          <div class="relative z-10">
-            <blockquote class="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8 pl-8">
-              {testimonial.quote}
-            </blockquote>
-
-            <div class="flex items-center gap-4 pl-8">
-              <div class="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-2xl shadow-lg">
-                {testimonial.avatar}
-              </div>
+    <!-- Single Powerful Testimonial -->
+    <div class="max-w-3xl mx-auto mb-12">
+      <div class="bg-gradient-to-br from-primary/5 to-secondary/5 border border-primary/20 rounded-2xl p-8 md:p-10">
+        <div class="flex items-start gap-4 mb-6">
+          <svg class="w-10 h-10 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+          <div>
+            <p class="text-lg md:text-xl text-gray-700 mb-4 leading-relaxed">
+              {t('lp.testimonials.genera.quote')}
+            </p>
+            <div class="flex items-center gap-3">
               <div>
-                <div class="font-bold text-dark">{testimonial.author}</div>
-                <div class="text-primary font-medium">{testimonial.company}</div>
+                <p class="font-bold text-dark">{t('lp.testimonials.genera.author')}</p>
+                <p class="text-sm text-primary">🏆 Ganador Startup Perú 12G</p>
               </div>
-            </div>
-          </div>
-
-          <!-- Award badge -->
-          <div class="absolute bottom-6 right-6">
-            <div class="flex items-center gap-2 bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-medium">
-              <span>🏆</span>
-              <span>Ganador Startup Perú 12G</span>
             </div>
           </div>
         </div>
-      ))}
+      </div>
     </div>
+
+    <!-- Client Logos -->
+    <div class="max-w-4xl mx-auto">
+      <p class="text-center text-gray-500 text-sm mb-8">Confían en nosotros:</p>
+      <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+        <!-- Logo 1 - GENERA -->
+        <div class="group relative">
+          <div class="w-32 h-32 md:w-36 md:h-36 flex items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-white border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+            <img
+              src="/clients/genera.png"
+              alt="Genera - Ganador Startup Perú 12G"
+              class="w-full h-full object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <!-- Logo 2 - ENMANCHA -->
+        <div class="group relative">
+          <div class="w-32 h-32 md:w-36 md:h-36 flex items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-white border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+            <img
+              src="/clients/enmancha.png"
+              alt="EnMancha - Cliente Cofoundy"
+              class="w-full h-full object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <!-- Logo 3 - ECOFEMME -->
+        <div class="group relative">
+          <div class="w-32 h-32 md:w-36 md:h-36 flex items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-white border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+            <img
+              src="/clients/ecofemme.png"
+              alt="Ecofemme Fashion - Cliente Cofoundy"
+              class="w-full h-full object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <!-- Logo 4 - BILIO -->
+        <div class="group relative">
+          <div class="w-32 h-32 md:w-36 md:h-36 flex items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-white border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+            <img
+              src="/clients/bilio.png"
+              alt="Bilio - Cliente Cofoundy"
+              class="w-full h-full object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>

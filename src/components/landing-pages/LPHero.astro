@@ -32,9 +32,21 @@ const t = useTranslations(currentLang);
 
       <!-- Left Column: Content -->
       <div class="flex-1 text-center lg:text-left max-w-2xl lg:max-w-none">
+        <!-- Badge superior -->
+        <div class="inline-block mb-4 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-sm font-semibold text-dark">
+          {t('lp.hero.badge')}
+        </div>
+
+        <!-- Pre-headline -->
+        <p class="text-base sm:text-lg text-gray-600 mb-4 font-medium">
+          {t('lp.hero.preheadline')}
+        </p>
+
         <!-- H1 - Main headline with gradient text -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-gradient-to-r from-dark via-primary to-secondary bg-clip-text text-transparent">
-          {t('lp.hero.title')}
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 max-w-4xl">
+          <span class="bg-gradient-to-r from-dark via-primary to-secondary bg-clip-text text-transparent">
+            Tu Landing Page Lista en 7 Días — O No Pagas
+          </span>
         </h1>
 
         <!-- Subheadline -->
@@ -42,50 +54,46 @@ const t = useTranslations(currentLang);
           {t('lp.hero.subtitle')}
         </p>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+        <!-- CTA Button (solo principal) -->
+        <div class="flex flex-col items-center lg:items-start gap-4 mb-10">
           <a
-            href="#contacto"
-            class="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-primary rounded-xl hover:bg-primary-dark transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 hover:scale-105"
+            href="https://wa.link/3wf2cv"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-primary to-primary-dark rounded-xl hover:shadow-2xl transition-all duration-300 shadow-lg hover:-translate-y-1"
             data-gtm-action="click"
             data-gtm-category="landing-pages"
             data-gtm-label="hero-cta-primary"
           >
-            {t('lp.hero.cta')}
+            🚀 Quiero Mi Landing en 7 Días
             <svg class="w-5 h-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
-          <a
-            href="#precios"
-            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-dark bg-white border-2 border-gray-200 rounded-xl hover:border-primary hover:text-primary hover:scale-105 transition-all duration-300"
-            data-gtm-action="click"
-            data-gtm-category="landing-pages"
-            data-gtm-label="hero-cta-secondary"
-          >
-            {t('lp.hero.secondary_cta')}
-          </a>
+
+          <!-- Disclaimer pequeño -->
+          <p class="text-xs text-gray-500 max-w-md text-center lg:text-left">
+            Solo aceptamos 5 proyectos por mes
+          </p>
         </div>
 
-        <!-- Trust Indicators -->
-        <div class="flex flex-wrap justify-center lg:justify-start gap-6 text-sm text-gray-600">
-          <div class="flex items-center gap-2">
-            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-            </svg>
-            <span>{t('lp.hero.trust1')}</span>
+        <!-- Stats Badges (mini version) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto lg:mx-0">
+          <div class="text-center lg:text-left bg-white/80 backdrop-blur-sm rounded-xl p-3 shadow-sm">
+            <div class="text-2xl font-bold text-primary">+150</div>
+            <div class="text-xs text-gray-600">proyectos</div>
           </div>
-          <div class="flex items-center gap-2">
-            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-            </svg>
-            <span>{t('lp.hero.trust2')}</span>
+          <div class="text-center lg:text-left bg-white/80 backdrop-blur-sm rounded-xl p-3 shadow-sm">
+            <div class="text-2xl font-bold text-primary">95%</div>
+            <div class="text-xs text-gray-600">repiten</div>
           </div>
-          <div class="flex items-center gap-2">
-            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-            </svg>
-            <span>{t('lp.hero.trust3')}</span>
+          <div class="text-center lg:text-left bg-white/80 backdrop-blur-sm rounded-xl p-3 shadow-sm">
+            <div class="text-2xl font-bold text-primary">7 días</div>
+            <div class="text-xs text-gray-600">entrega</div>
+          </div>
+          <div class="text-center lg:text-left bg-white/80 backdrop-blur-sm rounded-xl p-3 shadow-sm">
+            <div class="text-2xl font-bold text-primary">24h</div>
+            <div class="text-xs text-gray-600">respuesta</div>
           </div>
         </div>
       </div>

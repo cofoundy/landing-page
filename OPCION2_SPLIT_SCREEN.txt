@@ -1,0 +1,18 @@
+OPCIÓN 2: DISEÑO "SPLIT SCREEN"
+=================================
+
+Características:
+- Línea divisoria diagonal curva que parte la pantalla
+- Lado izquierdo oscuro/sombrío (problema)
+- Lado derecho brillante/colorido (solución)
+- Sin cards, todo integrado en el fondo
+- Iconos grandes y minimalistas
+- Efecto parallax en scroll
+
+Visual:
+- Problema: Fondo oscuro con textura, texto blanco
+- Divisor: Curva SVG con gradiente
+- Solución: Fondo primary/azul claro, texto oscuro
+- Items: Lista limpia sin backgrounds adicionales
+
+Inspiración: Apple product pages, Stripe comparisons

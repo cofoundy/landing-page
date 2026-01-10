@@ -10,116 +10,44 @@ const faqs = [
   { question: t('lp.faq.q3'), answer: t('lp.faq.a3') },
   { question: t('lp.faq.q4'), answer: t('lp.faq.a4') },
   { question: t('lp.faq.q5'), answer: t('lp.faq.a5') },
-  { question: t('lp.faq.q6'), answer: t('lp.faq.a6') },
-  { question: t('lp.faq.q7'), answer: t('lp.faq.a7') },
-  { question: t('lp.faq.q8'), answer: t('lp.faq.a8') },
 ];
 ---
 
-<section class="relative bg-gradient-to-br from-gray-50 to-white py-20 md:py-28 overflow-hidden">
-  <!-- Background pattern -->
-  <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 1px 1px, #020B1B 1px, transparent 0); background-size: 40px 40px;"></div>
+<section class="relative bg-white py-16 md:py-20">
+  <div class="container mx-auto px-4">
 
-  <div class="container relative mx-auto px-4">
     <!-- Section Header -->
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4">
-        {t('lp.faq.title')}
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-dark">
+        Preguntas frecuentes
       </h2>
     </div>
 
-    <!-- FAQ Accordion -->
-    <div class="max-w-3xl mx-auto space-y-4">
+    <!-- FAQ Accordion - Minimal -->
+    <div class="max-w-2xl mx-auto space-y-3">
       {faqs.map((faq, index) => (
-        <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-          <button
-            class="faq-trigger w-full flex items-center justify-between p-6 text-left"
-            aria-expanded="false"
-            data-index={index}
-          >
-            <span class="font-semibold text-dark text-lg pr-4">{faq.question}</span>
-            <span class="faq-icon flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center transition-transform duration-300">
-              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </span>
-          </button>
-          <div class="faq-content hidden">
-            <div class="px-6 pb-6 text-gray-600 leading-relaxed">
-              {faq.answer}
-            </div>
+        <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary/30 transition-colors">
+          <summary class="cursor-pointer flex items-center justify-between p-4 md:p-5 font-semibold text-dark hover:text-primary transition-colors">
+            <span class="pr-4">{faq.question}</span>
+            <svg class="w-5 h-5 text-primary flex-shrink-0 transform transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="px-4 md:px-5 pb-4 md:pb-5 text-gray-600 text-sm md:text-base">
+            {faq.answer}
           </div>
-        </div>
+        </details>
       ))}
     </div>
   </div>
 </section>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const triggers = document.querySelectorAll('.faq-trigger');
-
-    triggers.forEach((trigger) => {
-      trigger.addEventListener('click', () => {
-        const item = trigger.closest('.faq-item');
-        const content = item?.querySelector('.faq-content');
-        const icon = trigger.querySelector('.faq-icon');
-        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
-
-        // Close all other items
-        triggers.forEach((otherTrigger) => {
-          if (otherTrigger !== trigger) {
-            const otherItem = otherTrigger.closest('.faq-item');
-            const otherContent = otherItem?.querySelector('.faq-content');
-            const otherIcon = otherTrigger.querySelector('.faq-icon');
-
-            otherTrigger.setAttribute('aria-expanded', 'false');
-            otherContent?.classList.add('hidden');
-            otherIcon?.classList.remove('rotate-180');
-          }
-        });
-
-        // Toggle current item
-        trigger.setAttribute('aria-expanded', (!isExpanded).toString());
-        content?.classList.toggle('hidden');
-        icon?.classList.toggle('rotate-180');
-      });
-    });
-  });
-</script>
-
 <style>
-  .faq-icon {
-    transition: transform 0.3s ease;
+  /* Remove default summary marker */
+  summary {
+    list-style: none;
   }
-
-  .faq-icon.rotate-180 {
-    transform: rotate(180deg);
-  }
-
-  .faq-content {
-    animation: slideDown 0.3s ease-out;
-  }
-
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Respect user preference for reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .faq-content {
-      animation: none;
-    }
-
-    .faq-icon {
-      transition: none;
-    }
+  summary::-webkit-details-marker {
+    display: none;
   }
 </style>
