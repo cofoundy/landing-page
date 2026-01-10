@@ -153,7 +153,7 @@ export const translations = {
     'lp.pricing.express.feature5': 'SEO básico incluido',
 
     'lp.pricing.professional.name': 'Profesional',
-    'lp.pricing.professional.price': 'S/. 1,500 - 2,500',
+    'lp.pricing.professional.price': 'S/. 1,200 - 2,500',
     'lp.pricing.professional.badge': 'Más Popular',
     'lp.pricing.professional.description': 'Para negocios que buscan resultados',
     'lp.pricing.professional.feature1': 'Landing page profesional',
@@ -162,6 +162,7 @@ export const translations = {
     'lp.pricing.professional.feature4': 'Panel administrador',
     'lp.pricing.professional.feature5': 'SEO optimizado',
     'lp.pricing.professional.feature6': 'Entrega en 7 días',
+    'lp.pricing.professional.feature7': 'Analítica',
 
     'lp.pricing.enterprise.name': 'Empresarial',
     'lp.pricing.enterprise.price': 'S/. 3,500 - 6,000',
@@ -393,7 +394,7 @@ export const translations = {
     'lp.pricing.express.feature5': 'Basic SEO included',
 
     'lp.pricing.professional.name': 'Professional',
-    'lp.pricing.professional.price': 'S/. 1,500 - 2,500',
+    'lp.pricing.professional.price': 'S/. 1,200 - 2,500',
     'lp.pricing.professional.badge': 'Most Popular',
     'lp.pricing.professional.description': 'For businesses seeking results',
     'lp.pricing.professional.feature1': 'Professional landing page',
@@ -402,6 +403,7 @@ export const translations = {
     'lp.pricing.professional.feature4': 'Admin panel',
     'lp.pricing.professional.feature5': 'Optimized SEO',
     'lp.pricing.professional.feature6': 'Delivery in 7 days',
+    'lp.pricing.professional.feature7': 'Analytics',
 
     'lp.pricing.enterprise.name': 'Enterprise',
     'lp.pricing.enterprise.price': 'S/. 3,500 - 6,000',
@@ -633,7 +635,7 @@ export const translations = {
     'lp.pricing.express.feature5': 'SEO básico incluído',
 
     'lp.pricing.professional.name': 'Profissional',
-    'lp.pricing.professional.price': 'S/. 1.500 - 2.500',
+    'lp.pricing.professional.price': 'S/. 1.200 - 2.500',
     'lp.pricing.professional.badge': 'Mais Popular',
     'lp.pricing.professional.description': 'Para negócios que buscam resultados',
     'lp.pricing.professional.feature1': 'Landing page profissional',
@@ -642,6 +644,7 @@ export const translations = {
     'lp.pricing.professional.feature4': 'Painel administrativo',
     'lp.pricing.professional.feature5': 'SEO otimizado',
     'lp.pricing.professional.feature6': 'Entrega em 7 dias',
+    'lp.pricing.professional.feature7': 'Analítica',
 
     'lp.pricing.enterprise.name': 'Empresarial',
     'lp.pricing.enterprise.price': 'S/. 3.500 - 6.000',
