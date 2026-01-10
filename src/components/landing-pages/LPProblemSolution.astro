@@ -20,61 +20,61 @@ const solutions = [
 ---
 
 <!-- OPCIÓN 3: 3D CARD DEPTH -->
-<section class="relative bg-gradient-to-b from-gray-50 to-white py-16 md:py-24 overflow-hidden">
+<section class="relative bg-gradient-to-b from-gray-50 to-white py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
   <!-- Mesh grid background -->
   <div class="absolute inset-0 opacity-30">
     <div class="w-full h-full" style="background-image: linear-gradient(#46A0D0 1px, transparent 1px), linear-gradient(90deg, #46A0D0 1px, transparent 1px); background-size: 50px 50px;"></div>
   </div>
 
-  <div class="container relative mx-auto px-4">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-6xl font-black text-dark mb-4">
+  <div class="container relative mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10 sm:mb-12 md:mb-16">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-dark mb-3 sm:mb-4 px-2">
         ¿Tu web no genera clientes?
       </h2>
-      <p class="text-xl text-gray-600">
+      <p class="text-base sm:text-lg md:text-xl text-gray-600 px-4">
         Esto es lo que te está costando dinero
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-12 max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 max-w-7xl mx-auto">
 
       <!-- PROBLEMA (Card hundida) -->
       <div class="relative group">
         <!-- Floating price tag -->
-        <div class="absolute -top-8 -right-8 z-20">
+        <div class="absolute -top-6 sm:-top-8 -right-4 sm:-right-8 z-20">
           <div class="relative">
-            <div class="bg-red-500 text-white px-6 py-3 rounded-2xl font-black text-xl shadow-2xl rotate-12 transform group-hover:rotate-6 transition-transform">
+            <div class="bg-red-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-black text-base sm:text-xl shadow-2xl rotate-12 transform group-hover:rotate-6 transition-transform">
               S/.15,000+
-              <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-0.5 h-8 bg-red-500"></div>
+              <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-0.5 h-6 sm:h-8 bg-red-500"></div>
             </div>
           </div>
         </div>
 
-        <div class="relative bg-white rounded-[2rem] p-8
+        <div class="relative bg-white rounded-2xl sm:rounded-[2rem] p-6 sm:p-8
                     shadow-[inset_0_10px_30px_rgba(0,0,0,0.1),0_5px_15px_rgba(0,0,0,0.1)]
-                    border-[6px] border-double border-gray-300
+                    border-4 sm:border-[6px] border-double border-gray-300
                     hover:shadow-[inset_0_5px_20px_rgba(0,0,0,0.05),0_10px_30px_rgba(0,0,0,0.15)]
                     transition-all duration-500">
 
-          <div class="absolute -top-6 left-8 bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-3 rounded-full font-black shadow-xl border-4 border-white">
+          <div class="absolute -top-5 sm:-top-6 left-4 sm:left-8 bg-gradient-to-r from-red-600 to-red-700 text-white px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-black shadow-xl border-2 sm:border-4 border-white">
             ❌ EL PROBLEMA
           </div>
 
-          <div class="mt-8 space-y-5">
+          <div class="mt-6 sm:mt-8 space-y-4 sm:space-y-5">
             {problems.map((problem, i) => (
-              <div class="relative pl-12">
-                <div class="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-xl bg-red-100 flex items-center justify-center shadow-md"
+              <div class="relative pl-10 sm:pl-12">
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-red-100 flex items-center justify-center shadow-md text-xs sm:text-sm"
                      style={`transform: translateY(-50%) rotate(${-5 + i * 2}deg);`}>
                   <span class="text-red-600 font-bold">{i + 1}</span>
                 </div>
-                <p class="text-lg font-semibold text-gray-800">{problem.text}</p>
+                <p class="text-base sm:text-lg font-semibold text-gray-800">{problem.text}</p>
               </div>
             ))}
           </div>
 
-          <div class="mt-10 pt-8 border-t-4 border-dashed border-gray-200">
-            <p class="text-sm text-gray-500 mb-2">Agencias tradicionales</p>
-            <p class="text-sm text-red-600 font-semibold">⏱️ Espera de 3-6 meses</p>
+          <div class="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t-2 sm:border-t-4 border-dashed border-gray-200">
+            <p class="text-xs sm:text-sm text-gray-500 mb-1 sm:mb-2">Agencias tradicionales</p>
+            <p class="text-xs sm:text-sm text-red-600 font-semibold">⏱️ Espera de 3-6 meses</p>
           </div>
         </div>
       </div>
@@ -82,41 +82,41 @@ const solutions = [
       <!-- SOLUCIÓN (Card elevada) -->
       <div class="relative group">
         <!-- Floating price tag -->
-        <div class="absolute -top-8 -right-8 z-20">
+        <div class="absolute -top-6 sm:-top-8 -right-4 sm:-right-8 z-20">
           <div class="relative">
-            <div class="bg-gradient-to-br from-primary to-primary-dark text-white px-6 py-3 rounded-2xl font-black text-xl shadow-2xl -rotate-12 transform group-hover:-rotate-6 transition-transform">
+            <div class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-black text-base sm:text-xl shadow-2xl -rotate-12 transform group-hover:-rotate-6 transition-transform">
               S/.1,200
-              <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-0.5 h-8 bg-primary"></div>
+              <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-0.5 h-6 sm:h-8 bg-primary"></div>
             </div>
           </div>
         </div>
 
-        <div class="relative bg-gradient-to-br from-white to-primary/5 rounded-[2rem] p-8
+        <div class="relative bg-gradient-to-br from-white to-primary/5 rounded-2xl sm:rounded-[2rem] p-6 sm:p-8
                     shadow-[0_20px_50px_rgba(70,160,208,0.3),0_5px_15px_rgba(0,0,0,0.1)]
-                    border-[6px] border-double border-primary/30
+                    border-4 sm:border-[6px] border-double border-primary/30
                     hover:shadow-[0_30px_60px_rgba(70,160,208,0.4),0_10px_25px_rgba(0,0,0,0.15)]
                     hover:-translate-y-2
                     transition-all duration-500">
 
-          <div class="absolute -top-6 left-8 bg-gradient-to-r from-primary to-primary-dark text-white px-8 py-3 rounded-full font-black shadow-xl border-4 border-white">
+          <div class="absolute -top-5 sm:-top-6 left-4 sm:left-8 bg-gradient-to-r from-primary to-primary-dark text-white px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-black shadow-xl border-2 sm:border-4 border-white">
             ✓ NUESTRA SOLUCIÓN
           </div>
 
-          <div class="mt-8 space-y-5">
+          <div class="mt-6 sm:mt-8 space-y-4 sm:space-y-5">
             {solutions.map((solution, i) => (
-              <div class="relative pl-12">
-                <div class="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-xl bg-primary/20 flex items-center justify-center shadow-md"
+              <div class="relative pl-10 sm:pl-12">
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-primary/20 flex items-center justify-center shadow-md"
                      style={`transform: translateY(-50%) rotate(${5 - i * 2}deg);`}>
-                  <span class="text-primary font-bold">✓</span>
+                  <span class="text-primary font-bold text-sm sm:text-base">✓</span>
                 </div>
-                <p class="text-lg font-semibold text-gray-800">{solution.text}</p>
+                <p class="text-base sm:text-lg font-semibold text-gray-800">{solution.text}</p>
               </div>
             ))}
           </div>
 
-          <div class="mt-10 pt-8 border-t-4 border-dashed border-primary/30">
-            <p class="text-sm text-primary-dark font-bold mb-2">Cofoundy</p>
-            <p class="text-sm text-primary font-semibold">⚡ Listo en 5-7 días</p>
+          <div class="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t-2 sm:border-t-4 border-dashed border-primary/30">
+            <p class="text-xs sm:text-sm text-primary-dark font-bold mb-1 sm:mb-2">Cofoundy</p>
+            <p class="text-xs sm:text-sm text-primary font-semibold">⚡ Listo en 5-7 días</p>
           </div>
         </div>
       </div>
