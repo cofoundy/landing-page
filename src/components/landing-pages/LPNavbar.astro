@@ -26,7 +26,9 @@ const t = useTranslations(currentLang);
       <!-- Desktop: CTA Button -->
       <div class="hidden md:flex items-center gap-4">
         <a
-          href="#contacto"
+          href="https://wa.link/3wf2cv"
+          target="_blank"
+          rel="noopener noreferrer"
           class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
         >
           {t('lp.hero.cta')}
@@ -79,7 +81,9 @@ const t = useTranslations(currentLang);
             </a>
             <div class="px-4 pt-3 border-t border-white/10 mt-2">
               <a
-                href="#contacto"
+                href="https://wa.link/3wf2cv"
+                target="_blank"
+                rel="noopener noreferrer"
                 class="inline-flex w-full items-center justify-center px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
               >
                 {t('lp.hero.cta')}
@@ -108,18 +112,16 @@ const t = useTranslations(currentLang);
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      const isLightSection =
+      if (
         entry.target.classList.contains("bg-white") ||
-        entry.target.classList.contains("bg-light") ||
-        entry.target.classList.contains("bg-gradient-to-br");
-
-      if (isLightSection) {
-        if (entry.intersectionRatio > 0.3) {
+        entry.target.classList.contains("bg-light")
+      ) {
+        if (entry.intersectionRatio > 0.5) {
           navbarContainer?.classList.add("on-light");
           navbarContainer?.classList.remove("on-dark");
         }
       } else {
-        if (entry.intersectionRatio > 0.3) {
+        if (entry.intersectionRatio > 0.5) {
           navbarContainer?.classList.add("on-dark");
           navbarContainer?.classList.remove("on-light");
         }
@@ -132,7 +134,7 @@ const t = useTranslations(currentLang);
     observer.observe(section);
   });
 
-  // Smart scroll - hide on down, show on up
+  // Smart scroll
   window.addEventListener("scroll", () => {
     const currentScroll = window.pageYOffset;
 
@@ -150,7 +152,7 @@ const t = useTranslations(currentLang);
       navbar?.classList.remove("nav-hidden");
     }
 
-    if (currentScroll > 50) {
+    if (currentScroll > 100) {
       navbarContainer?.classList.add("nav-scrolled");
     } else {
       navbarContainer?.classList.remove("nav-scrolled");
@@ -221,24 +223,24 @@ const t = useTranslations(currentLang);
   .navbar-glass {
     background: linear-gradient(
       180deg,
-      rgba(35, 67, 95, 0.3) 0%,
-      rgba(35, 67, 95, 0.2) 50%,
-      rgba(35, 67, 95, 0.15) 100%
+      rgba(35, 67, 95, 0.2) 0%,
+      rgba(35, 67, 95, 0.15) 50%,
+      rgba(35, 67, 95, 0.1) 100%
     );
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     transform: translateY(0);
   }
 
   .navbar-glass-menu {
     background: linear-gradient(
       180deg,
-      rgba(2, 11, 27, 0.98) 0%,
-      rgba(2, 11, 27, 0.95) 100%
+      rgba(2, 11, 27, 0.95) 0%,
+      rgba(2, 11, 27, 0.9) 100%
     );
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
   }
 
   /* Smart scroll classes */
@@ -246,7 +248,7 @@ const t = useTranslations(currentLang);
     transform: translateY(-100%);
   }
 
-  .nav-scrolled {
+  .nav-scrolled .navbar-glass {
     background: linear-gradient(
       180deg,
       rgba(2, 11, 27, 0.95) 0%,
@@ -255,46 +257,46 @@ const t = useTranslations(currentLang);
     @apply shadow-lg;
   }
 
-  /* Dynamic text colors - default dark */
+  /* Dynamic text colors */
   .nav-text {
     @apply text-white;
   }
 
-  /* On light sections */
   .on-light .nav-text {
     @apply text-secondary;
   }
 
-  .on-light.navbar-glass {
+  .on-light .navbar-glass {
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.95) 0%,
-      rgba(255, 255, 255, 0.9) 100%
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.8) 100%
     );
     border-color: rgba(35, 67, 95, 0.1);
-  }
-
-  .on-light .hamburger-icon span {
-    @apply bg-secondary;
   }
 
   /* Hamburger menu styles */
   .hamburger-icon span {
     transform-origin: center;
-    @apply bg-white;
+  }
+
+  /* Ensure hamburger is always visible */
+  @media (max-width: 768px) {
+    .nav-text {
+      @apply text-white;
+    }
+
+    .hamburger-icon span {
+      @apply bg-white;
+    }
+
+    .on-light .hamburger-icon span {
+      @apply bg-secondary;
+    }
   }
 
   /* Prevent body scroll when menu is open */
   body.menu-open {
     overflow: hidden;
-  }
-
-  /* Respect user preference for reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .navbar-glass,
-    .nav-hidden,
-    .hamburger-icon span {
-      transition: none !important;
-    }
   }
 </style>

@@ -6,149 +6,274 @@ const t = useTranslations(currentLang);
 
 const plans = [
   {
-    name: t('lp.pricing.express.name'),
-    price: t('lp.pricing.express.price'),
-    description: t('lp.pricing.express.description'),
+    name: 'STARTER',
+    price: 'S/. 1,200',
+    originalPrice: null,
+    time: '5 días',
     features: [
-      t('lp.pricing.express.feature1'),
-      t('lp.pricing.express.feature2'),
-      t('lp.pricing.express.feature3'),
-      t('lp.pricing.express.feature4'),
-      t('lp.pricing.express.feature5'),
+      { icon: '🎨', text: '1 página optimizada' },
+      { icon: '📱', text: 'Diseño responsive' },
+      { icon: '💬', text: 'Integración WhatsApp' }
     ],
+    detailedFeatures: [
+      'Landing page de 1 página profesional',
+      'Diseño responsive (mobile, tablet, desktop)',
+      'Formulario de contacto',
+      'Integración WhatsApp Business',
+      'SEO básico optimizado',
+      'Setup Google Analytics 4',
+      'Hosting y dominio por tu cuenta'
+    ],
+    bonuses: [],
+    guarantee: 'Si no te gusta el diseño inicial, lo rehacemos gratis',
     highlighted: false,
-    badge: null,
   },
   {
-    name: t('lp.pricing.professional.name'),
-    price: t('lp.pricing.professional.price'),
-    description: t('lp.pricing.professional.description'),
+    name: 'PROFESIONAL',
+    price: 'S/. 2,500',
+    originalPrice: 'S/. 4,100',
+    time: '7 días',
     features: [
-      t('lp.pricing.professional.feature1'),
-      t('lp.pricing.professional.feature2'),
-      t('lp.pricing.professional.feature3'),
-      t('lp.pricing.professional.feature4'),
-      t('lp.pricing.professional.feature5'),
-      t('lp.pricing.professional.feature6'),
-      t('lp.pricing.professional.feature7'),
+      { icon: '🚀', text: 'Todo del Starter +' },
+      { icon: '✨', text: 'Hasta 3 secciones extra' },
+      { icon: '📊', text: 'CMS + Analytics' }
     ],
+    detailedFeatures: [
+      'Todo lo incluido en STARTER',
+      'Hasta 3 secciones adicionales',
+      'Animaciones profesionales',
+      'Blog o sistema CMS',
+      'Panel administrador',
+      'SEO avanzado',
+      'Dashboard de métricas personalizado',
+      '3 variaciones de diseño para A/B testing'
+    ],
+    bonuses: [
+      { text: 'Sesión estrategia 1h', value: 'S/. 800' },
+      { text: 'Plantillas emails', value: 'S/. 400' },
+      { text: 'Guía SEO', value: 'S/. 400' }
+    ],
+    guarantee: 'Garantía 30 días: trabajamos hasta que estés 100% satisfecho',
     highlighted: true,
-    badge: t('lp.pricing.professional.badge'),
+    badge: '⭐ MÁS POPULAR'
   },
   {
-    name: t('lp.pricing.enterprise.name'),
-    price: t('lp.pricing.enterprise.price'),
-    description: t('lp.pricing.enterprise.description'),
+    name: 'GROWTH',
+    price: 'S/. 5,000',
+    originalPrice: null,
+    time: '10-14 días',
     features: [
-      t('lp.pricing.enterprise.feature1'),
-      t('lp.pricing.enterprise.feature2'),
-      t('lp.pricing.enterprise.feature3'),
-      t('lp.pricing.enterprise.feature4'),
-      t('lp.pricing.enterprise.feature5'),
-      t('lp.pricing.enterprise.feature6'),
+      { icon: '💎', text: 'Todo del Pro +' },
+      { icon: '🔌', text: 'APIs + Integraciones' },
+      { icon: '🧪', text: 'A/B testing real' }
     ],
+    detailedFeatures: [
+      'Todo lo incluido en PROFESIONAL',
+      'Diseño premium con animaciones avanzadas',
+      'Integraciones personalizadas (CRM, APIs)',
+      'A/B testing completamente funcional',
+      'Múltiples formularios con lógica condicional',
+      '2 horas consultoría de conversión',
+      'Integración Hotjar para mapas de calor',
+      '60 días de soporte técnico prioritario'
+    ],
+    bonuses: [
+      { text: '2h consultoría CRO', value: 'S/. 1,200' },
+      { text: 'Setup Hotjar completo', value: 'S/. 600' },
+      { text: 'Auditoría UX', value: 'S/. 800' }
+    ],
+    guarantee: 'Si no generas 20 leads en 60 días, extendemos soporte gratis',
     highlighted: false,
-    badge: null,
   },
 ];
 ---
 
-<section id="precios" class="relative bg-gradient-to-br from-gray-50 to-white py-20 md:py-28 overflow-hidden">
-  <!-- Background pattern -->
-  <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 1px 1px, #020B1B 1px, transparent 0); background-size: 40px 40px;"></div>
+<section id="precios" class="relative bg-gradient-to-br from-gray-50 to-white py-16 md:py-24">
+  <div class="container mx-auto px-4">
 
-  <div class="container relative mx-auto px-4">
     <!-- Section Header -->
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4">
-        {t('lp.pricing.title')}
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-2">
+        Elige Tu Plan
       </h2>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-        {t('lp.pricing.subtitle')}
+      <p class="text-gray-600">
+        Garantía de satisfacción en todos
       </p>
     </div>
 
-    <!-- Pricing Grid -->
-    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      {plans.map((plan, index) => (
-        <div
-          class={`relative rounded-2xl transition-all duration-500 ${
-            plan.highlighted
-              ? 'bg-dark text-white scale-105 shadow-2xl z-10'
-              : 'bg-white border-2 border-gray-100 hover:border-primary/30 hover:shadow-xl'
-          }`}
-        >
-          {/* Popular badge */}
+    <!-- Pricing Cards -->
+    <div class="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto mb-8">
+      {plans.map((plan) => (
+        <div class={`relative rounded-2xl p-6 transition-all duration-300 ${
+          plan.highlighted
+            ? 'bg-dark text-white md:scale-105 shadow-2xl border-2 border-primary'
+            : 'bg-white border-2 border-gray-100 hover:border-primary/30 hover:shadow-lg'
+        }`}>
+
           {plan.badge && (
-            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-              <span class="inline-block bg-primary text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-lg">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+              <span class="inline-block bg-primary text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                 {plan.badge}
               </span>
             </div>
           )}
 
-          <div class="p-8">
-            {/* Plan name */}
-            <h3 class={`text-xl font-bold mb-2 ${plan.highlighted ? 'text-white' : 'text-dark'}`}>
-              {plan.name}
-            </h3>
-
-            {/* Description */}
-            <p class={`text-sm mb-6 ${plan.highlighted ? 'text-white/70' : 'text-gray-500'}`}>
-              {plan.description}
-            </p>
-
-            {/* Price */}
-            <div class="mb-8">
-              <span class={`text-3xl md:text-4xl font-bold ${plan.highlighted ? 'text-white' : 'text-dark'}`}>
-                {plan.price}
-              </span>
-            </div>
-
-            {/* Features */}
-            <ul class="space-y-3 mb-8">
-              {plan.features.map((feature) => (
-                <li class="flex items-start gap-3">
-                  <svg
-                    class={`w-5 h-5 flex-shrink-0 mt-0.5 ${plan.highlighted ? 'text-primary' : 'text-green-500'}`}
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span class={`text-sm ${plan.highlighted ? 'text-white/80' : 'text-gray-600'}`}>
-                    {feature}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            {/* CTA Button */}
-            <a
-              href="#contacto"
-              class={`block w-full py-3.5 px-6 text-center font-semibold rounded-xl transition-all duration-300 ${
-                plan.highlighted
-                  ? 'bg-primary text-white hover:bg-primary-dark shadow-lg shadow-primary/25'
-                  : 'bg-dark text-white hover:bg-primary'
-              }`}
-              data-gtm-action="click"
-              data-gtm-category="landing-pages"
-              data-gtm-label={`pricing-cta-${plan.name.toLowerCase()}`}
-            >
-              {t('lp.pricing.cta')}
-            </a>
+          {/* Plan Name */}
+          <div class={`text-sm font-bold mb-2 tracking-wide ${plan.highlighted ? 'text-primary' : 'text-gray-600'}`}>
+            {plan.name}
           </div>
+
+          {/* Price */}
+          <div class="mb-4">
+            {plan.originalPrice && (
+              <div class={`text-sm line-through ${plan.highlighted ? 'text-white/50' : 'text-gray-400'}`}>
+                {plan.originalPrice}
+              </div>
+            )}
+            <div class={`text-4xl font-bold ${plan.highlighted ? 'text-white' : 'text-dark'}`}>
+              {plan.price}
+            </div>
+            <div class={`text-sm mt-1 ${plan.highlighted ? 'text-white/70' : 'text-gray-500'}`}>
+              Entrega: {plan.time}
+            </div>
+          </div>
+
+          {/* Main Features with Icons */}
+          <ul class="space-y-3 mb-6">
+            {plan.features.map((feature) => (
+              <li class={`flex items-start gap-2 text-sm ${plan.highlighted ? 'text-white/90' : 'text-gray-700'}`}>
+                <span class="text-lg flex-shrink-0">{feature.icon}</span>
+                <span class="pt-0.5">{feature.text}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Expandable Details */}
+          <details class={`mb-6 group ${plan.highlighted ? 'pricing-details-dark' : 'pricing-details-light'}`}>
+            <summary class={`cursor-pointer text-sm font-semibold flex items-center justify-between transition-colors ${
+              plan.highlighted
+                ? 'text-primary hover:text-primary/80'
+                : 'text-primary hover:text-primary/80'
+            }`}>
+              <span>Ver detalles completos</span>
+              <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+
+            <div class="mt-4 pt-4 border-t space-y-4" style={plan.highlighted ? 'border-color: rgba(255,255,255,0.1)' : 'border-color: rgba(0,0,0,0.1)'}>
+
+              {/* Detailed Features */}
+              <div>
+                <h4 class={`text-xs font-bold mb-2 uppercase tracking-wide ${plan.highlighted ? 'text-white/70' : 'text-gray-600'}`}>
+                  ✓ Lo que incluye:
+                </h4>
+                <ul class="space-y-1.5">
+                  {plan.detailedFeatures.map((feature) => (
+                    <li class={`text-xs flex items-start gap-2 ${plan.highlighted ? 'text-white/80' : 'text-gray-600'}`}>
+                      <svg class="w-4 h-4 flex-shrink-0 mt-0.5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                      </svg>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Bonuses */}
+              {plan.bonuses.length > 0 && (
+                <div class={`rounded-lg p-3 ${plan.highlighted ? 'bg-primary/10' : 'bg-primary/5'}`}>
+                  <h4 class={`text-xs font-bold mb-2 uppercase tracking-wide ${plan.highlighted ? 'text-primary' : 'text-primary'}`}>
+                    🎁 Bonos incluidos:
+                  </h4>
+                  <ul class="space-y-1.5">
+                    {plan.bonuses.map((bonus) => (
+                      <li class={`text-xs flex items-center justify-between ${plan.highlighted ? 'text-white/90' : 'text-gray-700'}`}>
+                        <span>• {bonus.text}</span>
+                        <span class="font-semibold text-primary ml-2">{bonus.value}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Guarantee */}
+              <div class={`rounded-lg p-3 ${plan.highlighted ? 'bg-green-500/10' : 'bg-green-50'}`}>
+                <p class={`text-xs flex items-start gap-2 ${plan.highlighted ? 'text-green-300' : 'text-green-700'}`}>
+                  <svg class="w-4 h-4 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  <span><strong>Garantía:</strong> {plan.guarantee}</span>
+                </p>
+              </div>
+
+            </div>
+          </details>
+
+          {/* CTA */}
+          <a
+            href="https://wa.link/3wf2cv"
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`block w-full py-3 text-center font-semibold rounded-xl transition-all duration-300 ${
+              plan.highlighted
+                ? 'bg-primary text-white hover:bg-primary/90 hover:scale-105 shadow-lg'
+                : 'bg-dark text-white hover:bg-primary hover:scale-105'
+            }`}
+          >
+            Empezar Ahora
+          </a>
         </div>
       ))}
     </div>
 
-    {/* Note */}
-    <p class="text-center text-sm text-gray-500 mt-8">
-      {t('lp.pricing.note')}
+    <!-- Common Features (below cards) -->
+    <div class="flex flex-wrap justify-center gap-4 md:gap-6 mb-8 max-w-3xl mx-auto">
+      <div class="flex items-center gap-2 text-sm text-gray-600">
+        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+        <span>Analytics incluido</span>
+      </div>
+      <div class="flex items-center gap-2 text-sm text-gray-600">
+        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+        <span>Soporte 30 días</span>
+      </div>
+      <div class="flex items-center gap-2 text-sm text-gray-600">
+        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+        <span>Código 100% tuyo</span>
+      </div>
+    </div>
+
+    <!-- Note -->
+    <p class="text-center text-sm text-gray-500 mb-4">
+      * Todos los precios incluyen IGV. Hosting y dominio no incluidos
     </p>
+
+    <!-- Scarcity -->
+    <div class="text-center">
+      <p class="inline-block bg-red-50 text-red-600 px-4 py-2 rounded-full text-sm font-semibold">
+        ⚠️ Enero 2026: Solo 3 slots disponibles
+      </p>
+    </div>
   </div>
 </section>
+
+<style>
+  /* Remove default summary marker */
+  summary {
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Smooth transitions for details */
+  details[open] summary {
+    margin-bottom: 0;
+  }
+</style>

@@ -1,0 +1,117 @@
+---
+import { getLangFromUrl, useTranslations } from "../../utils/i18n";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const problems = [
+  { text: 'Plantilla genérica' },
+  { text: 'Carga lento (>5 seg)' },
+  { text: 'No convierte visitas' },
+  { text: 'Sin métricas reales' }
+];
+
+const solutions = [
+  { text: 'Código 100% tuyo' },
+  { text: 'Carga en <2 seg' },
+  { text: 'Diseño que vende' },
+  { text: 'Métricas incluidas' }
+];
+---
+
+<!-- OPCIÓN 1: VS BATTLE -->
+<section class="relative bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 py-16 md:py-24 overflow-hidden">
+  <!-- Burst pattern background -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full"
+         style="background: radial-gradient(circle, transparent 20%, currentColor 20%, currentColor 80%, transparent 80%, transparent),
+                radial-gradient(circle, transparent 20%, currentColor 20%, currentColor 80%, transparent 80%, transparent) 7.5px 7.5px;
+                background-size: 15px 15px; color: #46A0D0;">
+    </div>
+  </div>
+
+  <div class="container relative mx-auto px-4">
+    <div class="text-center mb-12 md:mb-16">
+      <h2 class="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">
+        ¿Tu web no genera clientes?
+      </h2>
+      <p class="text-xl text-gray-300">
+        La batalla entre perder dinero y crecer
+      </p>
+    </div>
+
+    <!-- VS Battle Layout -->
+    <div class="relative max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 md:gap-8">
+
+        <!-- PROBLEMA (Rojo, inclinado) -->
+        <div class="transform md:-rotate-2 hover:rotate-0 transition-all duration-500">
+          <div class="relative bg-gradient-to-br from-red-600 via-red-700 to-red-900 rounded-3xl p-8 shadow-2xl border-4 border-red-400">
+            <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-red-500 text-white px-6 py-3 rounded-full font-black text-lg shadow-xl">
+              ❌ ELLOS
+            </div>
+
+            <div class="mt-6 space-y-4">
+              {problems.map((problem) => (
+                <div class="flex items-center gap-3 bg-black/20 backdrop-blur-sm rounded-xl p-4 border border-red-400/30">
+                  <div class="w-10 h-10 rounded-full bg-red-400/20 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-red-200" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <span class="text-white font-semibold">{problem.text}</span>
+                </div>
+              ))}
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-red-400/30">
+              <div class="text-red-200 text-sm mb-2">Agencias tradicionales:</div>
+              <div class="text-4xl font-black text-white">S/.15,000+</div>
+              <div class="text-red-200 text-sm mt-2">⏱️ 3-6 meses</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOLUCIÓN (Azul, inclinado opuesto) -->
+        <div class="transform md:rotate-2 hover:rotate-0 transition-all duration-500">
+          <div class="relative bg-gradient-to-br from-primary via-primary-dark to-secondary rounded-3xl p-8 shadow-2xl border-4 border-primary">
+            <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-white px-6 py-3 rounded-full font-black text-lg shadow-xl">
+              ✓ NOSOTROS
+            </div>
+
+            <div class="mt-6 space-y-4">
+              {solutions.map((solution) => (
+                <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                  <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <span class="text-white font-semibold">{solution.text}</span>
+                </div>
+              ))}
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/20">
+              <div class="text-white/80 text-sm mb-2">Cofoundy:</div>
+              <div class="text-4xl font-black text-white">S/.1,200</div>
+              <div class="text-white/80 text-sm mt-2">⚡ 5-7 días</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VS Badge Central -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 hidden md:block">
+        <div class="relative">
+          <div class="w-24 h-24 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center shadow-2xl ring-8 ring-gray-900 animate-pulse">
+            <span class="text-3xl font-black text-white">VS</span>
+          </div>
+          <!-- Lightning bolts -->
+          <div class="absolute -top-8 -left-8 text-yellow-400 text-4xl animate-bounce">⚡</div>
+          <div class="absolute -bottom-8 -right-8 text-yellow-400 text-4xl animate-bounce" style="animation-delay: 0.3s;">⚡</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -6,155 +6,120 @@ const t = useTranslations(currentLang);
 
 const steps = [
   {
-    number: t('lp.process.step1.number'),
-    title: t('lp.process.step1.title'),
-    description: t('lp.process.step1.description'),
-    icon: '/icons/puvaffet.json', // document
+    lottie: 'aqrzgjfy', // clock-time icon
+    title: 'Llamada',
+    time: '15 min',
+    description: 'Entendemos tu negocio'
   },
   {
-    number: t('lp.process.step2.number'),
-    title: t('lp.process.step2.title'),
-    description: t('lp.process.step2.description'),
-    icon: '/icons/kkvxgpti.json', // search
+    lottie: 'lupuorrc', // design/pen icon
+    title: 'Diseño',
+    time: 'Día 1-2',
+    description: 'Creamos tu propuesta'
   },
   {
-    number: t('lp.process.step3.number'),
-    title: t('lp.process.step3.title'),
-    description: t('lp.process.step3.description'),
-    icon: '/icons/qbaenubu.json', // code
+    lottie: 'kkvxgpti', // code brackets
+    title: 'Desarrollo',
+    time: 'Día 3-6',
+    description: 'Programamos tu sitio'
   },
   {
-    number: t('lp.process.step4.number'),
-    title: t('lp.process.step4.title'),
-    description: t('lp.process.step4.description'),
-    icon: '/icons/fttvwdlw.json', // rocket
-  },
+    lottie: 'rxufjlal', // rocket launch
+    title: 'Lanzamiento',
+    time: 'Día 7',
+    description: 'Tu web en vivo'
+  }
 ];
 ---
 
-<section class="relative bg-white py-20 md:py-28 overflow-hidden">
-  <!-- Background pattern -->
-  <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 1px 1px, #020B1B 1px, transparent 0); background-size: 40px 40px;"></div>
+<section class="relative bg-gradient-to-b from-primary/5 to-white py-16 md:py-20">
+  <div class="container mx-auto px-4">
 
-  <div class="container relative mx-auto px-4">
     <!-- Section Header -->
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4">
-        {t('lp.process.title')}
+    <div class="text-center mb-12 md:mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-dark mb-3">
+        Así de simple
       </h2>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-        {t('lp.process.subtitle')}
+      <p class="text-lg text-gray-600">
+        De la idea a tu web en vivo en solo 7 días
       </p>
     </div>
 
-    <!-- Process Steps -->
+    <!-- Process Timeline -->
     <div class="max-w-5xl mx-auto">
-      <!-- Desktop: Horizontal Timeline -->
-      <div class="hidden md:block relative">
-        <!-- Connection line -->
-        <div class="absolute top-16 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-primary rounded-full"></div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-4">
+        {steps.map((step, index) => (
+          <div class="relative">
+            {/* Step Card */}
+            <div class="relative bg-white border-2 border-gray-100 hover:border-primary/50 rounded-2xl p-6 hover:shadow-xl transition-all group">
 
-        <div class="grid grid-cols-4 gap-8 relative">
-          {steps.map((step, index) => (
-            <div class="relative text-center group" style={`animation-delay: ${index * 200}ms`}>
-              {/* Step circle */}
-              <div class="relative z-10 w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-xl border-4 border-primary flex items-center justify-center transform transition-transform duration-300 group-hover:scale-110">
-                <lord-icon
-                  src={step.icon}
-                  trigger="hover"
-                  colors="primary:#46a0d0,secondary:#1b577e"
-                  style="width:56px;height:56px">
-                </lord-icon>
+              {/* Step Number Badge */}
+              <div class="absolute -top-3 -right-3 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg ring-4 ring-white">
+                {index + 1}
               </div>
 
-              {/* Number badge */}
-              <div class="absolute top-0 right-1/2 translate-x-1/2 -translate-y-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm shadow-lg">
-                {step.number}
+              {/* Lottie Icon */}
+              <div class="mb-4">
+                <lottie-player
+                  src={`/icons/${step.lottie}.json`}
+                  background="transparent"
+                  speed="1"
+                  style="width: 80px; height: 80px; margin: 0 auto;"
+                  loop
+                  autoplay
+                ></lottie-player>
               </div>
 
               {/* Content */}
-              <h3 class="text-xl font-bold text-dark mb-2">{step.title}</h3>
-              <p class="text-gray-600 text-sm">{step.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <!-- Mobile: Vertical Timeline -->
-      <div class="md:hidden relative">
-        {/* Connection line */}
-        <div class="absolute top-0 bottom-0 left-8 w-1 bg-gradient-to-b from-primary via-secondary to-primary rounded-full"></div>
-
-        <div class="space-y-8">
-          {steps.map((step, index) => (
-            <div class="relative flex items-start gap-6 pl-4" style={`animation-delay: ${index * 200}ms`}>
-              {/* Step circle */}
-              <div class="relative z-10 w-16 h-16 bg-white rounded-full shadow-xl border-4 border-primary flex items-center justify-center flex-shrink-0">
-                <lord-icon
-                  src={step.icon}
-                  trigger="hover"
-                  colors="primary:#46a0d0,secondary:#1b577e"
-                  style="width:28px;height:28px">
-                </lord-icon>
-                {/* Number badge */}
-                <div class="absolute -top-2 -right-2 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xs shadow-lg">
-                  {step.number}
+              <div class="text-center">
+                <h3 class="text-lg md:text-xl font-bold text-dark mb-1">
+                  {step.title}
+                </h3>
+                <div class="text-sm text-primary font-semibold mb-2">
+                  {step.time}
                 </div>
-              </div>
-
-              {/* Content */}
-              <div class="pt-2">
-                <h3 class="text-lg font-bold text-dark mb-1">{step.title}</h3>
-                <p class="text-gray-600 text-sm">{step.description}</p>
+                <p class="text-sm text-gray-600">
+                  {step.description}
+                </p>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
 
-      {/* Timeline note */}
-      <div class="mt-12 text-center">
-        <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-6 py-3 rounded-full">
-          <lord-icon
-            src="/icons/aqrzgjfy.json"
-            trigger="loop"
-            colors="primary:#46a0d0,secondary:#1b577e"
-            style="width:24px;height:24px">
-          </lord-icon>
-          <span class="font-semibold">{t('lp.process.timeline')}</span>
-        </div>
+            {/* Arrow Connector (hidden on last item and mobile) */}
+            {index < steps.length - 1 && (
+              <div class="hidden md:flex absolute top-1/2 -right-2 transform translate-x-1/2 -translate-y-1/2 z-10">
+                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-12 text-center">
+      <a
+        href="https://wa.link/3wf2cv"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-primary-dark text-white px-8 py-4 rounded-xl font-bold hover:shadow-xl hover:-translate-y-1 transition-all"
+      >
+        <span>Comenzar ahora</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+
   </div>
 </section>
 
-<style>
-  .grid > div, .space-y-8 > div {
-    animation: fadeInUp 0.8s ease-out forwards;
-    opacity: 0;
+<script>
+  // Load Lottie player if not already loaded
+  if (!customElements.get('lottie-player')) {
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js';
+    document.head.appendChild(script);
   }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Hover effect on circles */
-  .group:hover lord-icon {
-    filter: drop-shadow(0 0 8px #46a0d0);
-  }
-
-  /* Respect user preference for reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .grid > div, .space-y-8 > div {
-      animation: none;
-      opacity: 1;
-    }
-  }
-</style>
+</script>

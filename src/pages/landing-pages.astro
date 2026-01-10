@@ -6,9 +6,9 @@ import Footer from '../components/Footer.astro';
 // Landing Page specific components
 import LPStructuredData from '../components/landing-pages/LPStructuredData.astro';
 import LPHero from '../components/landing-pages/LPHero.astro';
-import LPTrustBar from '../components/landing-pages/LPTrustBar.astro';
+// LPTrustBar removed - stats now integrated in Hero
 import LPProblemSolution from '../components/landing-pages/LPProblemSolution.astro';
-import LPValueProps from '../components/landing-pages/LPValueProps.astro';
+// LPValueProps removed - content merged into Problem/Solution
 import LPPricing from '../components/landing-pages/LPPricing.astro';
 // import LPPortfolio from '../components/landing-pages/LPPortfolio.astro'; // Hidden temporarily
 import LPTestimonials from '../components/landing-pages/LPTestimonials.astro';
@@ -38,19 +38,13 @@ const canonicalURL = new URL('/landing-pages', Astro.site || 'https://cofoundy.d
     <LPNavbar />
 
     <main>
-      <!-- Section 1: Hero (Above the Fold) -->
+      <!-- Section 1: Hero (Above the Fold) with integrated stats -->
       <LPHero />
 
-      <!-- Section 2: Trust Bar (Social Proof Metrics) -->
-      <LPTrustBar />
-
-      <!-- Section 3: Problem/Solution (PAS Framework) -->
+      <!-- Section 2: Problem/Solution (PAS Framework) - 3D Card Depth Design -->
       <LPProblemSolution />
 
-      <!-- Section 4: Value Propositions (3 Columns) -->
-      <LPValueProps />
-
-      <!-- Section 5: Pricing Tiers -->
+      <!-- Section 3: Pricing Tiers (Simplified) -->
       <LPPricing />
 
       <!-- Section 6: Portfolio/Case Studies (Hidden temporarily) -->
