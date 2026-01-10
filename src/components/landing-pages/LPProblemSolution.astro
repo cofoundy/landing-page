@@ -1,0 +1,92 @@
+---
+import { getLangFromUrl, useTranslations } from "../../utils/i18n";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const problems = [
+  t('lp.problem.point1'),
+  t('lp.problem.point2'),
+  t('lp.problem.point3'),
+  t('lp.problem.point4'),
+];
+---
+
+<section class="relative bg-dark py-20 md:py-28 overflow-hidden">
+  <!-- Subtle background pattern -->
+  <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 1px 1px, rgba(70, 160, 208, 0.3) 1px, transparent 0); background-size: 40px 40px;"></div>
+
+  <div class="container relative mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+      <!-- Problem Column -->
+      <div class="order-2 lg:order-1">
+        <div class="inline-flex items-center gap-2 bg-red-500/20 text-red-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+          <span>Muchas empresas peruanas tienen sitios web que:</span>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+          {t('lp.problem.title')}
+        </h2>
+
+        <ul class="space-y-4 mb-8">
+          {problems.map((problem) => (
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-6 h-6 bg-red-500/20 rounded-full flex items-center justify-center mt-0.5">
+                <svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </span>
+              <span class="text-white/80 text-lg">{problem}</span>
+            </li>
+          ))}
+        </ul>
+
+        <p class="text-white/60 italic border-l-4 border-red-500/40 pl-4">
+          {t('lp.problem.agitate')}
+        </p>
+      </div>
+
+      <!-- Solution Column -->
+      <div class="order-1 lg:order-2">
+        <div class="bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-white/10">
+          <div class="inline-flex items-center gap-2 bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>La solución</span>
+          </div>
+
+          <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
+            {t('lp.solution.title')}
+          </h3>
+
+          <p class="text-white/70 text-lg mb-6 leading-relaxed">
+            {t('lp.solution.description')}
+          </p>
+
+          <div class="bg-primary/20 rounded-xl p-6 border border-primary/30">
+            <p class="text-xl font-bold text-primary text-center">
+              {t('lp.solution.tagline')}
+            </p>
+          </div>
+
+          <div class="mt-8 flex justify-center">
+            <a
+              href="#precios"
+              class="inline-flex items-center gap-2 text-primary font-semibold hover:text-primary-light transition-colors"
+            >
+              Ver nuestros paquetes
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

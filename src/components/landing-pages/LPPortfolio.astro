@@ -1,0 +1,129 @@
+---
+import { getLangFromUrl, useTranslations } from "../../utils/i18n";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const projects = [
+  {
+    name: t('lp.portfolio.genera.name'),
+    description: t('lp.portfolio.genera.description'),
+    stats: [
+      t('lp.portfolio.genera.stat1'),
+      t('lp.portfolio.genera.stat2'),
+      t('lp.portfolio.genera.stat3'),
+    ],
+    featured: true,
+    color: 'from-primary to-secondary',
+    icon: '🎓',
+  },
+  {
+    name: t('lp.portfolio.enmancha.name'),
+    description: t('lp.portfolio.enmancha.description'),
+    stats: [],
+    featured: false,
+    color: 'from-orange-400 to-red-500',
+    icon: '🛒',
+  },
+];
+---
+
+<section class="relative bg-dark py-20 md:py-28 overflow-hidden">
+  <!-- Background pattern -->
+  <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 1px 1px, rgba(70, 160, 208, 0.3) 1px, transparent 0); background-size: 40px 40px;"></div>
+
+  <!-- Floating orbs -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-40 right-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 left-20 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="container relative mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+        {t('lp.portfolio.title')}
+      </h2>
+      <p class="text-xl text-white/70 max-w-2xl mx-auto">
+        {t('lp.portfolio.subtitle')}
+      </p>
+    </div>
+
+    <!-- Featured Project: GENERA -->
+    <div class="max-w-4xl mx-auto mb-12">
+      <div class="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg rounded-3xl p-8 md:p-12 border border-white/10 overflow-hidden">
+        <!-- Badge -->
+        <div class="absolute top-4 right-4">
+          <span class="inline-flex items-center gap-2 bg-yellow-400 text-dark text-sm font-bold px-4 py-1.5 rounded-full">
+            🏆 Ganador Startup Perú 12G
+          </span>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 items-center">
+          <!-- Icon/Visual -->
+          <div class="flex-shrink-0">
+            <div class="w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center text-5xl md:text-6xl shadow-xl">
+              🎓
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="flex-1 text-center md:text-left">
+            <h3 class="text-2xl md:text-3xl font-bold text-white mb-3">
+              {t('lp.portfolio.genera.name')}
+            </h3>
+            <p class="text-white/70 text-lg mb-6">
+              {t('lp.portfolio.genera.description')}
+            </p>
+
+            <!-- Stats -->
+            <div class="flex flex-wrap justify-center md:justify-start gap-4">
+              {projects[0].stats.map((stat) => (
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
+                  <span class="text-white font-semibold">{stat}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="mt-8 pt-8 border-t border-white/10">
+          <blockquote class="text-white/80 italic text-lg">
+            "{t('lp.testimonials.genera.quote')}"
+          </blockquote>
+          <cite class="block mt-4 text-primary font-semibold">
+            — {t('lp.testimonials.genera.author')}
+          </cite>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other Projects -->
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      {projects.slice(1).map((project) => (
+        <div class="group relative bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1">
+          <div class="flex items-start gap-4">
+            <div class={`w-14 h-14 bg-gradient-to-br ${project.color} rounded-xl flex items-center justify-center text-2xl shadow-lg flex-shrink-0`}>
+              {project.icon}
+            </div>
+            <div>
+              <h4 class="text-xl font-bold text-white mb-2">{project.name}</h4>
+              <p class="text-white/60">{project.description}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <!-- Placeholder for more projects -->
+      <div class="group relative bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-dashed border-white/20 flex items-center justify-center min-h-[120px]">
+        <div class="text-center">
+          <p class="text-white/40 mb-2">¿Quieres ver más?</p>
+          <a href="#contacto" class="text-primary font-semibold hover:underline">
+            Agenda una llamada →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

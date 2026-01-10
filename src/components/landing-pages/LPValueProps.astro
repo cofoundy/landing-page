@@ -1,0 +1,259 @@
+---
+import { getLangFromUrl, useTranslations } from "../../utils/i18n";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const values = [
+  {
+    icon: '/icons/fttvwdlw.json', // rocket for speed
+    title: t('lp.value.speed.title'),
+    description: t('lp.value.speed.description'),
+    accent: 'from-yellow-400 to-orange-500',
+    iconColor: '#facc15', // yellow-400
+    useLordicon: true,
+  },
+  {
+    icon: '/icons/qbaenubu.json', // code
+    title: t('lp.value.quality.title'),
+    description: t('lp.value.quality.description'),
+    accent: 'from-primary to-secondary',
+    iconColor: '#46a0d0', // primary
+    useLordicon: true,
+  },
+  {
+    icon: 'support',
+    title: t('lp.value.support.title'),
+    description: t('lp.value.support.description'),
+    accent: 'from-green-400 to-emerald-500',
+    iconColor: '#4ade80', // green-400
+    useLordicon: false,
+  },
+];
+---
+
+<section class="relative bg-dark pt-20 md:pt-28 pb-40 md:pb-56 overflow-hidden">
+  <!-- Animated background -->
+  <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 1px 1px, rgba(70, 160, 208, 0.3) 1px, transparent 0); background-size: 40px 40px;"></div>
+
+  <!-- Floating orbs -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-20 left-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-20 right-20 w-80 h-80 bg-secondary/10 rounded-full blur-3xl animate-float-delayed"></div>
+  </div>
+
+  <div class="container relative mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+        {t('lp.value.title')}
+      </h2>
+    </div>
+
+    <!-- Value Props Grid -->
+    <div class="grid md:grid-cols-3 gap-8">
+      {values.map((value, index) => (
+        <div
+          class="group relative"
+          style={`animation-delay: ${index * 150}ms`}
+        >
+          <div class="relative bg-white/5 backdrop-blur-lg rounded-2xl p-8 h-full border border-white/10 transform transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+            <!-- Hover glow -->
+            <div class={`absolute inset-0 bg-gradient-to-br ${value.accent} rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`}></div>
+
+            <!-- Content -->
+            <div class="relative z-10">
+              <!-- Icon -->
+              <div class="mb-6">
+                {value.useLordicon ? (
+                  <lord-icon
+                    src={value.icon}
+                    trigger="hover"
+                    colors={`primary:${value.iconColor},secondary:#1b577e`}
+                    style="width:80px;height:80px">
+                  </lord-icon>
+                ) : (
+                  <svg class="w-20 h-20 icon-spin text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                )}
+              </div>
+
+              <!-- Title -->
+              <h3 class="text-2xl font-bold text-white mb-4">
+                {value.title}
+              </h3>
+
+              <!-- Description -->
+              <p class="text-white/70 text-lg leading-relaxed group-hover:text-white/90 transition-colors duration-300">
+                {value.description}
+              </p>
+            </div>
+
+            <!-- Corner accent -->
+            <div class={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${value.accent} opacity-0 group-hover:opacity-20 rounded-tr-2xl transition-opacity duration-500`}></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Bottom wave transition (dark to light) -->
+  <div class="absolute bottom-0 left-0 right-0 h-32 md:h-48 overflow-hidden pointer-events-none">
+    <div class="absolute inset-0 opacity-30">
+      <svg class="w-full h-full" viewBox="0 0 1440 100" fill="none" preserveAspectRatio="none">
+        <path
+          class="animate-wave-slow"
+          d="M0 50L48 45.7C96 41.3 192 32.7 288 27.8C384 23 480 22 576 28.8C672 35.7 768 50.3 864 55.2C960 60 1056 55 1152 46.8C1248 38.7 1344 27.3 1392 21.7L1440 16V100H0V50Z"
+          fill="#f9fafb"></path>
+      </svg>
+    </div>
+    <div class="absolute inset-0 opacity-50">
+      <svg class="w-full h-full" viewBox="0 0 1440 100" fill="none" preserveAspectRatio="none">
+        <path
+          class="animate-wave-medium"
+          d="M0 70L48 64.3C96 58.7 192 47.3 288 44.7C384 42 480 48 576 54.8C672 61.7 768 69.3 864 69.2C960 69 1056 61 1152 55.2C1248 49.3 1344 45.7 1392 43.8L1440 42V100H0V70Z"
+          fill="#f9fafb"></path>
+      </svg>
+    </div>
+    <div class="absolute inset-0 opacity-70">
+      <svg class="w-full h-full" viewBox="0 0 1440 100" fill="none" preserveAspectRatio="none">
+        <path
+          class="animate-wave-fast"
+          d="M0 80L48 77.3C96 74.7 192 69.3 288 71.2C384 73 480 82 576 84.8C672 87.7 768 84.3 864 79.2C960 74 1056 67 1152 65.2C1248 63.3 1344 66.7 1392 68.3L1440 70V100H0V80Z"
+          fill="#f9fafb"></path>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes float-delayed {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+  }
+
+  .animate-float {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float-delayed 10s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  .grid > div {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* SVG icon animation for support */
+  .icon-spin {
+    animation: spin 10s linear infinite;
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .group:hover .icon-spin {
+    animation: spin-fast 0.8s ease-in-out;
+  }
+
+  @keyframes spin-fast {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Lordicon hover glow */
+  lord-icon {
+    transition: filter 0.3s ease;
+  }
+
+  .group:hover lord-icon {
+    filter: drop-shadow(0 0 15px currentColor);
+  }
+
+  /* Reduce animations on mobile */
+  @media (max-width: 640px) {
+    .animate-float,
+    .animate-float-delayed {
+      animation-duration: 0s;
+    }
+  }
+
+  /* Wave animations */
+  @keyframes wave-slow {
+    0%, 100% {
+      d: path("M0 50L48 45.7C96 41.3 192 32.7 288 27.8C384 23 480 22 576 28.8C672 35.7 768 50.3 864 55.2C960 60 1056 55 1152 46.8C1248 38.7 1344 27.3 1392 21.7L1440 16V100H0V50Z");
+    }
+    50% {
+      d: path("M0 60L48 55.7C96 51.3 192 42.7 288 37.8C384 33 480 32 576 38.8C672 45.7 768 60.3 864 65.2C960 70 1056 65 1152 56.8C1248 48.7 1344 37.3 1392 31.7L1440 26V100H0V60Z");
+    }
+  }
+
+  @keyframes wave-medium {
+    0%, 100% {
+      d: path("M0 70L48 64.3C96 58.7 192 47.3 288 44.7C384 42 480 48 576 54.8C672 61.7 768 69.3 864 69.2C960 69 1056 61 1152 55.2C1248 49.3 1344 45.7 1392 43.8L1440 42V100H0V70Z");
+    }
+    50% {
+      d: path("M0 80L48 74.3C96 68.7 192 57.3 288 54.7C384 52 480 58 576 64.8C672 71.7 768 79.3 864 79.2C960 79 1056 71 1152 65.2C1248 59.3 1344 55.7 1392 53.8L1440 52V100H0V80Z");
+    }
+  }
+
+  @keyframes wave-fast {
+    0%, 100% {
+      d: path("M0 80L48 77.3C96 74.7 192 69.3 288 71.2C384 73 480 82 576 84.8C672 87.7 768 84.3 864 79.2C960 74 1056 67 1152 65.2C1248 63.3 1344 66.7 1392 68.3L1440 70V100H0V80Z");
+    }
+    50% {
+      d: path("M0 90L48 87.3C96 84.7 192 79.3 288 81.2C384 83 480 92 576 94.8C672 97.7 768 94.3 864 89.2C960 84 1056 77 1152 75.2C1248 73.3 1344 76.7 1392 78.3L1440 80V100H0V90Z");
+    }
+  }
+
+  .animate-wave-slow {
+    animation: wave-slow 8s ease-in-out infinite;
+  }
+
+  .animate-wave-medium {
+    animation: wave-medium 6s ease-in-out infinite;
+  }
+
+  .animate-wave-fast {
+    animation: wave-fast 4s ease-in-out infinite;
+  }
+
+  /* Respect user preference for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-float-delayed,
+    .icon-spin,
+    .animate-wave-slow,
+    .animate-wave-medium,
+    .animate-wave-fast {
+      animation: none !important;
+    }
+
+    .grid > div {
+      animation: none;
+      opacity: 1;
+    }
+  }
+</style>

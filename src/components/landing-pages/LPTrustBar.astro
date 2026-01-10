@@ -1,0 +1,82 @@
+---
+import { getLangFromUrl, useTranslations } from "../../utils/i18n";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const stats = [
+  { value: t('lp.trust.projects'), label: t('lp.trust.projects_label'), icon: '/icons/whtfgdfm.json' }, // trending chart
+  { value: t('lp.trust.retention'), label: t('lp.trust.retention_label'), icon: '/icons/surjmvno.json' }, // star - clientes repiten
+  { value: t('lp.trust.ontime'), label: t('lp.trust.ontime_label'), icon: '/icons/lupuorrc.json' }, // confetti - entregado a tiempo
+  { value: t('lp.trust.response'), label: t('lp.trust.response_label'), icon: '/icons/aqrzgjfy.json' }, // clock - tiempo respuesta
+];
+---
+
+<section class="relative bg-dark py-12 overflow-hidden">
+  <!-- Background pattern -->
+  <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 1px 1px, rgba(70, 160, 208, 0.3) 1px, transparent 0); background-size: 30px 30px;"></div>
+
+  <div class="container relative mx-auto px-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+      {stats.map((stat, index) => (
+        <div
+          class="text-center group"
+          style={`animation-delay: ${index * 100}ms`}
+        >
+          <div class="inline-block mb-3">
+            <lord-icon
+              src={stat.icon}
+              trigger="hover"
+              colors="primary:#46a0d0,secondary:#1b577e"
+              style="width:64px;height:64px">
+            </lord-icon>
+          </div>
+          <div class="text-3xl md:text-4xl font-bold text-white mb-1 count-up" data-target={stat.value}>
+            {stat.value}
+          </div>
+          <div class="text-sm md:text-base text-white/70">
+            {stat.label}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .count-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .grid > div:nth-child(1) .count-up { animation-delay: 0.1s; }
+  .grid > div:nth-child(2) .count-up { animation-delay: 0.2s; }
+  .grid > div:nth-child(3) .count-up { animation-delay: 0.3s; }
+  .grid > div:nth-child(4) .count-up { animation-delay: 0.4s; }
+
+  /* Hover glow effect on icons */
+  lord-icon {
+    transition: filter 0.3s ease;
+  }
+
+  .group:hover lord-icon {
+    filter: drop-shadow(0 0 12px #46a0d0);
+  }
+
+  /* Respect user preference for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .count-up {
+      animation: none;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

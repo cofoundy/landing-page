@@ -1,0 +1,125 @@
+---
+import { getLangFromUrl, useTranslations } from "../../utils/i18n";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const faqs = [
+  { question: t('lp.faq.q1'), answer: t('lp.faq.a1') },
+  { question: t('lp.faq.q2'), answer: t('lp.faq.a2') },
+  { question: t('lp.faq.q3'), answer: t('lp.faq.a3') },
+  { question: t('lp.faq.q4'), answer: t('lp.faq.a4') },
+  { question: t('lp.faq.q5'), answer: t('lp.faq.a5') },
+  { question: t('lp.faq.q6'), answer: t('lp.faq.a6') },
+  { question: t('lp.faq.q7'), answer: t('lp.faq.a7') },
+  { question: t('lp.faq.q8'), answer: t('lp.faq.a8') },
+];
+---
+
+<section class="relative bg-gradient-to-br from-gray-50 to-white py-20 md:py-28 overflow-hidden">
+  <!-- Background pattern -->
+  <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 1px 1px, #020B1B 1px, transparent 0); background-size: 40px 40px;"></div>
+
+  <div class="container relative mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4">
+        {t('lp.faq.title')}
+      </h2>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div class="max-w-3xl mx-auto space-y-4">
+      {faqs.map((faq, index) => (
+        <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+          <button
+            class="faq-trigger w-full flex items-center justify-between p-6 text-left"
+            aria-expanded="false"
+            data-index={index}
+          >
+            <span class="font-semibold text-dark text-lg pr-4">{faq.question}</span>
+            <span class="faq-icon flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center transition-transform duration-300">
+              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq-content hidden">
+            <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+              {faq.answer}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const triggers = document.querySelectorAll('.faq-trigger');
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('.faq-item');
+        const content = item?.querySelector('.faq-content');
+        const icon = trigger.querySelector('.faq-icon');
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+
+        // Close all other items
+        triggers.forEach((otherTrigger) => {
+          if (otherTrigger !== trigger) {
+            const otherItem = otherTrigger.closest('.faq-item');
+            const otherContent = otherItem?.querySelector('.faq-content');
+            const otherIcon = otherTrigger.querySelector('.faq-icon');
+
+            otherTrigger.setAttribute('aria-expanded', 'false');
+            otherContent?.classList.add('hidden');
+            otherIcon?.classList.remove('rotate-180');
+          }
+        });
+
+        // Toggle current item
+        trigger.setAttribute('aria-expanded', (!isExpanded).toString());
+        content?.classList.toggle('hidden');
+        icon?.classList.toggle('rotate-180');
+      });
+    });
+  });
+</script>
+
+<style>
+  .faq-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .faq-icon.rotate-180 {
+    transform: rotate(180deg);
+  }
+
+  .faq-content {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Respect user preference for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .faq-content {
+      animation: none;
+    }
+
+    .faq-icon {
+      transition: none;
+    }
+  }
+</style>

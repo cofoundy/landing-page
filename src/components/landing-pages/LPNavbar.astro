@@ -1,0 +1,300 @@
+---
+import { getLangFromUrl, useTranslations } from "../../utils/i18n";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+---
+
+<header
+  class="fixed w-full z-50 top-0 left-0 transition-all duration-300"
+  id="lpNav"
+>
+  <div class="container mx-auto px-4">
+    <div
+      class="flex h-16 md:h-20 items-center justify-between mt-3 md:mt-4 px-4 md:px-6 rounded-xl md:rounded-2xl border border-white/10 navbar-glass transition-all duration-300"
+      id="lpNavContainer"
+    >
+      <!-- Logo -->
+      <a
+        href="/"
+        class="text-xl md:text-2xl font-bold flex items-center gap-2 relative z-50 nav-text transition-all duration-300 hover:opacity-80"
+      >
+        <img src="/favicon.svg" alt="Cofoundy Logo" class="w-7 h-7 md:w-8 md:h-8" />
+        <span class="hidden sm:inline">Cofoundy</span>
+      </a>
+
+      <!-- Desktop: CTA Button -->
+      <div class="hidden md:flex items-center gap-4">
+        <a
+          href="#contacto"
+          class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
+        >
+          {t('lp.hero.cta')}
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="lpMenuButton"
+        class="relative z-[60] w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 transition-colors duration-300 md:hidden backdrop-blur-sm"
+        aria-label="Toggle Menu"
+      >
+        <div class="flex flex-col items-center justify-center w-5 h-5 md:w-6 md:h-6 overflow-visible hamburger-icon">
+          <span class="w-5 md:w-6 h-[2px] bg-current rounded-full transition-all duration-300 transform"></span>
+          <span class="w-5 md:w-6 h-[2px] bg-current rounded-full my-[5px] md:my-[6px] transition-all duration-300 transform"></span>
+          <span class="w-5 md:w-6 h-[2px] bg-current rounded-full transition-all duration-300 transform"></span>
+        </div>
+      </button>
+
+      <!-- Mobile Menu Overlay -->
+      <div
+        id="lpMobileMenu"
+        class="fixed inset-0 z-50 opacity-0 pointer-events-none transition-all duration-300 md:hidden"
+      >
+        <!-- Menu Content -->
+        <div
+          class="absolute right-4 top-20 w-[calc(100%-2rem)] max-w-sm navbar-glass-menu rounded-2xl border border-white/10 transform translate-y-[-1rem] transition-all duration-300"
+        >
+          <nav class="flex flex-col py-4">
+            <a
+              href="#precios"
+              class="px-6 py-3 text-base font-medium text-white/90 hover:text-white hover:bg-white/5 transition-all duration-300"
+            >
+              {t('lp.pricing.title')}
+            </a>
+            <a
+              href="#portfolio"
+              class="px-6 py-3 text-base font-medium text-white/90 hover:text-white hover:bg-white/5 transition-all duration-300"
+            >
+              Portfolio
+            </a>
+            <a
+              href="#proceso"
+              class="px-6 py-3 text-base font-medium text-white/90 hover:text-white hover:bg-white/5 transition-all duration-300"
+            >
+              {t('lp.process.title')}
+            </a>
+            <div class="px-4 pt-3 border-t border-white/10 mt-2">
+              <a
+                href="#contacto"
+                class="inline-flex w-full items-center justify-center px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+              >
+                {t('lp.hero.cta')}
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Smart scroll handling
+  let lastScroll = 0;
+  const navbar = document.getElementById("lpNav");
+  const navbarContainer = document.getElementById("lpNavContainer");
+
+  // Intersection Observer for light/dark sections
+  const observerOptions = {
+    threshold: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const isLightSection =
+        entry.target.classList.contains("bg-white") ||
+        entry.target.classList.contains("bg-light") ||
+        entry.target.classList.contains("bg-gradient-to-br");
+
+      if (isLightSection) {
+        if (entry.intersectionRatio > 0.3) {
+          navbarContainer?.classList.add("on-light");
+          navbarContainer?.classList.remove("on-dark");
+        }
+      } else {
+        if (entry.intersectionRatio > 0.3) {
+          navbarContainer?.classList.add("on-dark");
+          navbarContainer?.classList.remove("on-light");
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all sections
+  document.querySelectorAll("section").forEach((section) => {
+    observer.observe(section);
+  });
+
+  // Smart scroll - hide on down, show on up
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll <= 0) {
+      navbar?.classList.remove("nav-hidden");
+      navbarContainer?.classList.remove("nav-scrolled");
+      return;
+    }
+
+    if (currentScroll > lastScroll && currentScroll > 100) {
+      // Scrolling down & past navbar
+      navbar?.classList.add("nav-hidden");
+    } else {
+      // Scrolling up
+      navbar?.classList.remove("nav-hidden");
+    }
+
+    if (currentScroll > 50) {
+      navbarContainer?.classList.add("nav-scrolled");
+    } else {
+      navbarContainer?.classList.remove("nav-scrolled");
+    }
+
+    lastScroll = currentScroll;
+  });
+
+  // Mobile menu handling
+  const menuButton = document.getElementById("lpMenuButton");
+  const mobileMenu = document.getElementById("lpMobileMenu");
+  const menuContent = mobileMenu?.querySelector("div") as HTMLElement;
+  const spans = menuButton?.querySelectorAll("span");
+  let isOpen = false;
+
+  menuButton?.addEventListener("click", () => {
+    isOpen = !isOpen;
+    document.body.style.overflow = isOpen ? "hidden" : "";
+
+    if (mobileMenu instanceof HTMLElement) {
+      mobileMenu.style.opacity = isOpen ? "1" : "0";
+      mobileMenu.style.pointerEvents = isOpen ? "auto" : "none";
+
+      if (menuContent) {
+        menuContent.style.transform = isOpen
+          ? "translate(0, 0)"
+          : "translate(0, -1rem)";
+      }
+    }
+
+    // Animate hamburger to X
+    if (spans && spans.length === 3) {
+      if (isOpen) {
+        spans[0].style.transform = "rotate(45deg) translate(5px, 5px)";
+        spans[1].style.opacity = "0";
+        spans[2].style.transform = "rotate(-45deg) translate(5px, -5px)";
+      } else {
+        spans[0].style.transform = "none";
+        spans[1].style.opacity = "1";
+        spans[2].style.transform = "none";
+      }
+    }
+  });
+
+  // Close menu when clicking a link
+  const menuLinks = mobileMenu?.querySelectorAll("a");
+  menuLinks?.forEach((link) => {
+    link.addEventListener("click", () => {
+      isOpen = false;
+      document.body.style.overflow = "";
+      if (mobileMenu instanceof HTMLElement) {
+        mobileMenu.style.opacity = "0";
+        mobileMenu.style.pointerEvents = "none";
+      }
+      if (menuContent) {
+        menuContent.style.transform = "translate(0, -1rem)";
+      }
+      if (spans && spans.length === 3) {
+        spans[0].style.transform = "none";
+        spans[1].style.opacity = "1";
+        spans[2].style.transform = "none";
+      }
+    });
+  });
+</script>
+
+<style>
+  .navbar-glass {
+    background: linear-gradient(
+      180deg,
+      rgba(35, 67, 95, 0.3) 0%,
+      rgba(35, 67, 95, 0.2) 50%,
+      rgba(35, 67, 95, 0.15) 100%
+    );
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transform: translateY(0);
+  }
+
+  .navbar-glass-menu {
+    background: linear-gradient(
+      180deg,
+      rgba(2, 11, 27, 0.98) 0%,
+      rgba(2, 11, 27, 0.95) 100%
+    );
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Smart scroll classes */
+  .nav-hidden {
+    transform: translateY(-100%);
+  }
+
+  .nav-scrolled {
+    background: linear-gradient(
+      180deg,
+      rgba(2, 11, 27, 0.95) 0%,
+      rgba(2, 11, 27, 0.9) 100%
+    );
+    @apply shadow-lg;
+  }
+
+  /* Dynamic text colors - default dark */
+  .nav-text {
+    @apply text-white;
+  }
+
+  /* On light sections */
+  .on-light .nav-text {
+    @apply text-secondary;
+  }
+
+  .on-light.navbar-glass {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.9) 100%
+    );
+    border-color: rgba(35, 67, 95, 0.1);
+  }
+
+  .on-light .hamburger-icon span {
+    @apply bg-secondary;
+  }
+
+  /* Hamburger menu styles */
+  .hamburger-icon span {
+    transform-origin: center;
+    @apply bg-white;
+  }
+
+  /* Prevent body scroll when menu is open */
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  /* Respect user preference for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .navbar-glass,
+    .nav-hidden,
+    .hamburger-icon span {
+      transition: none !important;
+    }
+  }
+</style>
