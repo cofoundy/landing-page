@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import LPNavbar from '../components/landing-pages/LPNavbar.astro';
 import Footer from '../components/Footer.astro';
+import GoogleAdsTag from '../components/GoogleAdsTag.astro';
 
 // Landing Page specific components
 import LPStructuredData from '../components/landing-pages/LPStructuredData.astro';
@@ -32,6 +33,7 @@ const canonicalURL = new URL('/landing-pages', Astro.site || 'https://cofoundy.d
   title={title}
   description={description}
 >
+  <GoogleAdsTag />
   <LPStructuredData />
 
   <div class="min-h-screen bg-white">
