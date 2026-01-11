@@ -199,7 +199,12 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT || 'https://
           form.reset();
           successMessage?.classList.remove('hidden');
 
-          // Track conversion
+          // Track Google Ads conversion
+          if (typeof gtag_report_conversion !== 'undefined') {
+            gtag_report_conversion();
+          }
+
+          // Track conversion (Analytics)
           if (typeof gtag !== 'undefined') {
             gtag('event', 'generate_lead', {
               currency: 'PEN',

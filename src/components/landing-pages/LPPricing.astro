@@ -215,6 +215,7 @@ const plans = [
             href="https://wa.link/3wf2cv"
             target="_blank"
             rel="noopener noreferrer"
+            onclick="gtag_report_conversion('https://wa.link/3wf2cv'); return false;"
             class={`block w-full py-3 text-center font-semibold rounded-xl transition-all duration-300 ${
               plan.highlighted
                 ? 'bg-primary text-white hover:bg-primary/90 hover:scale-105 shadow-lg'
