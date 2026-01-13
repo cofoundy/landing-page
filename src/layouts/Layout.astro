@@ -103,6 +103,9 @@ const alternateUrls = Object.keys(languages).map(lang => ({
 
     <!-- Structured Data -->
     <StructuredData />
+
+    <!-- Additional head content (e.g., Google Ads Tag) -->
+    <slot name="head-extra" />
   </head>
   <body class="font-sans antialiased">
     <slot />

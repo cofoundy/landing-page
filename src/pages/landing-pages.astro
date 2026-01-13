@@ -33,7 +33,9 @@ const canonicalURL = new URL('/landing-pages', Astro.site || 'https://cofoundy.d
   title={title}
   description={description}
 >
-  <GoogleAdsTag />
+  <!-- Google Ads Tag in head -->
+  <GoogleAdsTag slot="head-extra" />
+
   <LPStructuredData />
 
   <div class="min-h-screen bg-white">
